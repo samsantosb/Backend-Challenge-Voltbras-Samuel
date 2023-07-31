@@ -1,11 +1,7 @@
 import { faker } from "@faker-js/faker";
+import { fakeMongoObjectIds } from "../../stations/__mocks__/fake.station";
 
-export const fakeMongoObjectIds = [
-  "634c43c03c18f58508caf9fe",
-  "634c43c03c18f58508caf9fc",
-];
-
-export const generateFakeUser = (deleted = false, populate = false) => ({
+export const generateFakeUser = () => ({
   _id: fakeMongoObjectIds[0],
   name: `${faker.person.prefix()} ${faker.person.lastName()}`,
   email: faker.internet.email(),
@@ -13,7 +9,7 @@ export const generateFakeUser = (deleted = false, populate = false) => ({
   recharges: fakeMongoObjectIds,
   reservations: fakeMongoObjectIds,
   stationHistories: fakeMongoObjectIds,
-  deletedAt: deleted ? faker.date.past() : null,
+  deletedAt: faker.date.past(),
   createdAt: faker.date.past(),
   updatedAt: faker.date.past(),
 });

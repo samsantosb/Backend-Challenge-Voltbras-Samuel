@@ -1,34 +1,38 @@
 import { IUserRepository } from "./user.repository.interface";
-import { User, UserModel } from "../models/user.model";
+import { User } from "../models/user.model";
 import { RequestUserDTO } from "../dtos/request.user.dto";
+import { Model } from "mongoose";
 
 export class UserRepository implements IUserRepository {
+  constructor(private readonly userModel: Model<User>) {}
   async getAll(): Promise<User[] | null> {
-    const users = await this.populateUsers(UserModel.find());
+    const users = await this.populateUsers(this.userModel.find());
 
     return users;
   }
 
   async getById(id: string): Promise<User | null> {
-    const user = await this.populateUsers(UserModel.findById(id));
+    const user = await this.populateUsers(this.userModel.findById(id));
 
     return user;
   }
 
   async getByEmail(email: string): Promise<User | null> {
-    const user = await this.populateUsers(UserModel.findOne({ email: email }));
+    const user = await this.populateUsers(
+      this.userModel.findOne({ email: email })
+    );
 
     return user;
   }
 
   async create(data: RequestUserDTO): Promise<User | null> {
-    const newUser = await UserModel.create(data);
+    const newUser = await this.userModel.create(data);
 
     return newUser;
   }
 
   async update(id: string, data: RequestUserDTO): Promise<User | null> {
-    const updatedUser = await UserModel.findByIdAndUpdate(id, data, {
+    const updatedUser = await this.userModel.findByIdAndUpdate(id, data, {
       new: true,
     });
 
@@ -36,7 +40,7 @@ export class UserRepository implements IUserRepository {
   }
 
   async softDelete(id: string): Promise<User | null> {
-    const deletedUser = await UserModel.findByIdAndUpdate(
+    const deletedUser = await this.userModel.findByIdAndUpdate(
       id,
       { deletedAt: new Date() },
       { new: true }
@@ -46,9 +50,6 @@ export class UserRepository implements IUserRepository {
   }
 
   private populateUsers(query: any): any {
-    return query
-      .populate("recharges")
-      .populate("reservations")
-      .populate("histories");
+    return query.populate(["recharges", "reservations", "stationHistories"]);
   }
 }
