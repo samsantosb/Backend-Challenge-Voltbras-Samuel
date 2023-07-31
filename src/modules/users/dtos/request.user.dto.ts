@@ -1,5 +1,4 @@
 import { z } from "zod";
-
 export class RequestUserDTO {
   name: string;
   email: string;
