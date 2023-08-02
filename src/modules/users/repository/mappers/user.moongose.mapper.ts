@@ -1,5 +1,5 @@
 import { mongooseUserSchema } from "../model/user.mongoose.model";
-import { User } from "../../../domain/entities/user.entity";
+import { User } from "../../entities/user.entity";
 
 export class UserMapper {
   static mongoToDomain(user: mongooseUserSchema): User {

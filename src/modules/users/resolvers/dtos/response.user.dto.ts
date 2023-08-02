@@ -1,5 +1,5 @@
 import { Types } from "mongoose";
-import { User } from "../../../domain/entities/user.entity";
+import { User } from "../../entities/user.entity";
 
 export class ResponseUserDTO {
   public name: string;

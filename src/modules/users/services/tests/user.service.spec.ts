@@ -1,6 +1,6 @@
-import { fakeMongoObjectId } from "../../../../../__mocks__/fake.mongo.ids";
-import { fakeUser } from "../../../__mocks__/fake.user";
-import { fakeUserRepository } from "../../../__mocks__/fake.user.repository";
+import { fakeMongoObjectId } from "../../../../__mocks__/fake.mongo.ids";
+import { fakeUser } from "../../__mocks__/fake.user";
+import { fakeUserRepository } from "../../__mocks__/fake.user.repository";
 import { UserService } from "../implementation/user.service";
 
 const userService = new UserService(fakeUserRepository);

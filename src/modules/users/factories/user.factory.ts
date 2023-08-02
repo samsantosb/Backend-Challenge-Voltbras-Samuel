@@ -1,7 +1,7 @@
-import { UserModel } from "../adapters/mongoose/model/user.mongoose.model";
-import { UserMongooseRepository } from "../adapters/mongoose/implementation/user.moongose.repository";
-import { UserService } from "../domain/services/implementation/user.service";
-import { UserResolver } from "../adapters/resolvers/implementation/user.resolver";
+import { UserModel } from "../repository/model/user.mongoose.model";
+import { UserMongooseRepository } from "../repository/implementation/user.moongose.repository";
+import { UserService } from "../services/implementation/user.service";
+import { UserResolver } from "../resolvers/implementation/user.resolver";
 
 function userFactory() {
   const mongooseRepository = new UserMongooseRepository(UserModel);

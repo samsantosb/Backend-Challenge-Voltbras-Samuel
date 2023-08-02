@@ -1,4 +1,4 @@
-import { IUserRepository } from "../../../domain/ports/user.repository.interface";
+import { IUserRepository } from "../user.repository.interface";
 import {
   mongooseUserModel,
   mongooseUserSchema,
@@ -6,7 +6,7 @@ import {
 import { RequestUserDTO } from "../../resolvers/dtos/request.user.dto";
 import { Model, Types } from "mongoose";
 import { UserMapper } from "../mappers/user.moongose.mapper";
-import { User } from "../../../domain/entities/user.entity";
+import { User } from "../../entities/user.entity";
 
 export class UserMongooseRepository implements IUserRepository {
   constructor(private readonly userModel: mongooseUserModel) {}
