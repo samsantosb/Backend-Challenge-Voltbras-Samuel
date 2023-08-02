@@ -1,7 +1,7 @@
 import { fakeMongoObjectId } from "../../../../__mocks__/fake.mongo.ids";
 import { fakeUser } from "../../__mocks__/fake.user";
 import { fakeUserModel } from "../../__mocks__/fake.user.model";
-import { UserMongooseRepository } from "../implementation/user.moongose.repository";
+import { UserMongooseRepository } from "../implementation/user.mongoose.repository";
 
 const userRepository = new UserMongooseRepository(fakeUserModel);
 

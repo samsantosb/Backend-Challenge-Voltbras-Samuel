@@ -11,7 +11,7 @@ export const generateFakeStation = (deleted = false) => {
     recharges: fakeMongoObjectIds,
     reservations: fakeMongoObjectIds,
     histories: fakeMongoObjectIds,
-    deletedAt: deleted ? faker.date.past() : null,
+    deletedAt: deleted ? faker.date.past() : undefined,
     createdAt: faker.date.past(),
     updatedAt: faker.date.past(),
   };
