@@ -1,6 +1,5 @@
 import { Types } from "mongoose";
-import { User } from "../models/user.model";
-import { IUserData } from "./user.data.interface";
+import { User } from "../../../domain/entities/user.entity";
 
 export class ResponseUserDTO {
   public name: string;
@@ -12,7 +11,7 @@ export class ResponseUserDTO {
   public updatedAt?: Date;
   public deletedAt?: Date;
 
-  constructor(public user: IUserData) {
+  constructor(public user: User) {
     this.name = user.name;
     this.email = user.email;
     this.recharges = user.recharges;

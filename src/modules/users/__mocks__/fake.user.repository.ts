@@ -1,4 +1,4 @@
-import { IUserRepository } from "../repositories/user.repository.interface";
+import { IUserRepository } from "../domain/ports/user.repository.interface";
 import { fakeUser } from "./fake.user";
 
 export const fakeUserRepository: IUserRepository = {

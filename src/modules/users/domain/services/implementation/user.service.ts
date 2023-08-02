@@ -1,8 +1,8 @@
-import { RequestUserDTO } from "../../dtos/request.user.dto";
-import { IUserRepository } from "../../repositories/user.repository.interface";
+import { RequestUserDTO } from "../../../adapters/resolvers/dtos/request.user.dto";
+import { IUserRepository } from "../../ports/user.repository.interface";
 import { IUserService } from "../user.service.interface";
-import { isIdValid } from "../../../utils/validators/mongo.id.validator";
-import { ErrorMessages } from "../../../utils/errorHandler/error.messages";
+import { isIdValid } from "../../../../utils/validators/mongo.id.validator";
+import { ErrorMessages } from "../../../../utils/errorHandler/error.messages";
 import bcrypt from "bcrypt";
 
 export class UserService implements IUserService {

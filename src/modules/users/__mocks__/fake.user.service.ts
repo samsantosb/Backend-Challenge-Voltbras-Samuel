@@ -1,6 +1,6 @@
-import { RequestUserDTO } from "../dtos/request.user.dto";
+import { RequestUserDTO } from "../adapters/resolvers/dtos/request.user.dto";
 import { fakeUser } from "./fake.user";
-import { IUserService } from "../services/user.service.interface";
+import { IUserService } from "../domain/services/user.service.interface";
 
 export const fakeUserService = {
   async getAll() {

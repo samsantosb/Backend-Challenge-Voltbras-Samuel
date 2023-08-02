@@ -1,5 +1,5 @@
-import { RequestUserDTO } from "../dtos/request.user.dto";
-import { ResponseUserDTO } from "../dtos/response.user.dto";
+import { RequestUserDTO } from "../../adapters/resolvers/dtos/request.user.dto";
+import { ResponseUserDTO } from "../../adapters/resolvers/dtos/response.user.dto";
 
 export abstract class IUserResolver {
   abstract Query: {

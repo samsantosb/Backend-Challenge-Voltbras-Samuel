@@ -1,4 +1,4 @@
-import { Schema, model, Model, InferSchemaType } from "mongoose";
+import { Schema, model, Model, InferSchemaType, Types } from "mongoose";
 
 const { ObjectId } = Schema.Types;
 
@@ -17,13 +17,14 @@ const UserSchema = new Schema(
   }
 );
 
-interface ITimestamps {
+type userSchema = InferSchemaType<typeof UserSchema>;
+
+export type mongooseUserModel = Model<InferSchemaType<typeof UserSchema>>;
+
+export type mongooseUserSchema = userSchema & {
+  _id: Types.ObjectId;
   createdAt: Date;
   updatedAt: Date;
-}
-
-export type User = InferSchemaType<typeof UserSchema>;
+};
 
 export const UserModel = model("User", UserSchema);
-
-export type mongooseUserModel = typeof UserModel & ITimestamps;

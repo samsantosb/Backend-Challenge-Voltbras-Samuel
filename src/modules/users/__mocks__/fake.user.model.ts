@@ -1,6 +1,6 @@
 import { Model } from "mongoose";
 import { fakeUser } from "./fake.user";
-import { User } from "../models/user.model";
+import { mongooseUserModel } from "../adapters/mongoose/model/user.mongoose.model";
 
 export const fakeUserModel = {
   find: jest.fn().mockImplementation(() => ({
@@ -16,4 +16,4 @@ export const fakeUserModel = {
   })),
   create: jest.fn().mockImplementation(() => fakeUser),
   findByIdAndUpdate: jest.fn().mockImplementation(() => fakeUser),
-} as unknown as Model<User>;
+} as unknown as mongooseUserModel;

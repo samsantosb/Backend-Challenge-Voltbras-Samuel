@@ -1,6 +1,6 @@
 import { ObjectId } from "mongoose";
-import { RequestUserDTO } from "../dtos/request.user.dto";
-import { User } from "../models/user.model";
+import { RequestUserDTO } from "../../adapters/resolvers/dtos/request.user.dto";
+import { User } from "../entities/user.entity";
 
 export abstract class IUserService {
   abstract getAll(): Promise<User[]>;

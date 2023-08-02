@@ -1,7 +1,7 @@
-import { RequestUserDTO } from "../../dtos/request.user.dto";
-import { ResponseUserDTO } from "../../dtos/response.user.dto";
-import { IUserService } from "../../services/user.service.interface";
-import { IUserResolver } from "../use.resolver.interface";
+import { RequestUserDTO } from "../dtos/request.user.dto";
+import { ResponseUserDTO } from "../dtos/response.user.dto";
+import { IUserService } from "../../../domain/services/user.service.interface";
+import { IUserResolver } from "../../../domain/ports/user.resolver.interface";
 
 export class UserResolver implements IUserResolver {
   constructor(private userService: IUserService) {}
