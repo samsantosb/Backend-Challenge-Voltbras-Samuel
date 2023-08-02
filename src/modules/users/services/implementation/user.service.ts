@@ -1,7 +1,6 @@
-import { RequestUserDTO } from "../../resolvers/dtos/request.user.dto";
+import { RequestUserDTO } from "../../dtos/request.user.dto";
 import { IUserRepository } from "../../repository/user.repository.interface";
 import { IUserService } from "../user.service.interface";
-import { isIdValid } from "../../../utils/validators/mongo.id.validator";
 import { ErrorMessages } from "../../../utils/errorHandler/error.messages";
 import bcrypt from "bcrypt";
 
@@ -19,10 +18,6 @@ export class UserService implements IUserService {
   }
 
   async getById(id: string) {
-    if (!isIdValid(id)) {
-      throw new Error(ErrorMessages.INVALID_ID(id));
-    }
-
     const user = await this.userRepository.getById(id);
 
     if (!user) {
@@ -55,10 +50,6 @@ export class UserService implements IUserService {
   }
 
   async update(id: string, user: RequestUserDTO) {
-    if (!isIdValid(id)) {
-      throw new Error(ErrorMessages.INVALID_ID(id));
-    }
-
     const updatedUser = await this.userRepository.update(id, user);
 
     if (!updatedUser) {
@@ -69,10 +60,6 @@ export class UserService implements IUserService {
   }
 
   async softDelete(id: string) {
-    if (!isIdValid(id)) {
-      throw new Error(ErrorMessages.INVALID_ID(id));
-    }
-
     const deletedUser = await this.userRepository.softDelete(id);
 
     if (!deletedUser) {

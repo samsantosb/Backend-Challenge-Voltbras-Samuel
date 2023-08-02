@@ -26,9 +26,6 @@ describe("UserService", () => {
 
       expect(user).toEqual(fakeUser);
     });
-    it("should throw an error if the id is invalid", async () => {
-      await expect(userService.getById("invalidId")).rejects.toThrow();
-    });
   });
   describe("getByEmail", () => {
     it("should return a user", async () => {
@@ -71,9 +68,6 @@ describe("UserService", () => {
 
       expect(user).toEqual(fakeUser);
     });
-    it("should throw an error if the id is invalid", async () => {
-      await expect(userService.update("invalidId", fakeUser)).rejects.toThrow();
-    });
     it("should throw an error if the user cannot be updated", async () => {
       jest
         .spyOn(fakeUserRepository, "update")
@@ -89,9 +83,6 @@ describe("UserService", () => {
       const user = await userService.softDelete(fakeMongoObjectId);
 
       expect(user).toEqual(fakeUser);
-    });
-    it("should throw an error if the id is invalid", async () => {
-      await expect(userService.softDelete("invalidId")).rejects.toThrow();
     });
     it("should throw an error if the user cannot be deleted", async () => {
       jest

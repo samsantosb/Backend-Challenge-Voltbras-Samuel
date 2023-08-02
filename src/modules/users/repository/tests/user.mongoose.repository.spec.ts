@@ -29,6 +29,11 @@ describe("UserRepository", () => {
 
       expect(fakeUserModel.findById).toHaveBeenCalled();
     });
+    it("should throw an error if the id is invalid", async () => {
+      const invalidId = "invalidId";
+
+      await expect(userRepository.getById(invalidId)).rejects.toThrow();
+    });
   });
   describe("getByEmail", () => {
     it("should return a user", async () => {
@@ -65,6 +70,13 @@ describe("UserRepository", () => {
 
       expect(fakeUserModel.findByIdAndUpdate).toHaveBeenCalled();
     });
+    it("should throw an error if the id is invalid", async () => {
+      const invalidId = "invalidId";
+
+      await expect(
+        userRepository.update(invalidId, fakeUser)
+      ).rejects.toThrow();
+    });
   });
   describe("softDelete", () => {
     it("should return a user", async () => {
@@ -76,6 +88,11 @@ describe("UserRepository", () => {
       await userRepository.softDelete(fakeMongoObjectId);
 
       expect(fakeUserModel.findByIdAndUpdate).toHaveBeenCalled();
+    });
+    it("should throw an error if the id is invalid", async () => {
+      const invalidId = "invalidId";
+
+      await expect(userRepository.softDelete(invalidId)).rejects.toThrow();
     });
   });
 });

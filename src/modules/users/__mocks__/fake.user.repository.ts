@@ -1,7 +1,7 @@
 import { IUserRepository } from "../repository/user.repository.interface";
 import { fakeUser } from "./fake.user";
 
-export const fakeUserRepository: IUserRepository = {
+export const fakeUserRepository = {
   create() {
     return Promise.resolve(fakeUser);
   },

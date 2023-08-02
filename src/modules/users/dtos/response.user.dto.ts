@@ -1,12 +1,11 @@
-import { Types } from "mongoose";
-import { User } from "../../entities/user.entity";
+import { User } from "../entities/user.entity";
 
 export class ResponseUserDTO {
   public name: string;
   public email: string;
-  public recharges: Array<string | Types.ObjectId>;
-  public reservations: Array<string | Types.ObjectId>;
-  public stationHistories: Array<string | Types.ObjectId>;
+  public recharges: Array<string>;
+  public reservations: Array<string>;
+  public stationHistories: Array<string>;
   public createdAt?: Date;
   public updatedAt?: Date;
   public deletedAt?: Date;

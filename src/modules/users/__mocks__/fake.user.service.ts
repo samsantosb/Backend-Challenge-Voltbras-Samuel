@@ -1,4 +1,4 @@
-import { RequestUserDTO } from "../resolvers/dtos/request.user.dto";
+import { RequestUserDTO } from "../dtos/request.user.dto";
 import { fakeUser } from "./fake.user";
 import { IUserService } from "../services/user.service.interface";
 

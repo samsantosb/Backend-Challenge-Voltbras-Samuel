@@ -1,5 +1,5 @@
-import { RequestUserDTO } from "../dtos/request.user.dto";
-import { ResponseUserDTO } from "../dtos/response.user.dto";
+import { RequestUserDTO } from "../../dtos/request.user.dto";
+import { ResponseUserDTO } from "../../dtos/response.user.dto";
 import { IUserService } from "../../services/user.service.interface";
 import { IUserResolver } from "../user.resolver.interface";
 

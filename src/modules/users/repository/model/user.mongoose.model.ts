@@ -19,7 +19,7 @@ const UserSchema = new Schema(
 
 type userSchema = InferSchemaType<typeof UserSchema>;
 
-export type mongooseUserModel = Model<InferSchemaType<typeof UserSchema>>;
+export type mongooseUserModel = Model<userSchema>;
 
 export type mongooseUserSchema = userSchema & {
   _id: Types.ObjectId;
