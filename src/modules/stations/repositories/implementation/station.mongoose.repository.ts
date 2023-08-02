@@ -3,7 +3,7 @@ import {
   mongooseStationModel,
   mongooseStationSchema,
 } from "../model/station.mongoose.model";
-import { StationMapper } from "../../mappers/station.mapper";
+import { StationMapper } from "../mappers/station.mapper";
 import { RequestStationDTO } from "../../dtos/request.station.dto";
 import { Station } from "../../entities/station.entity";
 import { isIdValid } from "../../../utils/validators/mongo.id.validator";

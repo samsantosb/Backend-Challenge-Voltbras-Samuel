@@ -1,5 +1,5 @@
-import { mongooseStationSchema } from "../repositories/model/station.mongoose.model";
-import { Station } from "../entities/station.entity";
+import { mongooseStationSchema } from "../model/station.mongoose.model";
+import { Station } from "../../entities/station.entity";
 
 export class StationMapper {
   static mongoToDomain(station: mongooseStationSchema): Station {
