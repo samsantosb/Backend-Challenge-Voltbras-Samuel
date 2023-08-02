@@ -26,14 +26,14 @@ export class UserRepository implements IUserRepository {
     return user;
   }
 
-  async create(data: RequestUserDTO): Promise<User | null> {
-    const newUser = await this.userModel.create(data);
+  async create(user: RequestUserDTO): Promise<User | null> {
+    const newUser = await this.userModel.create(user);
 
     return newUser;
   }
 
-  async update(id: string, data: RequestUserDTO): Promise<User | null> {
-    const updatedUser = await this.userModel.findByIdAndUpdate(id, data, {
+  async update(id: string, user: RequestUserDTO): Promise<User | null> {
+    const updatedUser = await this.userModel.findByIdAndUpdate(id, user, {
       new: true,
     });
 

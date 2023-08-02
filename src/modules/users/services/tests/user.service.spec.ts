@@ -1,6 +1,5 @@
 import { fakeMongoObjectId } from "../../../../__mocks__/fake.mongo.ids";
 import { fakeUser } from "../../__mocks__/fake.user";
-import { fakeUserModel } from "../../__mocks__/fake.user.model";
 import { fakeUserRepository } from "../../__mocks__/fake.user.repository";
 import { UserService } from "../implementation/user.service";
 
@@ -60,11 +59,8 @@ describe("UserService", () => {
     });
     it("should hash the password", async () => {
       const fakeuserPassword = fakeUser.password;
-      console.log(fakeuserPassword);
 
       const user = await userService.create(fakeUser);
-
-      console.log(user.password, "userpass");
 
       expect(user.password).not.toEqual(fakeuserPassword);
     });

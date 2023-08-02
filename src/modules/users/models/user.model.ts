@@ -17,6 +17,13 @@ const UserSchema = new Schema(
   }
 );
 
+interface ITimestamps {
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 export type User = InferSchemaType<typeof UserSchema>;
 
-export const UserModel: Model<User> = model("User", UserSchema);
+export const UserModel = model("User", UserSchema);
+
+export type mongooseUserModel = typeof UserModel & ITimestamps;
