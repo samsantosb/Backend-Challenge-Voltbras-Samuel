@@ -1,5 +1,7 @@
 import { faker } from "@faker-js/faker";
 import { fakeMongoObjectIds } from "../../stations/__mocks__/fake.station";
+import { User } from "../models/user.model";
+import { ObjectId } from "mongoose";
 
 export const generateFakeUser = () => ({
   _id: fakeMongoObjectIds[0],
