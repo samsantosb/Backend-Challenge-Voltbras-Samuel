@@ -58,6 +58,16 @@ describe("UserService", () => {
 
       await expect(userService.create(fakeUser)).rejects.toThrow();
     });
+    it("should hash the password", async () => {
+      const fakeuserPassword = fakeUser.password;
+      console.log(fakeuserPassword);
+
+      const user = await userService.create(fakeUser);
+
+      console.log(user.password, "userpass");
+
+      expect(user.password).not.toEqual(fakeuserPassword);
+    });
   });
   describe("update", () => {
     it("should return a user", async () => {

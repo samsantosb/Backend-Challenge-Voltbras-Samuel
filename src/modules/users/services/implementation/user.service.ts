@@ -3,6 +3,7 @@ import { IUserRepository } from "../../repositories/user.repository.interface";
 import { IUserService } from "../user.service.interface";
 import { isIdValid } from "../../../utils/validators/mongo.id.validator";
 import { ErrorMessages } from "../../../utils/errorHandler/error.messages";
+import bcrypt from "bcrypt";
 
 export class UserService implements IUserService {
   constructor(private readonly userRepository: IUserRepository) {}
@@ -42,6 +43,8 @@ export class UserService implements IUserService {
   }
 
   async create(user: RequestUserDTO) {
+    user.password = await this.hashPassword(user.password);
+
     const newUser = await this.userRepository.create(user);
 
     if (!newUser) {
@@ -77,5 +80,21 @@ export class UserService implements IUserService {
     }
 
     return deletedUser;
+  }
+
+  private async hashPassword(password: string) {
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+    return hashedPassword;
+  }
+
+  private async comparePasswords(
+    password: string,
+    hashedPassword: string
+  ): Promise<boolean> {
+    const isPasswordValid = await bcrypt.compare(password, hashedPassword);
+
+    return isPasswordValid;
   }
 }
