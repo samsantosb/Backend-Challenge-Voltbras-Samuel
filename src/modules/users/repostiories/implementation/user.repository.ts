@@ -1,10 +1,11 @@
-import { IUserRepository } from "./user.repository.interface";
-import { User } from "../models/user.model";
-import { RequestUserDTO } from "../dtos/request.user.dto";
+import { IUserRepository } from "../user.repository.interface";
+import { User } from "../../models/user.model";
+import { RequestUserDTO } from "../../dtos/request.user.dto";
 import { Model } from "mongoose";
 
 export class UserRepository implements IUserRepository {
   constructor(private readonly userModel: Model<User>) {}
+
   async getAll(): Promise<User[] | null> {
     const users = await this.populateUsers(this.userModel.find());
 
@@ -50,6 +51,6 @@ export class UserRepository implements IUserRepository {
   }
 
   private populateUsers(query: any): any {
-    return query.populate(["recharges", "reservations", "stationHistories"]);
+    return query.populate(["Recharges", "Reservations", "StationHistories"]);
   }
 }
