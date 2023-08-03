@@ -27,7 +27,7 @@ export class RequestReservationDTO {
 
     this.station = validatedReservation.data.station;
     this.user = validatedReservation.data.user;
-    this.startTime = validatedReservation.data.startTime;
+    this.startTime = new Date();
     this.endTime = validatedReservation.data.endTime;
     this.inProgress = validatedReservation.data.inProgress;
   }
