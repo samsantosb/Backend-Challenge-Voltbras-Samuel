@@ -1,6 +1,5 @@
-import { StationHistory } from "../entities/station.history.entity";
-
-export class ResponseStationHistoryDTO {
+export class StationHistory {
+  public _id: string;
   public station: string;
   public user: string;
   public rechargeTime: Date;
@@ -10,6 +9,7 @@ export class ResponseStationHistoryDTO {
   public deletedAt?: Date;
 
   constructor(stationHistory: StationHistory) {
+    this._id = stationHistory._id;
     this.station = stationHistory.station;
     this.user = stationHistory.user;
     this.rechargeTime = stationHistory.rechargeTime;

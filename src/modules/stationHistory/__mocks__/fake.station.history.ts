@@ -12,7 +12,7 @@ const generateFakeStationHistory = (deleted = false) => {
     user: fakeMongoObjectIds[0],
     rechargeTime: faker.date.past(),
     duration: faker.number.int(),
-    deletedAt: deleted ? faker.date.past() : null,
+    deletedAt: deleted ? faker.date.past() : undefined,
     createdAt: faker.date.past(),
     updatedAt: faker.date.past(),
   };
