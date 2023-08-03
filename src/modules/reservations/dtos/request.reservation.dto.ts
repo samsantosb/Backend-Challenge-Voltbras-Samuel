@@ -3,8 +3,8 @@ import { z } from "zod";
 export class RequestReservationDTO {
   station: string;
   user: string;
-  startTime: Date;
-  endTime: Date;
+  startTime: Date | string;
+  endTime: Date | string;
   inProgress: boolean;
 
   private static schema = z.object({
@@ -15,7 +15,7 @@ export class RequestReservationDTO {
     inProgress: z.boolean(),
   });
 
-  constructor(reservation: z.infer<typeof RequestReservationDTO.schema>) {
+  constructor(reservation: Partial<RequestReservationDTO>) {
     const validatedReservation =
       RequestReservationDTO.schema.safeParse(reservation);
 
@@ -28,7 +28,7 @@ export class RequestReservationDTO {
     this.station = validatedReservation.data.station;
     this.user = validatedReservation.data.user;
     this.startTime = new Date();
-    this.endTime = validatedReservation.data.endTime;
+    this.endTime = new Date(validatedReservation.data.endTime);
     this.inProgress = validatedReservation.data.inProgress;
   }
 }

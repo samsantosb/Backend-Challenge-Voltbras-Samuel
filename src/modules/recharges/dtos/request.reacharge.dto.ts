@@ -4,17 +4,17 @@ export class RequestRechargeDTO {
   station: string;
   user: string;
   inProgress: boolean;
-  startDate: Date;
-  endDate: Date;
+  startDate: string | Date;
+  endDate: string | Date;
 
   private static schema = z.object({
     station: z.string(),
     user: z.string(),
     inProgress: z.boolean(),
-    endDate: z.date(),
+    endDate: z.string(),
   });
 
-  constructor(recharge: z.infer<typeof RequestRechargeDTO.schema>) {
+  constructor(recharge: Partial<RequestRechargeDTO>) {
     const validatedRecharge = RequestRechargeDTO.schema.safeParse(recharge);
 
     if (!validatedRecharge.success) {
@@ -25,6 +25,6 @@ export class RequestRechargeDTO {
     this.user = validatedRecharge.data.user;
     this.inProgress = validatedRecharge.data.inProgress;
     this.startDate = new Date();
-    this.endDate = validatedRecharge.data.endDate;
+    this.endDate = new Date(validatedRecharge.data.endDate);
   }
 }

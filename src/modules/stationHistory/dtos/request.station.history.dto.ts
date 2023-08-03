@@ -3,7 +3,7 @@ import { z } from "zod";
 export class RequestStationHistoryDTO {
   station: string;
   user: string;
-  rechargeTime: Date;
+  rechargeTime: Date | string;
   duration: number;
 
   private static schema = z.object({
@@ -13,7 +13,7 @@ export class RequestStationHistoryDTO {
     duration: z.number(),
   });
 
-  constructor(stationHistory: z.infer<typeof RequestStationHistoryDTO.schema>) {
+  constructor(stationHistory: Partial<RequestStationHistoryDTO>) {
     const validatedStationHistory =
       RequestStationHistoryDTO.schema.safeParse(stationHistory);
 
@@ -25,7 +25,7 @@ export class RequestStationHistoryDTO {
 
     this.station = validatedStationHistory.data.station;
     this.user = validatedStationHistory.data.user;
-    this.rechargeTime = validatedStationHistory.data.rechargeTime;
+    this.rechargeTime = new Date(validatedStationHistory.data.rechargeTime);
     this.duration = validatedStationHistory.data.duration;
   }
 }
