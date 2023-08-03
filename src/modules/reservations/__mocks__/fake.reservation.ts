@@ -13,9 +13,9 @@ export const generateFakeReservation = (deleted = false, progress = false) => {
     station: fakeMongoObjectIds[0],
     user: fakeMongoObjectIds[0],
     startTime: faker.date.past(),
-    endTime: progress ? null : faker.date.past(),
+    endTime: faker.date.past(),
     inProgress: progress,
-    deletedAt: deleted ? faker.date.past() : null,
+    deletedAt: deleted ? faker.date.past() : undefined,
     createdAt: faker.date.past(),
     updatedAt: faker.date.past(),
   };
