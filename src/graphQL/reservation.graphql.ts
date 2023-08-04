@@ -14,11 +14,11 @@ export const ReservationType = gql`
   }
 
   input ReservationInput {
-    station: String
-    user: String
-    startTime: String
-    endTime: String
-    inProgress: Boolean
+    station: String!
+    user: String!
+    startTime: String!
+    endTime: String!
+    inProgress: Boolean!
   }
 
   type Query {

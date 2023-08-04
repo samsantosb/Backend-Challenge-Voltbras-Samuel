@@ -13,10 +13,10 @@ export const RechargeType = gql`
   }
 
   input RechargeInput {
-    station: String
-    user: String
-    inProgress: Boolean
-    endDate: String
+    station: String!
+    user: String!
+    inProgress: Boolean!
+    endDate: String!
   }
 
   type Query {

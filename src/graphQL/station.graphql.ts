@@ -16,7 +16,7 @@ export const StationType = gql`
     planetName: String!
     recharges: [String]!
     reservations: [String]!
-    histories: [String]!
+    stationHistories: [String]!
   }
 
   type Query {

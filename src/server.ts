@@ -4,6 +4,8 @@ import { ReservationType } from "./graphQL/reservation.graphql";
 import { StationType } from "./graphQL/station.graphql";
 import { HistoryStationType } from "./graphQL/station.history.graphql";
 import { UserType } from "./graphQL/user.graphql";
+import { AuthType } from "./graphQL/auth.graphql";
+import { authModule } from "./modules/auth/factories/auth.factory";
 import { rechargeModule } from "./modules/recharges/factories/recharge.factory";
 import { reservationModule } from "./modules/reservations/factories/reservation.factory";
 import { stationHistoryModule } from "./modules/stationHistory/factories/station.history.factory";
@@ -19,6 +21,7 @@ const typeDefs = [
   ReservationType,
   RechargeType,
   HistoryStationType,
+  AuthType,
 ];
 
 // Resolvers
@@ -36,6 +39,7 @@ const resolvers = {
     ...reservationModule.Mutation,
     ...rechargeModule.Mutation,
     ...stationHistoryModule.Mutation,
+    ...authModule.Mutation,
   },
 };
 const server = new ApolloServer({

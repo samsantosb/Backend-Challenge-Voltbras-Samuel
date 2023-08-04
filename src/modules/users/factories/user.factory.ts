@@ -5,10 +5,10 @@ import { UserResolver } from "../resolvers/user.resolver";
 
 function userFactory() {
   const mongooseRepository = new UserMongooseRepository(UserModel);
-  const service = new UserService(mongooseRepository);
-  const { Query, Mutation } = new UserResolver(service);
+  const userService = new UserService(mongooseRepository);
+  const { Query, Mutation } = new UserResolver(userService);
 
-  return { Query, Mutation };
+  return { Query, Mutation, userService };
 }
 
 export const userModule = userFactory();

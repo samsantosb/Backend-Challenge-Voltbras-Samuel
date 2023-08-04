@@ -28,4 +28,6 @@ export class ErrorMessages {
   static UNAUTHORIZED = "Unauthorized";
 
   static UNEXPECTED_ERROR = "Unexpected error";
+
+  static INVALID_CREDENTIALS = "Invalid credentials";
 }

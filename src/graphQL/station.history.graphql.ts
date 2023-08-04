@@ -13,10 +13,10 @@ export const HistoryStationType = gql`
   }
 
   input StationHistoryInput {
-    station: String
-    user: String
-    rechargeTime: String
-    duration: Int
+    station: String!
+    user: String!
+    rechargeTime: String!
+    duration: Int!
   }
 
   type Query {

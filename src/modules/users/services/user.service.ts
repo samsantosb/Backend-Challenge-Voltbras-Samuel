@@ -75,13 +75,4 @@ export class UserService implements IUserService {
 
     return hashedPassword;
   }
-
-  private async comparePasswords(
-    password: string,
-    hashedPassword: string
-  ): Promise<boolean> {
-    const isPasswordValid = await bcrypt.compare(password, hashedPassword);
-
-    return isPasswordValid;
-  }
 }
