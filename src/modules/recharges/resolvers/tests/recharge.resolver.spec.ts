@@ -3,7 +3,6 @@ import { fakeRecharge } from "../../__mocks__/fake.recharge";
 import { fakeRechargeService } from "../../__mocks__/fake.recharge.service";
 import { RechargeResolver } from "../implementation/recharge.resolver";
 import { RequestRechargeDTO } from "../../dtos/request.reacharge.dto";
-import { ResponseRechargeDTO } from "../../dtos/response.recharge.dto";
 import { fakeRequestRecharge } from "../../__mocks__/fake.request.recharge";
 
 const rechargeResolver = new RechargeResolver(fakeRechargeService);
@@ -13,9 +12,7 @@ describe("RechargeResolver", () => {
     it("should return all recharges", async () => {
       const response = await rechargeResolver.Query.getAllRecharges();
 
-      expect(response).toEqual(
-        Array.from({ length: 10 }, () => new ResponseRechargeDTO(fakeRecharge))
-      );
+      expect(response).toEqual(Array.from({ length: 10 }, () => fakeRecharge));
     });
   });
 
@@ -25,7 +22,7 @@ describe("RechargeResolver", () => {
         id: fakeMongoObjectId,
       });
 
-      expect(response).toEqual(new ResponseRechargeDTO(fakeRecharge));
+      expect(response).toEqual(fakeRecharge);
     });
   });
 
@@ -35,28 +32,7 @@ describe("RechargeResolver", () => {
         recharge: new RequestRechargeDTO(fakeRecharge),
       });
 
-      expect(response).toEqual(new ResponseRechargeDTO(fakeRecharge));
-    });
-
-    it("should throw an error if endDate is not a valid date", async () => {
-      const fakeRechargeWithInvalidDate = JSON.parse(
-        JSON.stringify(fakeRequestRecharge)
-      );
-      fakeRechargeWithInvalidDate.endDate = "invalid_date";
-
-      try {
-        await rechargeResolver.Mutation.createRecharge(null, {
-          recharge: fakeRechargeWithInvalidDate,
-        });
-      } catch (error) {
-        const expectedError = {
-          code: "invalid_date",
-          received: "invalid_date",
-          path: ["endDate"],
-          message: "Expected date, received string",
-        };
-        expect((error as any).message).toContain(expectedError.message);
-      }
+      expect(response).toEqual(fakeRecharge);
     });
   });
 
@@ -64,32 +40,10 @@ describe("RechargeResolver", () => {
     it("should update an existing recharge", async () => {
       const response = await rechargeResolver.Mutation.updateRecharge(null, {
         id: fakeMongoObjectId,
-        recharge: new RequestRechargeDTO(fakeRecharge),
+        recharge: new RequestRechargeDTO(fakeRequestRecharge),
       });
 
-      expect(response).toEqual(new ResponseRechargeDTO(fakeRecharge));
-    });
-
-    it("should throw an error if endDate is not a valid date", async () => {
-      const fakeRechargeWithInvalidDate = JSON.parse(
-        JSON.stringify(fakeRequestRecharge)
-      );
-      fakeRechargeWithInvalidDate.endDate = "invalid_date";
-
-      try {
-        await rechargeResolver.Mutation.updateRecharge(null, {
-          id: fakeMongoObjectId,
-          recharge: fakeRechargeWithInvalidDate,
-        });
-      } catch (error) {
-        const expectedError = {
-          code: "invalid_date",
-          received: "invalid_date",
-          path: ["endDate"],
-          message: "Expected date, received string",
-        };
-        expect((error as any).message).toContain(expectedError.message);
-      }
+      expect(response).toEqual(fakeRecharge);
     });
   });
 
@@ -99,7 +53,7 @@ describe("RechargeResolver", () => {
         id: fakeMongoObjectId,
       });
 
-      expect(response).toEqual(new ResponseRechargeDTO(fakeRecharge));
+      expect(response).toEqual(fakeRecharge);
     });
   });
 });

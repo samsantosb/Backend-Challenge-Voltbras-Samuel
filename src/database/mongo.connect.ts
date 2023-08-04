@@ -2,7 +2,7 @@ import { connection, connections, connect } from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
 
-const mongo: string = process.env.MONGO || "";
+const mongo: string = process.env.DATABASE_URL || "";
 
 export function mongoConnect() {
   connection

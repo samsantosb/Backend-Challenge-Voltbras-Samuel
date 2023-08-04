@@ -1,14 +1,16 @@
+import { Types } from "mongoose";
+
 export class User {
-  public _id: string;
+  public _id: string | Types.ObjectId;
   public name: string;
   public email: string;
   public password: string;
-  public recharges: string[];
-  public reservations: string[];
-  public stationHistories: string[];
-  public createdAt?: Date;
-  public updatedAt?: Date;
-  public deletedAt?: Date;
+  public recharges: string[] | Types.ObjectId[];
+  public reservations: string[] | Types.ObjectId[];
+  public stationHistories: string[] | Types.ObjectId[];
+  public createdAt?: Date | string;
+  public updatedAt?: Date | string;
+  public deletedAt?: Date | string;
   constructor(user: User) {
     this._id = user._id;
     this.name = user.name;

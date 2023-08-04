@@ -3,7 +3,6 @@ import {
   mongooseStationHistoryModel,
   mongooseStationHistorySchema,
 } from "../model/station.history.mongoose.model";
-import { StationHistoryMapper } from "../mappers/station.history.mapper";
 import { RequestStationHistoryDTO } from "../../dtos/request.station.history.dto";
 import { StationHistory } from "../../entities/station.history.entity";
 import { isIdValid } from "../../../utils/validators/mongo.id.validator";
@@ -21,12 +20,7 @@ export class StationHistoryMongooseRepository
       this.stationHistoryModel.find()
     );
 
-    const parsedStationHistories: StationHistory[] = stationHistories.map(
-      (stationHistory: mongooseStationHistorySchema) =>
-        StationHistoryMapper.mongoToDomain(stationHistory)
-    );
-
-    return parsedStationHistories;
+    return stationHistories;
   }
 
   async getById(id: string): Promise<StationHistory> {
@@ -38,65 +32,51 @@ export class StationHistoryMongooseRepository
       this.stationHistoryModel.findById(id)
     );
 
-    const parsedStationHistory =
-      StationHistoryMapper.mongoToDomain(stationHistory);
-
-    return parsedStationHistory;
+    return stationHistory;
   }
 
   async create(
     stationHistory: RequestStationHistoryDTO
   ): Promise<StationHistory> {
-    const newStationHistory = (await this.stationHistoryModel.create(
+    const newStationHistory = await this.stationHistoryModel.create(
       stationHistory
-    )) as unknown as mongooseStationHistorySchema;
+    );
 
-    const parsedStationHistory =
-      StationHistoryMapper.mongoToDomain(newStationHistory);
-
-    return parsedStationHistory;
+    return newStationHistory;
   }
 
   async update(
     id: string,
     stationHistory: RequestStationHistoryDTO
-  ): Promise<StationHistory> {
+  ): Promise<StationHistory | null> {
     if (!isIdValid(id)) {
       throw new Error(ErrorMessages.INVALID_ID(id));
     }
 
     const updatedStationHistory =
-      (await this.stationHistoryModel.findByIdAndUpdate(id, stationHistory, {
+      await this.stationHistoryModel.findByIdAndUpdate(id, stationHistory, {
         new: true,
-      })) as mongooseStationHistorySchema;
+      });
 
-    const parsedStationHistory = StationHistoryMapper.mongoToDomain(
-      updatedStationHistory
-    );
-
-    return parsedStationHistory;
+    return updatedStationHistory;
   }
 
-  async softDelete(id: string): Promise<StationHistory> {
+  async softDelete(id: string): Promise<StationHistory | null> {
     if (!isIdValid(id)) {
       throw new Error(ErrorMessages.INVALID_ID(id));
     }
 
     const deletedStationHistory =
-      (await this.stationHistoryModel.findByIdAndUpdate(
+      await this.stationHistoryModel.findByIdAndUpdate(
         id,
         { deletedAt: new Date() },
         { new: true }
-      )) as mongooseStationHistorySchema;
+      );
 
-    const parsedStationHistory = StationHistoryMapper.mongoToDomain(
-      deletedStationHistory
-    );
-
-    return parsedStationHistory;
+    return deletedStationHistory;
   }
 
   private populateStationHistories(query: any): any {
-    return query.populate(["Station", "User"]);
+    return query.populate(["station", "user"]);
   }
 }

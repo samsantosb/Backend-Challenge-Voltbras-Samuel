@@ -9,7 +9,7 @@ const ReservationSchema = new Schema(
     startTime: { type: Date, required: true },
     endTime: { type: Date, required: true },
     inProgress: { type: Boolean, required: true },
-    deletedAt: { type: Date, required: true },
+    deletedAt: Date,
   },
   {
     timestamps: { createdAt: "createdAt", updatedAt: "updatedAt" },

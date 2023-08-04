@@ -8,7 +8,7 @@ const StationHistorySchema = new Schema(
     user: { type: ObjectId, ref: "User", required: true },
     rechargeTime: { type: Date, required: true },
     duration: { type: Number, required: true },
-    deletedAt: { type: Date, required: true },
+    deletedAt: Date,
   },
   {
     timestamps: { createdAt: "createdAt", updatedAt: "updatedAt" },

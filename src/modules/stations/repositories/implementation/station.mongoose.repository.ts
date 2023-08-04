@@ -3,7 +3,6 @@ import {
   mongooseStationModel,
   mongooseStationSchema,
 } from "../model/station.mongoose.model";
-import { StationMapper } from "../mappers/station.mapper";
 import { RequestStationDTO } from "../../dtos/request.station.dto";
 import { Station } from "../../entities/station.entity";
 import { isIdValid } from "../../../utils/validators/mongo.id.validator";
@@ -13,15 +12,9 @@ export class StationMongooseRepository implements IStationRepository {
   constructor(private readonly stationModel: mongooseStationModel) {}
 
   async getAll(): Promise<Station[]> {
-    const stations = (await this.populateStations(
-      this.stationModel.find()
-    )) as mongooseStationSchema[];
+    const stations = await this.populateStations(this.stationModel.find());
 
-    const parsedStations: Station[] = stations.map(
-      (station: mongooseStationSchema) => StationMapper.mongoToDomain(station)
-    );
-
-    return parsedStations;
+    return stations;
   }
 
   async getById(id: string): Promise<Station> {
@@ -31,29 +24,21 @@ export class StationMongooseRepository implements IStationRepository {
 
     const station = await this.populateStations(this.stationModel.findById(id));
 
-    const parsedStation: Station = StationMapper.mongoToDomain(station);
-
-    return parsedStation;
+    return station;
   }
 
   async getByPlanetName(planetName: string): Promise<Station> {
-    const station = (await this.populateStations(
+    const station = await this.populateStations(
       this.stationModel.findOne({ planetName: planetName })
-    )) as mongooseStationSchema;
+    );
 
-    const parsedStation: Station = StationMapper.mongoToDomain(station);
-
-    return parsedStation;
+    return station;
   }
 
   async create(station: RequestStationDTO): Promise<Station> {
-    const newStation = (await this.stationModel.create(
-      station
-    )) as unknown as mongooseStationSchema;
+    const newStation = await this.stationModel.create(station);
 
-    const parsedStation: Station = StationMapper.mongoToDomain(newStation);
-
-    return parsedStation;
+    return newStation;
   }
 
   async update(id: string, station: RequestStationDTO): Promise<Station> {
@@ -69,9 +54,7 @@ export class StationMongooseRepository implements IStationRepository {
       }
     )) as mongooseStationSchema;
 
-    const parsedStation: Station = StationMapper.mongoToDomain(updatedStation);
-
-    return parsedStation;
+    return updatedStation;
   }
 
   async softDelete(id: string): Promise<Station> {
@@ -85,12 +68,10 @@ export class StationMongooseRepository implements IStationRepository {
       { new: true }
     )) as mongooseStationSchema;
 
-    const parsedStation: Station = StationMapper.mongoToDomain(deletedStation);
-
-    return parsedStation;
+    return deletedStation;
   }
 
   private populateStations(query: any): any {
-    return query.populate(["Recharges", "Reservations", "Histories"]);
+    return query.populate(["recharges", "reservations", "stationHistories"]);
   }
 }

@@ -9,7 +9,7 @@ export class RequestStationHistoryDTO {
   private static schema = z.object({
     station: z.string(),
     user: z.string(),
-    rechargeTime: z.date(),
+    rechargeTime: z.string(),
     duration: z.number(),
   });
 
@@ -25,7 +25,7 @@ export class RequestStationHistoryDTO {
 
     this.station = validatedStationHistory.data.station;
     this.user = validatedStationHistory.data.user;
-    this.rechargeTime = new Date(validatedStationHistory.data.rechargeTime);
+    this.rechargeTime = validatedStationHistory.data.rechargeTime;
     this.duration = validatedStationHistory.data.duration;
   }
 }

@@ -11,11 +11,11 @@ export const generateFakeRecharge = (deleted = false, progress = false) => {
     station: fakeMongoObjectIds[0],
     user: fakeMongoObjectIds[0],
     inProgress: progress,
-    createdAt: faker.date.past(),
-    updatedAt: faker.date.past(),
-    startDate: faker.date.past(),
-    endDate: faker.date.past(),
-    deletedAt: deleted ? faker.date.past() : undefined,
+    createdAt: String(faker.date.past()),
+    updatedAt: String(faker.date.past()),
+    startDate: String(faker.date.past()),
+    endDate: String(faker.date.past()),
+    deletedAt: deleted ? String(faker.date.past()) : undefined,
   };
 };
 

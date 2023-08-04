@@ -4,8 +4,6 @@ import {
   mongooseUserSchema,
 } from "../model/user.mongoose.model";
 import { RequestUserDTO } from "../../dtos/request.user.dto";
-import { Model, Types } from "mongoose";
-import { UserMapper } from "../mappers/users.moongose.mapper";
 import { User } from "../../entities/user.entity";
 import { isIdValid } from "../../../utils/validators/mongo.id.validator";
 import { ErrorMessages } from "../../../utils/errorHandler/error.messages";
@@ -18,11 +16,7 @@ export class UserMongooseRepository implements IUserRepository {
       this.userModel.find()
     )) as mongooseUserSchema[];
 
-    const parsedUsers: User[] = users.map((user: mongooseUserSchema) =>
-      UserMapper.mongoToDomain(user)
-    );
-
-    return parsedUsers;
+    return users;
   }
 
   async getById(id: string): Promise<User> {
@@ -42,9 +36,7 @@ export class UserMongooseRepository implements IUserRepository {
       this.userModel.findOne({ email: email })
     )) as mongooseUserSchema;
 
-    const parsedUser: User = UserMapper.mongoToDomain(user);
-
-    return parsedUser;
+    return user;
   }
 
   async create(user: RequestUserDTO): Promise<User> {
@@ -52,9 +44,7 @@ export class UserMongooseRepository implements IUserRepository {
       user
     )) as unknown as mongooseUserSchema;
 
-    const parsedUser: User = UserMapper.mongoToDomain(newUser);
-
-    return parsedUser;
+    return newUser;
   }
 
   async update(id: string, user: RequestUserDTO): Promise<User> {
@@ -66,9 +56,7 @@ export class UserMongooseRepository implements IUserRepository {
       new: true,
     })) as mongooseUserSchema;
 
-    const parsedUser: User = UserMapper.mongoToDomain(updatedUser);
-
-    return parsedUser;
+    return updatedUser;
   }
 
   async softDelete(id: string): Promise<User> {
@@ -82,12 +70,10 @@ export class UserMongooseRepository implements IUserRepository {
       { new: true }
     )) as mongooseUserSchema;
 
-    const parsedUser: User = UserMapper.mongoToDomain(deletedUser);
-
-    return parsedUser;
+    return deletedUser;
   }
 
   private populateUsers(query: any): any {
-    return query.populate(["Recharges", "Reservations", "StationHistories"]);
+    return query.populate(["recharges", "reservations", "stationHistories"]);
   }
 }

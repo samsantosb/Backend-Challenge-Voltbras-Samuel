@@ -10,9 +10,9 @@ export const generateFakeUser = () => ({
   recharges: fakeMongoObjectIds,
   reservations: fakeMongoObjectIds,
   stationHistories: fakeMongoObjectIds,
-  deletedAt: faker.date.past(),
-  createdAt: faker.date.past(),
-  updatedAt: faker.date.past(),
+  deletedAt: String(faker.date.past()),
+  createdAt: String(faker.date.past()),
+  updatedAt: String(faker.date.past()),
 });
 
 export const fakeUser = generateFakeUser();

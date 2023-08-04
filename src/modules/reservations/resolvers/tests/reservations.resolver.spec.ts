@@ -3,7 +3,6 @@ import { fakeReservation } from "../../__mocks__/fake.reservation";
 import { fakeReservationService } from "../../__mocks__/fake.reservation.service";
 import { ReservationResolver } from "../implementation/reservation.resolver";
 import { RequestReservationDTO } from "../../dtos/request.reservation.dto";
-import { ResponseReservationDTO } from "../../dtos/response.reservation.dto";
 import { fakeRequestReservation } from "../../__mocks__/fake.request.reservation";
 
 const reservationResolver = new ReservationResolver(fakeReservationService);
@@ -14,10 +13,7 @@ describe("ReservationResolver", () => {
       const response = await reservationResolver.Query.getAllReservations();
 
       expect(response).toEqual(
-        Array.from(
-          { length: 10 },
-          () => new ResponseReservationDTO(fakeReservation)
-        )
+        Array.from({ length: 10 }, () => fakeReservation)
       );
     });
   });
@@ -31,7 +27,7 @@ describe("ReservationResolver", () => {
         }
       );
 
-      expect(response).toEqual(new ResponseReservationDTO(fakeReservation));
+      expect(response).toEqual(fakeReservation);
     });
   });
 
@@ -44,7 +40,7 @@ describe("ReservationResolver", () => {
         }
       );
 
-      expect(response).toEqual(new ResponseReservationDTO(fakeReservation));
+      expect(response).toEqual(fakeReservation);
     });
 
     it("should throw an error if startTime is not a valid date", async () => {
@@ -79,7 +75,7 @@ describe("ReservationResolver", () => {
         }
       );
 
-      expect(response).toEqual(new ResponseReservationDTO(fakeReservation));
+      expect(response).toEqual(fakeReservation);
     });
 
     it("should throw an error if startTime is not a valid date", async () => {
@@ -114,7 +110,7 @@ describe("ReservationResolver", () => {
         }
       );
 
-      expect(response).toEqual(new ResponseReservationDTO(fakeReservation));
+      expect(response).toEqual(fakeReservation);
     });
   });
 });

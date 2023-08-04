@@ -1,27 +1,28 @@
 import { RequestReservationDTO } from "../dtos/request.reservation.dto";
-import { ResponseReservationDTO } from "../dtos/response.reservation.dto";
+
+import { Reservation } from "../entities/reservation.entity";
 
 export abstract class IReservationResolver {
   abstract Query: {
-    getAllReservations: () => Promise<ResponseReservationDTO[]>;
+    getAllReservations: () => Promise<Partial<Reservation>[]>;
     getReservationById: (
       _: any,
       { id }: { id: string }
-    ) => Promise<ResponseReservationDTO>;
+    ) => Promise<Partial<Reservation>>;
   };
 
   abstract Mutation: {
     createReservation: (
       _: any,
       { reservation }: { reservation: RequestReservationDTO }
-    ) => Promise<ResponseReservationDTO>;
+    ) => Promise<Partial<Reservation>>;
     updateReservation: (
       _: any,
       { id, reservation }: { id: string; reservation: RequestReservationDTO }
-    ) => Promise<ResponseReservationDTO>;
+    ) => Promise<Partial<Reservation>>;
     deleteReservation: (
       _: any,
       { id }: { id: string }
-    ) => Promise<ResponseReservationDTO>;
+    ) => Promise<Partial<Reservation>>;
   };
 }

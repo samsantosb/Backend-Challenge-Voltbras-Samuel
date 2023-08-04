@@ -24,7 +24,7 @@ export class RequestRechargeDTO {
     this.station = validatedRecharge.data.station;
     this.user = validatedRecharge.data.user;
     this.inProgress = validatedRecharge.data.inProgress;
-    this.startDate = new Date();
-    this.endDate = new Date(validatedRecharge.data.endDate);
+    this.startDate = String(new Date());
+    this.endDate = validatedRecharge.data.endDate;
   }
 }

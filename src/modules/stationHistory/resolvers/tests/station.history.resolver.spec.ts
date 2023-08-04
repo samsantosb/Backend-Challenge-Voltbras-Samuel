@@ -3,7 +3,6 @@ import { fakeStationHistory } from "../../__mocks__/fake.station.history";
 import { fakeStationHistoryService } from "../../__mocks__/fake.station.history.service";
 import { StationHistoryResolver } from "../implementation/station.history.resolver";
 import { RequestStationHistoryDTO } from "../../dtos/request.station.history.dto";
-import { ResponseStationHistoryDTO } from "../../dtos/response.station.history.dto";
 import { fakeRequestStationHistory } from "../../__mocks__/fake.request.station.history";
 
 const stationHistoryResolver = new StationHistoryResolver(
@@ -17,10 +16,7 @@ describe("StationHistoryResolver", () => {
         await stationHistoryResolver.Query.getAllStationHistories();
 
       expect(response).toEqual(
-        Array.from(
-          { length: 10 },
-          () => new ResponseStationHistoryDTO(fakeStationHistory)
-        )
+        Array.from({ length: 10 }, () => fakeStationHistory)
       );
     });
   });
@@ -34,9 +30,7 @@ describe("StationHistoryResolver", () => {
         }
       );
 
-      expect(response).toEqual(
-        new ResponseStationHistoryDTO(fakeStationHistory)
-      );
+      expect(response).toEqual(fakeStationHistory);
     });
   });
 
@@ -47,9 +41,7 @@ describe("StationHistoryResolver", () => {
           stationHistory: new RequestStationHistoryDTO(fakeStationHistory),
         });
 
-      expect(response).toEqual(
-        new ResponseStationHistoryDTO(fakeStationHistory)
-      );
+      expect(response).toEqual(fakeStationHistory);
     });
 
     it("should throw an error if rechargeTime is not a valid date", async () => {
@@ -82,9 +74,7 @@ describe("StationHistoryResolver", () => {
           stationHistory: new RequestStationHistoryDTO(fakeStationHistory),
         });
 
-      expect(response).toEqual(
-        new ResponseStationHistoryDTO(fakeStationHistory)
-      );
+      expect(response).toEqual(fakeStationHistory);
     });
     it("should throw an error if rechargeTime is not a valid date", async () => {
       const fakeStationHistoryWithInvalidDate = JSON.parse(
@@ -116,9 +106,7 @@ describe("StationHistoryResolver", () => {
           id: fakeMongoObjectId,
         });
 
-      expect(response).toEqual(
-        new ResponseStationHistoryDTO(fakeStationHistory)
-      );
+      expect(response).toEqual(fakeStationHistory);
     });
   });
 });

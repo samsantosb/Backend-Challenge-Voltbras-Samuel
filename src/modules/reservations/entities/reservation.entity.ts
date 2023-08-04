@@ -1,13 +1,15 @@
+import { Types } from "mongoose";
+
 export class Reservation {
-  public _id: string;
-  public station: string;
-  public user: string;
-  public startTime: Date;
-  public endTime: Date;
+  public _id: string | Types.ObjectId;
+  public station: string | Types.ObjectId;
+  public user: string | Types.ObjectId;
+  public startTime: Date | String;
+  public endTime: Date | String;
   public inProgress: boolean;
-  public createdAt?: Date;
-  public updatedAt?: Date;
-  public deletedAt?: Date;
+  public createdAt?: Date | String;
+  public updatedAt?: Date | String;
+  public deletedAt?: Date | String;
 
   constructor(reservation: Reservation) {
     this._id = reservation._id;

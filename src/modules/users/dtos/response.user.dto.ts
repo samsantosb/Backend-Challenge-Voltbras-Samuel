@@ -1,16 +1,19 @@
+import { Types } from "mongoose";
 import { User } from "../entities/user.entity";
 
 export class ResponseUserDTO {
+  public _id: string | Types.ObjectId;
   public name: string;
   public email: string;
-  public recharges: Array<string>;
-  public reservations: Array<string>;
-  public stationHistories: Array<string>;
-  public createdAt?: Date;
-  public updatedAt?: Date;
-  public deletedAt?: Date;
+  public recharges: Array<string> | Array<Types.ObjectId>;
+  public reservations: Array<string> | Array<Types.ObjectId>;
+  public stationHistories: Array<string> | Array<Types.ObjectId>;
+  public createdAt?: Date | string;
+  public updatedAt?: Date | string;
+  public deletedAt?: Date | string;
 
   constructor(public user: User) {
+    this._id = user._id;
     this.name = user.name;
     this.email = user.email;
     this.recharges = user.recharges;

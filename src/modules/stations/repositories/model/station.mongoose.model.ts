@@ -7,8 +7,10 @@ const StationSchema = new Schema(
     planetName: { type: String, required: true, uinique: true },
     recharges: [{ type: ObjectId, ref: "Recharge", required: true }],
     reservations: [{ type: ObjectId, ref: "Reservation", required: true }],
-    histories: [{ type: ObjectId, ref: "StationHistory", required: true }],
-    deletedAt: { type: Date, required: true },
+    stationHistories: [
+      { type: ObjectId, ref: "StationHistory", required: true },
+    ],
+    deletedAt: Date,
   },
   {
     timestamps: { createdAt: "createdAt", updatedAt: "updatedAt" },

@@ -3,7 +3,6 @@ import {
   mongooseReservationModel,
   mongooseReservationSchema,
 } from "../model/reservation.mongoose.model";
-import { ReservationMapper } from "../mappers/reservation.mapper";
 import { RequestReservationDTO } from "../../dtos/request.reservation.dto";
 import { Reservation } from "../../entities/reservation.entity";
 import { isIdValid } from "../../../utils/validators/mongo.id.validator";
@@ -17,12 +16,7 @@ export class ReservationMongooseRepository implements IReservationRepository {
       this.reservationModel.find()
     );
 
-    const parsedReservations: Reservation[] = reservations.map(
-      (reservation: mongooseReservationSchema) =>
-        ReservationMapper.mongoToDomain(reservation)
-    );
-
-    return parsedReservations;
+    return reservations;
   }
 
   async getById(id: string): Promise<Reservation> {
@@ -34,61 +28,49 @@ export class ReservationMongooseRepository implements IReservationRepository {
       this.reservationModel.findById(id)
     );
 
-    const parsedReservation = ReservationMapper.mongoToDomain(reservation);
-
-    return parsedReservation;
+    return reservation;
   }
 
   async create(reservation: RequestReservationDTO): Promise<Reservation> {
-    const newReservation = (await this.reservationModel.create(
-      reservation
-    )) as unknown as mongooseReservationSchema;
+    const newReservation = await this.reservationModel.create(reservation);
 
-    const parsedReservation = ReservationMapper.mongoToDomain(newReservation);
-
-    return parsedReservation;
+    return newReservation;
   }
 
   async update(
     id: string,
     reservation: RequestReservationDTO
-  ): Promise<Reservation> {
+  ): Promise<Reservation | null> {
     if (!isIdValid(id)) {
       throw new Error(ErrorMessages.INVALID_ID(id));
     }
 
-    const updatedReservation = (await this.reservationModel.findByIdAndUpdate(
+    const updatedReservation = await this.reservationModel.findByIdAndUpdate(
       id,
       reservation,
       {
         new: true,
       }
-    )) as mongooseReservationSchema;
+    );
 
-    const parsedReservation =
-      ReservationMapper.mongoToDomain(updatedReservation);
-
-    return parsedReservation;
+    return updatedReservation;
   }
 
-  async softDelete(id: string): Promise<Reservation> {
+  async softDelete(id: string): Promise<Reservation | null> {
     if (!isIdValid(id)) {
       throw new Error(ErrorMessages.INVALID_ID(id));
     }
 
-    const deletedReservation = (await this.reservationModel.findByIdAndUpdate(
+    const deletedReservation = await this.reservationModel.findByIdAndUpdate(
       id,
       { deletedAt: new Date() },
       { new: true }
-    )) as mongooseReservationSchema;
+    );
 
-    const parsedReservation =
-      ReservationMapper.mongoToDomain(deletedReservation);
-
-    return parsedReservation;
+    return deletedReservation;
   }
 
   private populateReservations(query: any): any {
-    return query.populate(["Station", "User"]);
+    return query.populate(["station", "user"]);
   }
 }

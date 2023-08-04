@@ -48,11 +48,73 @@ describe("UserResolver", () => {
       expect(response).toEqual(new ResponseUserDTO(fakeUser));
     });
 
-    it("should throw an error if email is invalid", async () => {});
+    it("should throw an error if email is invalid", async () => {
+      const fakeUserWithInvalidEmail = JSON.parse(
+        JSON.stringify(fakeRequestUser)
+      );
+      fakeUserWithInvalidEmail.email = "invalidEmail";
 
-    it("should throw an error if password is too short", async () => {});
+      try {
+        await userResolver.Mutation.createUser(null, {
+          user: fakeUserWithInvalidEmail,
+        });
+      } catch (error) {
+        const expectedError = {
+          validation: "email",
+          code: "invalid_string",
+          message: "Invalid email",
+          path: ["email"],
+        };
+        expect((error as any).message).toContain(expectedError.message);
+      }
+    });
 
-    it("should throw an error if name is a number", async () => {});
+    it("should throw an error if password is too short", async () => {
+      const fakeUserWithShortPassword = JSON.parse(
+        JSON.stringify(fakeRequestUser)
+      );
+      fakeUserWithShortPassword.password = "short";
+
+      try {
+        await userResolver.Mutation.createUser(null, {
+          user: fakeUserWithShortPassword,
+        });
+      } catch (error) {
+        const expectedError = {
+          code: "too_small",
+          minimum: 8,
+          type: "string",
+          inclusive: true,
+          exact: false,
+          message: "String must contain at least 8 character(s)",
+          path: ["password"],
+        };
+        expect((error as any).message).toContain(expectedError.message);
+      }
+    });
+
+    it("should throw an error if name is a number", async () => {
+      const fakeUserWithNumberName = JSON.parse(
+        JSON.stringify(fakeRequestUser)
+      );
+      fakeUserWithNumberName.name = 123;
+
+      try {
+        await userResolver.Mutation.updateUser(null, {
+          id: fakeMongoObjectId,
+          user: fakeUserWithNumberName,
+        });
+      } catch (error) {
+        const expectedError = {
+          code: "invalid_type",
+          expected: "string",
+          received: "number",
+          path: ["name"],
+          message: "Expected string, received number",
+        };
+        expect((error as any).message).toContain(expectedError.message);
+      }
+    });
   });
 
   describe("Mutation.updateUser", () => {

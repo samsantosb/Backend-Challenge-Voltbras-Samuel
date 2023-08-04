@@ -10,10 +10,10 @@ export const generateFakeStation = (deleted = false) => {
     planetName: "Earth",
     recharges: fakeMongoObjectIds,
     reservations: fakeMongoObjectIds,
-    histories: fakeMongoObjectIds,
-    deletedAt: deleted ? faker.date.past() : undefined,
-    createdAt: faker.date.past(),
-    updatedAt: faker.date.past(),
+    stationHistories: fakeMongoObjectIds,
+    deletedAt: deleted ? String(faker.date.past()) : undefined,
+    createdAt: String(faker.date.past()),
+    updatedAt: String(faker.date.past()),
   };
 };
 

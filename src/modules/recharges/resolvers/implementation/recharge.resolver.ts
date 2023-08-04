@@ -1,5 +1,4 @@
 import { RequestRechargeDTO } from "../../dtos/request.reacharge.dto";
-import { ResponseRechargeDTO } from "../../dtos/response.recharge.dto";
 import { IRechargeService } from "../../services/recharge.service.interface";
 import { IRechargeResolver } from "../recharge.resolver.interface";
 
@@ -10,18 +9,12 @@ export class RechargeResolver implements IRechargeResolver {
     getAllRecharges: async () => {
       const recharges = await this.rechargeService.getAll();
 
-      const response = recharges.map(
-        (recharge) => new ResponseRechargeDTO(recharge)
-      );
-
-      return response;
+      return recharges;
     },
     getRechargeById: async (_: any, { id }: { id: string }) => {
       const recharge = await this.rechargeService.getById(id);
 
-      const response = new ResponseRechargeDTO(recharge);
-
-      return response;
+      return recharge;
     },
   };
 
@@ -34,9 +27,7 @@ export class RechargeResolver implements IRechargeResolver {
 
       const newRecharge = await this.rechargeService.create(request);
 
-      const response = new ResponseRechargeDTO(newRecharge);
-
-      return response;
+      return newRecharge;
     },
     updateRecharge: async (
       _: any,
@@ -46,16 +37,12 @@ export class RechargeResolver implements IRechargeResolver {
 
       const updatedRecharge = await this.rechargeService.update(id, request);
 
-      const response = new ResponseRechargeDTO(updatedRecharge);
-
-      return response;
+      return updatedRecharge;
     },
     deleteRecharge: async (_: any, { id }: { id: string }) => {
       const deletedRecharge = await this.rechargeService.softDelete(id);
 
-      const response = new ResponseRechargeDTO(deletedRecharge);
-
-      return response;
+      return deletedRecharge;
     },
   };
 }

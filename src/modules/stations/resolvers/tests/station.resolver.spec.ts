@@ -3,7 +3,6 @@ import { fakeStation } from "../../__mocks__/fake.station";
 import { fakeStationService } from "../../__mocks__/fake.station.service";
 import { StationResolver } from "../implementation/station.resolver";
 import { RequestStationDTO } from "../../dtos/request.station.dto";
-import { ResponseStationDTO } from "../../dtos/response.station.dto";
 import { fakeRequestStation } from "../../__mocks__/fake.request.station";
 
 const stationResolver = new StationResolver(fakeStationService);
@@ -13,9 +12,7 @@ describe("StationResolver", () => {
     it("should return all stations", async () => {
       const response = await stationResolver.Query.getAllStations();
 
-      expect(response).toEqual(
-        Array.from({ length: 10 }, () => new ResponseStationDTO(fakeStation))
-      );
+      expect(response).toEqual(Array.from({ length: 10 }, () => fakeStation));
     });
   });
 
@@ -25,7 +22,7 @@ describe("StationResolver", () => {
         id: fakeMongoObjectId,
       });
 
-      expect(response).toEqual(new ResponseStationDTO(fakeStation));
+      expect(response).toEqual(fakeStation);
     });
   });
 
@@ -38,7 +35,7 @@ describe("StationResolver", () => {
         }
       );
 
-      expect(response).toEqual(new ResponseStationDTO(fakeStation));
+      expect(response).toEqual(fakeStation);
     });
   });
 
@@ -48,7 +45,7 @@ describe("StationResolver", () => {
         station: new RequestStationDTO(fakeStation),
       });
 
-      expect(response).toEqual(new ResponseStationDTO(fakeStation));
+      expect(response).toEqual(fakeStation);
     });
 
     it("should throw an error if planetName is a number", async () => {
@@ -81,7 +78,7 @@ describe("StationResolver", () => {
         station: new RequestStationDTO(fakeStation),
       });
 
-      expect(response).toEqual(new ResponseStationDTO(fakeStation));
+      expect(response).toEqual(fakeStation);
     });
     it("should throw an error if planetName is a number", async () => {
       const fakeStationWithNumberName = JSON.parse(
@@ -113,7 +110,7 @@ describe("StationResolver", () => {
         id: fakeMongoObjectId,
       });
 
-      expect(response).toEqual(new ResponseStationDTO(fakeStation));
+      expect(response).toEqual(fakeStation);
     });
   });
 });

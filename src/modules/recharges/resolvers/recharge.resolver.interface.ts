@@ -1,27 +1,27 @@
 import { RequestRechargeDTO } from "../dtos/request.reacharge.dto";
-import { ResponseRechargeDTO } from "../dtos/response.recharge.dto";
+import { Recharge } from "../entities/recharge.entity";
 
 export abstract class IRechargeResolver {
   abstract Query: {
-    getAllRecharges: () => Promise<ResponseRechargeDTO[]>;
+    getAllRecharges: () => Promise<Partial<Recharge>[]>;
     getRechargeById: (
       _: any,
       { id }: { id: string }
-    ) => Promise<ResponseRechargeDTO>;
+    ) => Promise<Partial<Recharge>>;
   };
 
   abstract Mutation: {
     createRecharge: (
       _: any,
       { recharge }: { recharge: RequestRechargeDTO }
-    ) => Promise<ResponseRechargeDTO>;
+    ) => Promise<Partial<Recharge>>;
     updateRecharge: (
       _: any,
       { id, recharge }: { id: string; recharge: RequestRechargeDTO }
-    ) => Promise<ResponseRechargeDTO>;
+    ) => Promise<Partial<Recharge>>;
     deleteRecharge: (
       _: any,
       { id }: { id: string }
-    ) => Promise<ResponseRechargeDTO>;
+    ) => Promise<Partial<Recharge>>;
   };
 }

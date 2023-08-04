@@ -1,12 +1,14 @@
+import { Types } from "mongoose";
+
 export class StationHistory {
-  public _id: string;
-  public station: string;
-  public user: string;
-  public rechargeTime: Date;
+  public _id: string | Types.ObjectId;
+  public station: string | Types.ObjectId;
+  public user: string | Types.ObjectId;
+  public rechargeTime: Date | String;
   public duration: number;
-  public createdAt?: Date;
-  public updatedAt?: Date;
-  public deletedAt?: Date;
+  public createdAt?: Date | String;
+  public updatedAt?: Date | String;
+  public deletedAt?: Date | String;
 
   constructor(stationHistory: StationHistory) {
     this._id = stationHistory._id;

@@ -9,7 +9,7 @@ const RechargeSchema = new Schema(
     inProgress: { type: Boolean, required: true },
     startDate: { type: Date, required: true },
     endDate: { type: Date, required: true },
-    deletedAt: { type: Date, required: true },
+    deletedAt: Date,
   },
   {
     timestamps: { createdAt: "createdAt", updatedAt: "updatedAt" },

@@ -1,31 +1,31 @@
 import { RequestStationDTO } from "../dtos/request.station.dto";
-import { ResponseStationDTO } from "../dtos/response.station.dto";
+import { Station } from "../entities/station.entity";
 
 export abstract class IStationResolver {
   abstract Query: {
-    getAllStations: () => Promise<ResponseStationDTO[]>;
+    getAllStations: () => Promise<Partial<Station>[]>;
     getStationById: (
       _: any,
       { id }: { id: string }
-    ) => Promise<ResponseStationDTO>;
+    ) => Promise<Partial<Station>>;
     getStationByPlanetName: (
       _: any,
       { name }: { name: string }
-    ) => Promise<ResponseStationDTO>;
+    ) => Promise<Partial<Station>>;
   };
 
   abstract Mutation: {
     createStation: (
       _: any,
       { station }: { station: RequestStationDTO }
-    ) => Promise<ResponseStationDTO>;
+    ) => Promise<Partial<Station>>;
     updateStation: (
       _: any,
       { id, station }: { id: string; station: RequestStationDTO }
-    ) => Promise<ResponseStationDTO>;
+    ) => Promise<Partial<Station>>;
     deleteStation: (
       _: any,
       { id }: { id: string }
-    ) => Promise<ResponseStationDTO>;
+    ) => Promise<Partial<Station>>;
   };
 }

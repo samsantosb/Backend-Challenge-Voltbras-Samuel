@@ -10,8 +10,8 @@ export class RequestReservationDTO {
   private static schema = z.object({
     station: z.string(),
     user: z.string(),
-    startTime: z.date(),
-    endTime: z.date(),
+    startTime: z.string(),
+    endTime: z.string(),
     inProgress: z.boolean(),
   });
 
@@ -27,8 +27,8 @@ export class RequestReservationDTO {
 
     this.station = validatedReservation.data.station;
     this.user = validatedReservation.data.user;
-    this.startTime = new Date();
-    this.endTime = new Date(validatedReservation.data.endTime);
+    this.startTime = String(new Date());
+    this.endTime = validatedReservation.data.endTime;
     this.inProgress = validatedReservation.data.inProgress;
   }
 }

@@ -4,13 +4,13 @@ export class RequestStationDTO {
   planetName: string;
   recharges: string[];
   reservations: string[];
-  histories: string[];
+  stationHistories: string[];
 
   private static schema = z.object({
     planetName: z.string(),
     recharges: z.array(z.string()),
     reservations: z.array(z.string()),
-    histories: z.array(z.string()),
+    stationHistories: z.array(z.string()),
   });
 
   constructor(station: z.infer<typeof RequestStationDTO.schema>) {
@@ -23,6 +23,6 @@ export class RequestStationDTO {
     this.planetName = validatedStation.data.planetName;
     this.recharges = validatedStation.data.recharges;
     this.reservations = validatedStation.data.reservations;
-    this.histories = validatedStation.data.histories;
+    this.stationHistories = validatedStation.data.stationHistories;
   }
 }
