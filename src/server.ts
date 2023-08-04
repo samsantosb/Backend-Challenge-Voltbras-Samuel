@@ -5,6 +5,8 @@ import { StationType } from "./graphQL/station.graphql";
 import { HistoryStationType } from "./graphQL/station.history.graphql";
 import { UserType } from "./graphQL/user.graphql";
 import { AuthType } from "./graphQL/auth.graphql";
+import { PlanetType } from "./graphQL/planets.graphql";
+import { planetModule } from "./modules/planets/factories/planet.factory";
 import { authModule } from "./modules/auth/factories/auth.factory";
 import { rechargeModule } from "./modules/recharges/factories/recharge.factory";
 import { reservationModule } from "./modules/reservations/factories/reservation.factory";
@@ -14,7 +16,7 @@ import { userModule } from "./modules/users/factories/user.factory";
 import { mongoConnect } from "./database/mongo.connect";
 
 mongoConnect();
-// Mesclar todos os tipos
+
 const typeDefs = [
   UserType,
   StationType,
@@ -22,9 +24,9 @@ const typeDefs = [
   RechargeType,
   HistoryStationType,
   AuthType,
+  PlanetType,
 ];
 
-// Resolvers
 const resolvers = {
   Query: {
     ...userModule.Query,
@@ -32,6 +34,7 @@ const resolvers = {
     ...reservationModule.Query,
     ...rechargeModule.Query,
     ...stationHistoryModule.Query,
+    ...planetModule.Query,
   },
   Mutation: {
     ...userModule.Mutation,

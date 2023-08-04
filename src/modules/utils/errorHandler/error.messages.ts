@@ -30,4 +30,6 @@ export class ErrorMessages {
   static UNEXPECTED_ERROR = "Unexpected error";
 
   static INVALID_CREDENTIALS = "Invalid credentials";
+
+  static NO_PLANETS_FOUND = "No planets found";
 }

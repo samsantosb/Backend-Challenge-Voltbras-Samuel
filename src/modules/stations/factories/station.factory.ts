@@ -4,11 +4,11 @@ import { StationService } from "../services/station.service";
 import { StationResolver } from "../resolvers/station.resolver";
 
 function stationFactory() {
-  const mongooseRepository = new StationMongooseRepository(StationModel);
-  const service = new StationService(mongooseRepository);
-  const { Query, Mutation } = new StationResolver(service);
+  const mongooseStationRepository = new StationMongooseRepository(StationModel);
+  const stationService = new StationService(mongooseStationRepository);
+  const { Query, Mutation } = new StationResolver(stationService);
 
-  return { Query, Mutation };
+  return { Query, Mutation, mongooseStationRepository };
 }
 
 export const stationModule = stationFactory();
