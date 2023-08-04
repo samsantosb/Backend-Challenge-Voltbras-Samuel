@@ -12,9 +12,7 @@ export class UserMongooseRepository implements IUserRepository {
   constructor(private readonly userModel: mongooseUserModel) {}
 
   async getAll(): Promise<User[] | null> {
-    const users = (await this.populateUsers(
-      this.userModel.find()
-    )) as mongooseUserSchema[];
+    const users = await this.populateUsers(this.userModel.find());
 
     return users;
   }
@@ -26,35 +24,31 @@ export class UserMongooseRepository implements IUserRepository {
 
     const user = await this.populateUsers(this.userModel.findById(id));
 
-    const parsedUser: User = UserMapper.mongoToDomain(user);
-
-    return parsedUser;
+    return user;
   }
 
   async getByEmail(email: string): Promise<User> {
-    const user = (await this.populateUsers(
+    const user = await this.populateUsers(
       this.userModel.findOne({ email: email })
-    )) as mongooseUserSchema;
+    );
 
     return user;
   }
 
   async create(user: RequestUserDTO): Promise<User> {
-    const newUser = (await this.userModel.create(
-      user
-    )) as unknown as mongooseUserSchema;
+    const newUser = await this.userModel.create(user);
 
     return newUser;
   }
 
-  async update(id: string, user: RequestUserDTO): Promise<User> {
+  async update(id: string, user: RequestUserDTO): Promise<User | null> {
     if (!isIdValid(id)) {
       throw new Error(ErrorMessages.INVALID_ID(id));
     }
 
-    const updatedUser = (await this.userModel.findByIdAndUpdate(id, user, {
+    const updatedUser = await this.userModel.findByIdAndUpdate(id, user, {
       new: true,
-    })) as mongooseUserSchema;
+    });
 
     return updatedUser;
   }
