@@ -1,12 +1,12 @@
-import { IStationRepository } from "../station.repository.interface";
+import { IStationRepository } from "./station.repository.interface";
 import {
   mongooseStationModel,
   mongooseStationSchema,
-} from "../model/station.mongoose.model";
-import { RequestStationDTO } from "../../dtos/request.station.dto";
-import { Station } from "../../entities/station.entity";
-import { isIdValid } from "../../../utils/validators/mongo.id.validator";
-import { ErrorMessages } from "../../../utils/errorHandler/error.messages";
+} from "./model/station.mongoose.model";
+import { RequestStationDTO } from "../dtos/request.station.dto";
+import { Station } from "../entities/station.entity";
+import { isIdValid } from "../../utils/validators/mongo.id.validator";
+import { ErrorMessages } from "../../utils/errorHandler/error.messages";
 
 export class StationMongooseRepository implements IStationRepository {
   constructor(private readonly stationModel: mongooseStationModel) {}

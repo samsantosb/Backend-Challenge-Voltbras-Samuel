@@ -1,6 +1,6 @@
-import { RequestStationHistoryDTO } from "./../../dtos/request.station.history.dto";
-import { IStationHistoryService } from "./../../services/station.history.service.interface";
-import { IStationHistoryResolver } from "./../station.history.resolver.interface";
+import { RequestStationHistoryDTO } from "../dtos/request.station.history.dto";
+import { IStationHistoryService } from "../services/station.history.service.interface";
+import { IStationHistoryResolver } from "./station.history.resolver.interface";
 
 export class StationHistoryResolver implements IStationHistoryResolver {
   constructor(private stationHistoryService: IStationHistoryService) {}

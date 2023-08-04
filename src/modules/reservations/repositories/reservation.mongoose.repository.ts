@@ -1,12 +1,12 @@
-import { IReservationRepository } from "../reservation.repository.interface";
+import { IReservationRepository } from "./reservation.repository.interface";
 import {
   mongooseReservationModel,
   mongooseReservationSchema,
-} from "../model/reservation.mongoose.model";
-import { RequestReservationDTO } from "../../dtos/request.reservation.dto";
-import { Reservation } from "../../entities/reservation.entity";
-import { isIdValid } from "../../../utils/validators/mongo.id.validator";
-import { ErrorMessages } from "../../../utils/errorHandler/error.messages";
+} from "./model/reservation.mongoose.model";
+import { RequestReservationDTO } from "../dtos/request.reservation.dto";
+import { Reservation } from "../entities/reservation.entity";
+import { isIdValid } from "../../utils/validators/mongo.id.validator";
+import { ErrorMessages } from "../../utils/errorHandler/error.messages";
 
 export class ReservationMongooseRepository implements IReservationRepository {
   constructor(private readonly reservationModel: mongooseReservationModel) {}

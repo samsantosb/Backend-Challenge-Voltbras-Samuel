@@ -1,12 +1,12 @@
-import { IStationHistoryRepository } from "../station.history.repository.interface";
+import { IStationHistoryRepository } from "./station.history.repository.interface";
 import {
   mongooseStationHistoryModel,
   mongooseStationHistorySchema,
-} from "../model/station.history.mongoose.model";
-import { RequestStationHistoryDTO } from "../../dtos/request.station.history.dto";
-import { StationHistory } from "../../entities/station.history.entity";
-import { isIdValid } from "../../../utils/validators/mongo.id.validator";
-import { ErrorMessages } from "../../../utils/errorHandler/error.messages";
+} from "./model/station.history.mongoose.model";
+import { RequestStationHistoryDTO } from "../dtos/request.station.history.dto";
+import { StationHistory } from "../entities/station.history.entity";
+import { isIdValid } from "../../utils/validators/mongo.id.validator";
+import { ErrorMessages } from "../../utils/errorHandler/error.messages";
 
 export class StationHistoryMongooseRepository
   implements IStationHistoryRepository

@@ -1,7 +1,7 @@
-import { RequestReservationDTO } from "../../dtos/request.reservation.dto";
-import { IReservationRepository } from "../../repositories/reservation.repository.interface";
-import { IReservationService } from "../reservation.service.interface";
-import { ErrorMessages } from "../../../utils/errorHandler/error.messages";
+import { RequestReservationDTO } from "../dtos/request.reservation.dto";
+import { IReservationRepository } from "../repositories/reservation.repository.interface";
+import { IReservationService } from "./reservation.service.interface";
+import { ErrorMessages } from "../../utils/errorHandler/error.messages";
 
 export class ReservationService implements IReservationService {
   constructor(private readonly reservationRepository: IReservationRepository) {}

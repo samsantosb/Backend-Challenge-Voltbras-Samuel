@@ -1,7 +1,7 @@
 import { fakeMongoObjectId } from "../../../../__mocks__/fake.mongo.ids";
 import { fakeUser } from "../../__mocks__/fake.user";
 import { fakeUserService } from "../../__mocks__/fake.user.service";
-import { UserResolver } from "../implementation/user.resolver";
+import { UserResolver } from "../user.resolver";
 import { RequestUserDTO } from "../../dtos/request.user.dto";
 import { ResponseUserDTO } from "../../dtos/response.user.dto";
 import { fakeRequestUser } from "../../__mocks__/fake.request.user";

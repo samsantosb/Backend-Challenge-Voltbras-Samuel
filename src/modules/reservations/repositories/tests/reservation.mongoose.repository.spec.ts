@@ -2,7 +2,7 @@ import { fakeMongoObjectId } from "../../../../__mocks__/fake.mongo.ids";
 import { fakeRequestReservation } from "../../__mocks__/fake.request.reservation";
 import { fakeReservation } from "../../__mocks__/fake.reservation";
 import { fakeReservationModel } from "../../__mocks__/fake.reservation.model";
-import { ReservationMongooseRepository } from "../implementation/reservation.mongoose.repository";
+import { ReservationMongooseRepository } from "../reservation.mongoose.repository";
 
 const reservationRepository = new ReservationMongooseRepository(
   fakeReservationModel

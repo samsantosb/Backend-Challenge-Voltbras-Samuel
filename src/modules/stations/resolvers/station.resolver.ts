@@ -1,6 +1,6 @@
-import { RequestStationDTO } from "../../dtos/request.station.dto";
-import { IStationService } from "../../services/station.service.interface";
-import { IStationResolver } from "../station.resolver.interface";
+import { RequestStationDTO } from "../dtos/request.station.dto";
+import { IStationService } from "../services/station.service.interface";
+import { IStationResolver } from "./station.resolver.interface";
 
 export class StationResolver implements IStationResolver {
   constructor(private stationService: IStationService) {}

@@ -1,12 +1,12 @@
-import { IRechargeRepository } from "../recharge.repository.interface";
+import { IRechargeRepository } from "./recharge.repository.interface";
 import {
   mongooseRechargeModel,
   mongooseRechargeSchema,
-} from "../model/recharge.mongoose.model";
-import { RequestRechargeDTO } from "../../dtos/request.reacharge.dto";
-import { Recharge } from "../../entities/recharge.entity";
-import { isIdValid } from "../../../utils/validators/mongo.id.validator";
-import { ErrorMessages } from "../../../utils/errorHandler/error.messages";
+} from "./model/recharge.mongoose.model";
+import { RequestRechargeDTO } from "../dtos/request.reacharge.dto";
+import { Recharge } from "../entities/recharge.entity";
+import { isIdValid } from "../../utils/validators/mongo.id.validator";
+import { ErrorMessages } from "../../utils/errorHandler/error.messages";
 
 export class RechargeMongooseRepository implements IRechargeRepository {
   constructor(private readonly rechargeModel: mongooseRechargeModel) {}

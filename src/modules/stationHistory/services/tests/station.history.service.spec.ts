@@ -1,7 +1,7 @@
 import { fakeMongoObjectId } from "../../../../__mocks__/fake.mongo.ids";
 import { fakeStationHistory } from "../../__mocks__/fake.station.history";
 import { fakeStationHistoryRepository } from "../../__mocks__/fake.station.history.repository";
-import { StationHistoryService } from "../implementation/station.history.service";
+import { StationHistoryService } from "../station.history.service";
 
 const stationHistoryService = new StationHistoryService(
   fakeStationHistoryRepository

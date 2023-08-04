@@ -1,7 +1,7 @@
-import { RequestStationDTO } from "../../dtos/request.station.dto";
-import { IStationRepository } from "../../repositories/station.repository.interface";
-import { IStationService } from "../station.service.interface";
-import { ErrorMessages } from "../../../utils/errorHandler/error.messages";
+import { RequestStationDTO } from "../dtos/request.station.dto";
+import { IStationRepository } from "../repositories/station.repository.interface";
+import { IStationService } from "./station.service.interface";
+import { ErrorMessages } from "../../utils/errorHandler/error.messages";
 
 export class StationService implements IStationService {
   constructor(private readonly stationRepository: IStationRepository) {}

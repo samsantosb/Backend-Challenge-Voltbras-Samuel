@@ -1,7 +1,7 @@
 import { fakeMongoObjectId } from "../../../../__mocks__/fake.mongo.ids";
 import { fakeStation } from "../../__mocks__/fake.station";
 import { fakeStationService } from "../../__mocks__/fake.station.service";
-import { StationResolver } from "../implementation/station.resolver";
+import { StationResolver } from "../station.resolver";
 import { RequestStationDTO } from "../../dtos/request.station.dto";
 import { fakeRequestStation } from "../../__mocks__/fake.request.station";
 

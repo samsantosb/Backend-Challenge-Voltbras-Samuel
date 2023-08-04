@@ -1,7 +1,7 @@
 import { ReservationModel } from "../repositories/model/reservation.mongoose.model";
-import { ReservationMongooseRepository } from "../repositories/implementation/reservation.mongoose.repository";
-import { ReservationService } from "../services/implementation/reservation.service";
-import { ReservationResolver } from "../resolvers/implementation/reservation.resolver";
+import { ReservationMongooseRepository } from "../repositories/reservation.mongoose.repository";
+import { ReservationService } from "../services/reservation.service";
+import { ReservationResolver } from "../resolvers/reservation.resolver";
 
 function reservationFactory() {
   const mongooseRepository = new ReservationMongooseRepository(

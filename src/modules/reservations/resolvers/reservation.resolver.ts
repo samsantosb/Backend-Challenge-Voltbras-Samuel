@@ -1,6 +1,6 @@
-import { RequestReservationDTO } from "../../dtos/request.reservation.dto";
-import { IReservationService } from "../../services/reservation.service.interface";
-import { IReservationResolver } from "../reservation.resolver.interface";
+import { RequestReservationDTO } from "../dtos/request.reservation.dto";
+import { IReservationService } from "../services/reservation.service.interface";
+import { IReservationResolver } from "./reservation.resolver.interface";
 
 export class ReservationResolver implements IReservationResolver {
   constructor(private reservationService: IReservationService) {}

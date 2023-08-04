@@ -1,7 +1,7 @@
 import { StationModel } from "../repositories/model/station.mongoose.model";
-import { StationMongooseRepository } from "../repositories/implementation/station.mongoose.repository";
-import { StationService } from "../services/implementation/station.service";
-import { StationResolver } from "../resolvers/implementation/station.resolver";
+import { StationMongooseRepository } from "../repositories/station.mongoose.repository";
+import { StationService } from "../services/station.service";
+import { StationResolver } from "../resolvers/station.resolver";
 
 function stationFactory() {
   const mongooseRepository = new StationMongooseRepository(StationModel);

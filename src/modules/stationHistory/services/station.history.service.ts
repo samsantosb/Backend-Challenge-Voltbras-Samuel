@@ -1,7 +1,7 @@
-import { RequestStationHistoryDTO } from "../../dtos/request.station.history.dto";
-import { IStationHistoryRepository } from "../../repositories/station.history.repository.interface";
-import { IStationHistoryService } from "../station.history.service.interface";
-import { ErrorMessages } from "../../../utils/errorHandler/error.messages";
+import { RequestStationHistoryDTO } from "../dtos/request.station.history.dto";
+import { IStationHistoryRepository } from "../repositories/station.history.repository.interface";
+import { IStationHistoryService } from "./station.history.service.interface";
+import { ErrorMessages } from "../../utils/errorHandler/error.messages";
 
 export class StationHistoryService implements IStationHistoryService {
   constructor(

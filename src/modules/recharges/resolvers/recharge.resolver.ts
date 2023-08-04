@@ -1,6 +1,6 @@
-import { RequestRechargeDTO } from "../../dtos/request.reacharge.dto";
-import { IRechargeService } from "../../services/recharge.service.interface";
-import { IRechargeResolver } from "../recharge.resolver.interface";
+import { RequestRechargeDTO } from "../dtos/request.reacharge.dto";
+import { IRechargeService } from "../services/recharge.service.interface";
+import { IRechargeResolver } from "./recharge.resolver.interface";
 
 export class RechargeResolver implements IRechargeResolver {
   constructor(private rechargeService: IRechargeService) {}

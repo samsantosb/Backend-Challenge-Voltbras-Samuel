@@ -1,7 +1,7 @@
 import { fakeMongoObjectId } from "../../../../__mocks__/fake.mongo.ids";
 import { fakeStationHistory } from "../../__mocks__/fake.station.history";
 import { fakeStationHistoryService } from "../../__mocks__/fake.station.history.service";
-import { StationHistoryResolver } from "../implementation/station.history.resolver";
+import { StationHistoryResolver } from "../station.history.resolver";
 import { RequestStationHistoryDTO } from "../../dtos/request.station.history.dto";
 import { fakeRequestStationHistory } from "../../__mocks__/fake.request.station.history";
 

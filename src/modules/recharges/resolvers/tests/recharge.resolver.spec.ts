@@ -1,7 +1,7 @@
 import { fakeMongoObjectId } from "../../../../__mocks__/fake.mongo.ids";
 import { fakeRecharge } from "../../__mocks__/fake.recharge";
 import { fakeRechargeService } from "../../__mocks__/fake.recharge.service";
-import { RechargeResolver } from "../implementation/recharge.resolver";
+import { RechargeResolver } from "../recharge.resolver";
 import { RequestRechargeDTO } from "../../dtos/request.reacharge.dto";
 import { fakeRequestRecharge } from "../../__mocks__/fake.request.recharge";
 

@@ -1,7 +1,7 @@
-import { RequestRechargeDTO } from "../../dtos/request.reacharge.dto";
-import { IRechargeRepository } from "../../repositories/recharge.repository.interface";
-import { IRechargeService } from "../recharge.service.interface";
-import { ErrorMessages } from "../../../utils/errorHandler/error.messages";
+import { RequestRechargeDTO } from "../dtos/request.reacharge.dto";
+import { IRechargeRepository } from "../repositories/recharge.repository.interface";
+import { IRechargeService } from "./recharge.service.interface";
+import { ErrorMessages } from "../../utils/errorHandler/error.messages";
 
 export class RechargeService implements IRechargeService {
   constructor(private readonly rechargeRepository: IRechargeRepository) {}

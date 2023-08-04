@@ -1,12 +1,12 @@
-import { IUserRepository } from "../user.repository.interface";
+import { IUserRepository } from "./user.repository.interface";
 import {
   mongooseUserModel,
   mongooseUserSchema,
-} from "../model/user.mongoose.model";
-import { RequestUserDTO } from "../../dtos/request.user.dto";
-import { User } from "../../entities/user.entity";
-import { isIdValid } from "../../../utils/validators/mongo.id.validator";
-import { ErrorMessages } from "../../../utils/errorHandler/error.messages";
+} from "./model/user.mongoose.model";
+import { RequestUserDTO } from "../dtos/request.user.dto";
+import { User } from "../entities/user.entity";
+import { isIdValid } from "../../utils/validators/mongo.id.validator";
+import { ErrorMessages } from "../../utils/errorHandler/error.messages";
 
 export class UserMongooseRepository implements IUserRepository {
   constructor(private readonly userModel: mongooseUserModel) {}

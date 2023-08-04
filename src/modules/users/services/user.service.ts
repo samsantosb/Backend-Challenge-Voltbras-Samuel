@@ -1,7 +1,7 @@
-import { RequestUserDTO } from "../../dtos/request.user.dto";
-import { IUserRepository } from "../../repository/user.repository.interface";
-import { IUserService } from "../user.service.interface";
-import { ErrorMessages } from "../../../utils/errorHandler/error.messages";
+import { RequestUserDTO } from "../dtos/request.user.dto";
+import { IUserRepository } from "../repository/user.repository.interface";
+import { IUserService } from "./user.service.interface";
+import { ErrorMessages } from "../../utils/errorHandler/error.messages";
 import bcrypt from "bcrypt";
 
 export class UserService implements IUserService {

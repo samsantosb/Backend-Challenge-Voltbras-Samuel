@@ -1,7 +1,7 @@
 import { fakeMongoObjectId } from "../../../../__mocks__/fake.mongo.ids";
 import { fakeReservation } from "../../__mocks__/fake.reservation";
 import { fakeReservationService } from "../../__mocks__/fake.reservation.service";
-import { ReservationResolver } from "../implementation/reservation.resolver";
+import { ReservationResolver } from "../reservation.resolver";
 import { RequestReservationDTO } from "../../dtos/request.reservation.dto";
 import { fakeRequestReservation } from "../../__mocks__/fake.request.reservation";
 

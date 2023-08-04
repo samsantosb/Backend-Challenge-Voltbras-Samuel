@@ -2,7 +2,7 @@ import { fakeMongoObjectId } from "../../../../__mocks__/fake.mongo.ids";
 import { fakeRequestRecharge } from "../../__mocks__/fake.request.recharge";
 import { fakeRecharge } from "../../__mocks__/fake.recharge";
 import { fakeRechargeModel } from "../../__mocks__/fake.recharge.model";
-import { RechargeMongooseRepository } from "../implementation/recharge.mongoose.repository";
+import { RechargeMongooseRepository } from "../recharge.mongoose.repository";
 
 const rechargeRepository = new RechargeMongooseRepository(fakeRechargeModel);
 
