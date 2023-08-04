@@ -1,6 +1,6 @@
 import { Model } from "mongoose";
 import { fakeUser } from "./fake.user";
-import { mongooseUserModel } from "../repository/model/user.mongoose.model";
+import { mongooseUserModel } from "../model/user.mongoose.model";
 
 export const fakeUserModel = {
   find: jest.fn().mockImplementation(() => ({

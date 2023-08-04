@@ -1,5 +1,5 @@
 import { RequestStationHistoryDTO } from "../dtos/request.station.history.dto";
-import { StationHistory } from "../entities/station.history.entity";
+import { StationHistory } from "../model/station.history.type";
 
 export abstract class IStationHistoryResolver {
   abstract Query: {

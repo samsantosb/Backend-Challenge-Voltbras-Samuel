@@ -1,4 +1,4 @@
-import { StationHistoryModel } from "../repositories/model/station.history.mongoose.model";
+import { StationHistoryModel } from "../model/station.history.mongoose.model";
 import { StationHistoryMongooseRepository } from "../repositories/station.history.mongoose.repository";
 import { StationHistoryService } from "../services/station.history.service";
 import { StationHistoryResolver } from "../resolvers/station.history.resolver";

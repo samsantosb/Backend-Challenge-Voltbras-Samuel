@@ -1,4 +1,4 @@
-import { RechargeModel } from "../repositories/model/recharge.mongoose.model";
+import { RechargeModel } from "../model/recharge.mongoose.model";
 import { RechargeMongooseRepository } from "../repositories/recharge.mongoose.repository";
 import { RechargeService } from "../services/recharge.service";
 import { RechargeResolver } from "../resolvers/recharge.resolver";

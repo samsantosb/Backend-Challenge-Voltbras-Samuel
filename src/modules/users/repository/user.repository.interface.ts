@@ -1,5 +1,5 @@
 import { RequestUserDTO } from "../dtos/request.user.dto";
-import { User } from "../entities/user.entity";
+import { User } from "../model/user.type";
 
 export abstract class IUserRepository {
   abstract getAll(): Promise<User[] | null>;

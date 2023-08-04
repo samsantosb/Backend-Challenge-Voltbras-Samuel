@@ -1,5 +1,5 @@
 import { Types } from "mongoose";
-import { User } from "../entities/user.entity";
+import { User } from "../model/user.type";
 
 export class ResponseUserDTO {
   public _id: string | Types.ObjectId;

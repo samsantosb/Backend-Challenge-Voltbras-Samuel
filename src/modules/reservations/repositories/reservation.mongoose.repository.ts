@@ -2,9 +2,9 @@ import { IReservationRepository } from "./reservation.repository.interface";
 import {
   mongooseReservationModel,
   mongooseReservationSchema,
-} from "./model/reservation.mongoose.model";
+} from "../model/reservation.mongoose.model";
 import { RequestReservationDTO } from "../dtos/request.reservation.dto";
-import { Reservation } from "../entities/reservation.entity";
+import { Reservation } from "../model/reservation.type";
 import { isIdValid } from "../../utils/validators/mongo.id.validator";
 import { ErrorMessages } from "../../utils/errorHandler/error.messages";
 

@@ -2,9 +2,9 @@ import { IStationHistoryRepository } from "./station.history.repository.interfac
 import {
   mongooseStationHistoryModel,
   mongooseStationHistorySchema,
-} from "./model/station.history.mongoose.model";
+} from "../model/station.history.mongoose.model";
 import { RequestStationHistoryDTO } from "../dtos/request.station.history.dto";
-import { StationHistory } from "../entities/station.history.entity";
+import { StationHistory } from "../model/station.history.type";
 import { isIdValid } from "../../utils/validators/mongo.id.validator";
 import { ErrorMessages } from "../../utils/errorHandler/error.messages";
 

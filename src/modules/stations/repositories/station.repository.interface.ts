@@ -1,5 +1,5 @@
 import { RequestStationDTO } from "../dtos/request.station.dto";
-import { Station } from "../entities/station.entity";
+import { Station } from "../model/station.type";
 
 export abstract class IStationRepository {
   abstract getAll(): Promise<Station[] | null>;

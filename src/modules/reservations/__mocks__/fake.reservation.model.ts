@@ -1,5 +1,5 @@
 import { fakeReservation } from "./fake.reservation";
-import { mongooseReservationModel } from "../repositories/model/reservation.mongoose.model";
+import { mongooseReservationModel } from "../model/reservation.mongoose.model";
 
 export const fakeReservationModel = {
   find: jest.fn().mockImplementation(() => ({

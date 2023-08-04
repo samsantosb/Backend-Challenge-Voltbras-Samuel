@@ -1,5 +1,5 @@
 import { RequestRechargeDTO } from "../dtos/request.reacharge.dto";
-import { Recharge } from "../entities/recharge.entity";
+import { Recharge } from "../model/recharge.model";
 
 export abstract class IRechargeResolver {
   abstract Query: {

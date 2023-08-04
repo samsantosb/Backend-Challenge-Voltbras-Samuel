@@ -1,5 +1,5 @@
 import { fakeRecharge } from "./fake.recharge";
-import { mongooseRechargeModel } from "../repositories/model/recharge.mongoose.model";
+import { mongooseRechargeModel } from "../model/recharge.mongoose.model";
 
 export const fakeRechargeModel = {
   find: jest.fn().mockImplementation(() => ({

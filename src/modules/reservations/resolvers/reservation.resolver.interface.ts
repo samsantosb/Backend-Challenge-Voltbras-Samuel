@@ -1,6 +1,6 @@
 import { RequestReservationDTO } from "../dtos/request.reservation.dto";
 
-import { Reservation } from "../entities/reservation.entity";
+import { Reservation } from "../model/reservation.type";
 
 export abstract class IReservationResolver {
   abstract Query: {

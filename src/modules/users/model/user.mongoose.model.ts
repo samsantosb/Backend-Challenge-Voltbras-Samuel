@@ -17,7 +17,7 @@ const UserSchema = new Schema(
   }
 );
 
-type userSchema = InferSchemaType<typeof UserSchema>;
+export type userSchema = InferSchemaType<typeof UserSchema>;
 
 export type mongooseUserModel = Model<userSchema>;
 

@@ -1,4 +1,4 @@
-import { ReservationModel } from "../repositories/model/reservation.mongoose.model";
+import { ReservationModel } from "../model/reservation.mongoose.model";
 import { ReservationMongooseRepository } from "../repositories/reservation.mongoose.repository";
 import { ReservationService } from "../services/reservation.service";
 import { ReservationResolver } from "../resolvers/reservation.resolver";
