@@ -5,9 +5,6 @@ export const UserType = gql`
     _id: ID
     name: String
     email: String
-    recharges: [String]
-    reservations: [String]
-    stationHistories: [String]
     createdAt: String
     updatedAt: String
     deletedAt: String

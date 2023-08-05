@@ -32,4 +32,9 @@ export class ErrorMessages {
   static INVALID_CREDENTIALS = "Invalid credentials";
 
   static NO_PLANETS_FOUND = "No planets found";
+
+  static STATION_IS_RECHARGING =
+    "Current Station is already in recharge process";
+
+  static USER_IS_RECHARGING = "Current User is doing a recharge";
 }

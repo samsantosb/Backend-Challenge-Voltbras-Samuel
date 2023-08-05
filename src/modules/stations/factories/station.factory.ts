@@ -8,7 +8,7 @@ function stationFactory() {
   const stationService = new StationService(mongooseStationRepository);
   const { Query, Mutation } = new StationResolver(stationService);
 
-  return { Query, Mutation, mongooseStationRepository };
+  return { Query, Mutation, mongooseStationRepository, stationService };
 }
 
 export const stationModule = stationFactory();

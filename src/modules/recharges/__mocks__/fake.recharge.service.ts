@@ -18,8 +18,4 @@ export const fakeRechargeService = {
   async update(_id: string, _recharge: RequestRechargeDTO) {
     return Promise.resolve(fakeRecharge);
   },
-
-  async softDelete(_id: string) {
-    return Promise.resolve(fakeRecharge);
-  },
 } as unknown as IRechargeService;

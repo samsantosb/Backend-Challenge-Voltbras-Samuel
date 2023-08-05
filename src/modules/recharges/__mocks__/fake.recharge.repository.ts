@@ -17,8 +17,4 @@ export const fakeRechargeRepository = {
   update() {
     return Promise.resolve(fakeRecharge);
   },
-
-  softDelete() {
-    return Promise.resolve(fakeRecharge);
-  },
 } as unknown as IRechargeRepository;

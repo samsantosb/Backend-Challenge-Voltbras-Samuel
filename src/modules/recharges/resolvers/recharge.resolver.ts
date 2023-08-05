@@ -19,7 +19,7 @@ export class RechargeResolver implements IRechargeResolver {
   };
 
   public Mutation = {
-    createRecharge: async (
+    recharge: async (
       _: any,
       { recharge }: { recharge: RequestRechargeDTO }
     ) => {
@@ -38,11 +38,6 @@ export class RechargeResolver implements IRechargeResolver {
       const updatedRecharge = await this.rechargeService.update(id, request);
 
       return updatedRecharge;
-    },
-    deleteRecharge: async (_: any, { id }: { id: string }) => {
-      const deletedRecharge = await this.rechargeService.softDelete(id);
-
-      return deletedRecharge;
     },
   };
 }

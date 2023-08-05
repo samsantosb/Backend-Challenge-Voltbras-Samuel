@@ -10,7 +10,7 @@ const stationResolver = new StationResolver(fakeStationService);
 describe("StationResolver", () => {
   describe("Query.getAllStations", () => {
     it("should return all stations", async () => {
-      const response = await stationResolver.Query.getAllStations();
+      const response = await stationResolver.Query.stations();
 
       expect(response).toEqual(Array.from({ length: 10 }, () => fakeStation));
     });
@@ -41,7 +41,7 @@ describe("StationResolver", () => {
 
   describe("Mutation.createStation", () => {
     it("should create a new station", async () => {
-      const response = await stationResolver.Mutation.createStation(null, {
+      const response = await stationResolver.Mutation.installStation(null, {
         station: new RequestStationDTO(fakeStation),
       });
 
@@ -55,7 +55,7 @@ describe("StationResolver", () => {
       fakeStationWithNumberName.planetName = 123;
 
       try {
-        await stationResolver.Mutation.createStation(null, {
+        await stationResolver.Mutation.installStation(null, {
           station: fakeStationWithNumberName,
         });
       } catch (error) {

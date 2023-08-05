@@ -2,9 +2,16 @@ import { RequestRechargeDTO } from "../dtos/request.reacharge.dto";
 import { IRechargeRepository } from "../repositories/recharge.repository.interface";
 import { IRechargeService } from "./recharge.service.interface";
 import { ErrorMessages } from "../../utils/errorHandler/error.messages";
+import { IUserService } from "../../users/services/user.service.interface";
+import { IStationService } from "../../stations/services/station.service.interface";
+import { Recharge } from "../model/recharge.model";
 
 export class RechargeService implements IRechargeService {
-  constructor(private readonly rechargeRepository: IRechargeRepository) {}
+  constructor(
+    private readonly rechargeRepository: IRechargeRepository,
+    private readonly userService: IUserService,
+    private readonly stationService: IStationService
+  ) {}
 
   async getAll() {
     const recharges = await this.rechargeRepository.getAll();
@@ -27,6 +34,19 @@ export class RechargeService implements IRechargeService {
   }
 
   async create(recharge: RequestRechargeDTO) {
+    //se falharem as chamadas quer dizer que nao existe
+    await this.userService.getById(recharge.userId);
+    await this.stationService.getById(recharge.stationId);
+
+    const recharges = (await this.rechargeRepository.getAll()) as Recharge[];
+
+    if (this.isRecharing(recharges, recharge, "stationId")) {
+      throw new Error(ErrorMessages.STATION_IS_RECHARGING);
+    }
+
+    if (this.isRecharing(recharges, recharge, "userId")) {
+      throw new Error(ErrorMessages.USER_IS_RECHARGING);
+    }
     const newRecharge = await this.rechargeRepository.create(recharge);
 
     if (!newRecharge) {
@@ -46,13 +66,15 @@ export class RechargeService implements IRechargeService {
     return updatedRecharge;
   }
 
-  async softDelete(id: string) {
-    const deletedRecharge = await this.rechargeRepository.softDelete(id);
-
-    if (!deletedRecharge) {
-      throw new Error(ErrorMessages.CANNOT_DELETE(`Recharge with id ${id}`));
-    }
-
-    return deletedRecharge;
+  private isRecharing(
+    recharges: Recharge[],
+    recharge: RequestRechargeDTO,
+    id: keyof RequestRechargeDTO
+  ) {
+    return recharges.some(
+      (dbRecharge) =>
+        JSON.stringify(dbRecharge[id]) === JSON.stringify(recharge[id]) &&
+        dbRecharge.inProgress === true
+    );
   }
 }

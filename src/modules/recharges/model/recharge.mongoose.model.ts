@@ -2,19 +2,13 @@ import { InferSchemaType, Model, Schema, Types, model } from "mongoose";
 
 const { ObjectId } = Schema.Types;
 
-const RechargeSchema = new Schema(
-  {
-    station: { type: ObjectId, ref: "Station", required: true },
-    user: { type: ObjectId, ref: "User", required: true },
-    inProgress: { type: Boolean, required: true },
-    startDate: { type: Date, required: true },
-    endDate: { type: Date, required: true },
-    deletedAt: Date,
-  },
-  {
-    timestamps: { createdAt: "createdAt", updatedAt: "updatedAt" },
-  }
-);
+const RechargeSchema = new Schema({
+  stationId: { type: ObjectId, ref: "Station", required: true },
+  userId: { type: ObjectId, ref: "User", required: true },
+  inProgress: { type: Boolean, default: true },
+  startDate: { type: Date, required: true },
+  endDate: { type: Date, required: true },
+});
 
 type RechargeSchemaType = InferSchemaType<typeof RechargeSchema>;
 

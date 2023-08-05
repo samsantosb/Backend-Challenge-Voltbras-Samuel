@@ -3,19 +3,15 @@ import { gql } from "apollo-server";
 export const RechargeType = gql`
   type Recharge {
     _id: ID!
-    station: String!
-    user: String!
+    stationId: String!
+    userId: String!
     inProgress: Boolean!
     endDate: String!
-    createdAt: String!
-    updatedAt: String!
-    deletedAt: String
   }
 
   input RechargeInput {
-    station: String!
-    user: String!
-    inProgress: Boolean!
+    stationId: String!
+    userId: String!
     endDate: String!
   }
 
@@ -25,8 +21,7 @@ export const RechargeType = gql`
   }
 
   type Mutation {
-    createRecharge(recharge: RechargeInput): Recharge
+    recharge(recharge: RechargeInput): Recharge
     updateRecharge(id: String, recharge: RechargeInput): Recharge
-    deleteRecharge(id: String): Recharge
   }
 `;

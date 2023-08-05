@@ -28,7 +28,7 @@ describe("RechargeResolver", () => {
 
   describe("Mutation.createRecharge", () => {
     it("should create a new recharge", async () => {
-      const response = await rechargeResolver.Mutation.createRecharge(null, {
+      const response = await rechargeResolver.Mutation.recharge(null, {
         recharge: new RequestRechargeDTO(fakeRecharge),
       });
 
@@ -41,16 +41,6 @@ describe("RechargeResolver", () => {
       const response = await rechargeResolver.Mutation.updateRecharge(null, {
         id: fakeMongoObjectId,
         recharge: new RequestRechargeDTO(fakeRequestRecharge),
-      });
-
-      expect(response).toEqual(fakeRecharge);
-    });
-  });
-
-  describe("Mutation.deleteRecharge", () => {
-    it("should delete an existing recharge", async () => {
-      const response = await rechargeResolver.Mutation.deleteRecharge(null, {
-        id: fakeMongoObjectId,
       });
 
       expect(response).toEqual(fakeRecharge);

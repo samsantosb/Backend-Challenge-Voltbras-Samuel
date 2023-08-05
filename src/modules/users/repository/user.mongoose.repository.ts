@@ -12,7 +12,7 @@ export class UserMongooseRepository implements IUserRepository {
   constructor(private readonly userModel: mongooseUserModel) {}
 
   async getAll(): Promise<User[] | null> {
-    const users = await this.populateUsers(this.userModel.find());
+    const users = await this.userModel.find();
 
     return users;
   }
@@ -22,15 +22,13 @@ export class UserMongooseRepository implements IUserRepository {
       throw new Error(ErrorMessages.INVALID_ID(id));
     }
 
-    const user = await this.populateUsers(this.userModel.findById(id));
+    const user = (await this.userModel.findById(id)) as User;
 
     return user;
   }
 
   async getByEmail(email: string): Promise<User> {
-    const user = await this.populateUsers(
-      this.userModel.findOne({ email: email })
-    );
+    const user = (await this.userModel.findOne({ email: email })) as User;
 
     return user;
   }
@@ -46,9 +44,9 @@ export class UserMongooseRepository implements IUserRepository {
       throw new Error(ErrorMessages.INVALID_ID(id));
     }
 
-    const updatedUser = await this.userModel.findByIdAndUpdate(id, user, {
+    const updatedUser = (await this.userModel.findByIdAndUpdate(id, user, {
       new: true,
-    });
+    })) as User;
 
     return updatedUser;
   }
@@ -65,9 +63,5 @@ export class UserMongooseRepository implements IUserRepository {
     )) as mongooseUserSchema;
 
     return deletedUser;
-  }
-
-  private populateUsers(query: any): any {
-    return query.populate(["recharges", "reservations", "stationHistories"]);
   }
 }

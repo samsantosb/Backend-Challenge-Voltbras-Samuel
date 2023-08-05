@@ -12,7 +12,7 @@ export class RechargeMongooseRepository implements IRechargeRepository {
   constructor(private readonly rechargeModel: mongooseRechargeModel) {}
 
   async getAll(): Promise<Recharge[]> {
-    const recharges = await this.populateRecharges(this.rechargeModel.find());
+    const recharges = await this.rechargeModel.find();
 
     return recharges;
   }
@@ -22,10 +22,7 @@ export class RechargeMongooseRepository implements IRechargeRepository {
       throw new Error(ErrorMessages.INVALID_ID(id));
     }
 
-    const recharge = await this.populateRecharges(
-      this.rechargeModel.findById(id)
-    );
-
+    const recharge = (await this.rechargeModel.findById(id)) as Recharge;
     return recharge;
   }
 
@@ -52,23 +49,5 @@ export class RechargeMongooseRepository implements IRechargeRepository {
     );
 
     return updatedRecharge;
-  }
-
-  async softDelete(id: string): Promise<Recharge | null> {
-    if (!isIdValid(id)) {
-      throw new Error(ErrorMessages.INVALID_ID(id));
-    }
-
-    const deletedRecharge = await this.rechargeModel.findByIdAndUpdate(
-      id,
-      { deletedAt: new Date() },
-      { new: true }
-    );
-
-    return deletedRecharge;
-  }
-
-  private populateRecharges(query: any): any {
-    return query.populate(["station", "user"]);
   }
 }

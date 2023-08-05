@@ -69,22 +69,4 @@ describe("RechargeRepository", () => {
       ).rejects.toThrow();
     });
   });
-
-  describe("softDelete", () => {
-    it("should return a recharge", async () => {
-      const recharge = await rechargeRepository.softDelete(fakeMongoObjectId);
-
-      expect(recharge).toEqual(fakeRecharge);
-    });
-    it("should call the findByIdAndUpdate method of the rechargeModel", async () => {
-      await rechargeRepository.softDelete(fakeMongoObjectId);
-
-      expect(fakeRechargeModel.findByIdAndUpdate).toHaveBeenCalled();
-    });
-    it("should throw an error if the id is invalid", async () => {
-      await expect(
-        rechargeRepository.softDelete("invalidId")
-      ).rejects.toThrow();
-    });
-  });
 });

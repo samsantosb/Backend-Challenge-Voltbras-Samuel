@@ -11,17 +11,13 @@ export abstract class IRechargeResolver {
   };
 
   abstract Mutation: {
-    createRecharge: (
+    recharge: (
       _: any,
       { recharge }: { recharge: RequestRechargeDTO }
     ) => Promise<Partial<Recharge>>;
     updateRecharge: (
       _: any,
       { id, recharge }: { id: string; recharge: RequestRechargeDTO }
-    ) => Promise<Partial<Recharge>>;
-    deleteRecharge: (
-      _: any,
-      { id }: { id: string }
     ) => Promise<Partial<Recharge>>;
   };
 }

@@ -3,8 +3,14 @@ import { fakeRequestRecharge } from "../../__mocks__/fake.request.recharge";
 import { fakeRecharge } from "../../__mocks__/fake.recharge";
 import { fakeRechargeRepository } from "../../__mocks__/fake.recharge.repository";
 import { RechargeService } from "../recharge.service";
+import { fakeUserService } from "../../../users/__mocks__/fake.user.service";
+import { fakeStationService } from "../../../stations/__mocks__/fake.station.service";
 
-const rechargeService = new RechargeService(fakeRechargeRepository);
+const rechargeService = new RechargeService(
+  fakeRechargeRepository,
+  fakeUserService,
+  fakeStationService
+);
 
 describe("RechargeService", () => {
   describe("getAll", () => {
@@ -72,23 +78,6 @@ describe("RechargeService", () => {
 
       await expect(
         rechargeService.update(fakeMongoObjectId, fakeRequestRecharge)
-      ).rejects.toThrow();
-    });
-  });
-
-  describe("softDelete", () => {
-    it("should return a recharge", async () => {
-      const recharge = await rechargeService.softDelete(fakeMongoObjectId);
-
-      expect(recharge).toEqual(fakeRecharge);
-    });
-    it("should throw an error if the recharge cannot be deleted", async () => {
-      jest
-        .spyOn(fakeRechargeRepository, "softDelete")
-        .mockImplementationOnce(() => Promise.resolve(null));
-
-      await expect(
-        rechargeService.softDelete(fakeMongoObjectId)
       ).rejects.toThrow();
     });
   });

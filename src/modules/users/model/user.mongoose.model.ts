@@ -7,9 +7,6 @@ const UserSchema = new Schema(
     name: { type: String, required: true },
     email: { type: String, unique: true, required: true },
     password: { type: String, required: true },
-    recharges: [{ type: ObjectId, ref: "Recharge" }],
-    reservations: [{ type: ObjectId, ref: "Reservation" }],
-    stationHistories: [{ type: ObjectId, ref: "StationHistory" }],
     deletedAt: Date,
   },
   {

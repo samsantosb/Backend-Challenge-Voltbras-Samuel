@@ -6,5 +6,4 @@ export abstract class IRechargeService {
   abstract getById(id: string): Promise<Recharge>;
   abstract create(data: RequestRechargeDTO): Promise<Recharge>;
   abstract update(id: string, data: RequestRechargeDTO): Promise<Recharge>;
-  abstract softDelete(id: string): Promise<Recharge>;
 }

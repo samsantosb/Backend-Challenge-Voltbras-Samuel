@@ -9,5 +9,4 @@ export abstract class IRechargeRepository {
     id: string,
     recharge: RequestRechargeDTO
   ): Promise<Recharge | null>;
-  abstract softDelete(id: string): Promise<Recharge | null>;
 }

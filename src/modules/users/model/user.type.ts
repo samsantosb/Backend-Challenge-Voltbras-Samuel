@@ -5,9 +5,6 @@ export type User = {
   name: string;
   email: string;
   password: string;
-  recharges: string[] | Types.ObjectId[];
-  reservations: string[] | Types.ObjectId[];
-  stationHistories: string[] | Types.ObjectId[];
   createdAt?: Date | string;
   updatedAt?: Date | string;
   deletedAt?: Date | string;
