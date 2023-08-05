@@ -6,7 +6,7 @@ export class StationResolver implements IStationResolver {
   constructor(private stationService: IStationService) {}
 
   public Query = {
-    getAllStations: async () => {
+    stations: async () => {
       const stations = await this.stationService.getAll();
 
       return stations;
@@ -24,7 +24,7 @@ export class StationResolver implements IStationResolver {
   };
 
   public Mutation = {
-    createStation: async (
+    installStation: async (
       _: any,
       { station }: { station: RequestStationDTO }
     ) => {

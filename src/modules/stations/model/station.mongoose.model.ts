@@ -5,9 +5,7 @@ const { ObjectId } = Schema.Types;
 const StationSchema = new Schema(
   {
     planetName: { type: String, required: true, uinique: true },
-    recharges: [{ type: ObjectId, ref: "Recharge" }],
-    reservations: [{ type: ObjectId, ref: "Reservation" }],
-    stationHistories: [{ type: ObjectId, ref: "StationHistory" }],
+    stationName: { type: String, required: true, uinique: true },
     deletedAt: Date,
   },
   {

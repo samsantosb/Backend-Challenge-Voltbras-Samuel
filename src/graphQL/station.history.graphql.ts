@@ -2,13 +2,13 @@ import { gql } from "apollo-server";
 
 export const HistoryStationType = gql`
   type StationHistory {
-    _id: ID!
-    station: String!
-    user: String!
-    rechargeTime: String!
-    duration: Int!
-    createdAt: String!
-    updatedAt: String!
+    _id: ID
+    station: String
+    user: String
+    rechargeTime: String
+    duration: Int
+    createdAt: String
+    updatedAt: String
     deletedAt: String
   }
 

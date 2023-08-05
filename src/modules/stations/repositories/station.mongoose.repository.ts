@@ -12,7 +12,7 @@ export class StationMongooseRepository implements IStationRepository {
   constructor(private readonly stationModel: mongooseStationModel) {}
 
   async getAll(): Promise<Station[]> {
-    const stations = await this.populateStations(this.stationModel.find());
+    const stations = (await this.stationModel.find()) as Station[];
 
     return stations;
   }
@@ -22,15 +22,15 @@ export class StationMongooseRepository implements IStationRepository {
       throw new Error(ErrorMessages.INVALID_ID(id));
     }
 
-    const station = await this.populateStations(this.stationModel.findById(id));
+    const station = (await this.stationModel.findById(id)) as Station;
 
     return station;
   }
 
   async getByPlanetName(planetName: string): Promise<Station> {
-    const station = await this.populateStations(
-      this.stationModel.findOne({ planetName: planetName })
-    );
+    const station = (await this.stationModel.findOne({
+      planetName: planetName,
+    })) as Station;
 
     return station;
   }
@@ -69,9 +69,5 @@ export class StationMongooseRepository implements IStationRepository {
     )) as mongooseStationSchema;
 
     return deletedStation;
-  }
-
-  private populateStations(query: any): any {
-    return query.populate(["recharges", "reservations", "stationHistories"]);
   }
 }

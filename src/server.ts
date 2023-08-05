@@ -49,16 +49,21 @@ const resolvers = {
   },
 };
 
-const permissions = shield({
-  Query: {
-    "*": authModule.authService.authenticationMiddleware(),
+const permissions = shield(
+  {
+    Query: {
+      "*": authModule.authService.authenticationMiddleware(),
+    },
+    Mutation: {
+      "*": authModule.authService.authenticationMiddleware(),
+      login: allow,
+      createUser: allow,
+    },
   },
-  Mutation: {
-    "*": authModule.authService.authenticationMiddleware(),
-    login: allow,
-    createUser: allow,
-  },
-});
+  {
+    debug: true,
+  }
+);
 
 const schema = makeExecutableSchema({
   typeDefs,

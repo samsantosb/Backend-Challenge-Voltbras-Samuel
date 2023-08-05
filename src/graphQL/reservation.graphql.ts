@@ -2,14 +2,14 @@ import { gql } from "apollo-server";
 
 export const ReservationType = gql`
   type Reservation {
-    _id: ID!
-    station: String!
-    user: String!
-    startTime: String!
-    endTime: String!
-    inProgress: Boolean!
-    createdAt: String!
-    updatedAt: String!
+    _id: ID
+    station: String
+    user: String
+    startTime: String
+    endTime: String
+    inProgress: Boolean
+    createdAt: String
+    updatedAt: String
     deletedAt: String
   }
 

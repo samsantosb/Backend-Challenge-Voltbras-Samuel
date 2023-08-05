@@ -3,7 +3,7 @@ import { Station } from "../model/station.type";
 
 export abstract class IStationResolver {
   abstract Query: {
-    getAllStations: () => Promise<Partial<Station>[]>;
+    stations: () => Promise<Partial<Station>[]>;
     getStationById: (
       _: any,
       { id }: { id: string }
@@ -15,7 +15,7 @@ export abstract class IStationResolver {
   };
 
   abstract Mutation: {
-    createStation: (
+    installStation: (
       _: any,
       { station }: { station: RequestStationDTO }
     ) => Promise<Partial<Station>>;
