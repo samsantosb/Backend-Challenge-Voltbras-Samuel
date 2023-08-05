@@ -14,6 +14,9 @@ import { stationHistoryModule } from "./modules/stationHistory/factories/station
 import { stationModule } from "./modules/stations/factories/station.factory";
 import { userModule } from "./modules/users/factories/user.factory";
 import { mongoConnect } from "./database/mongo.connect";
+import { allow, shield } from "graphql-shield";
+import { applyMiddleware } from "graphql-middleware";
+import { makeExecutableSchema } from "@graphql-tools/schema";
 
 mongoConnect();
 
@@ -45,9 +48,28 @@ const resolvers = {
     ...authModule.Mutation,
   },
 };
-const server = new ApolloServer({
+
+const permissions = shield({
+  Query: {
+    "*": authModule.authService.authenticationMiddleware(),
+  },
+  Mutation: {
+    "*": authModule.authService.authenticationMiddleware(),
+    login: allow,
+    createUser: allow,
+  },
+});
+
+const schema = makeExecutableSchema({
   typeDefs,
   resolvers,
+});
+
+const schemaWithMiddleware = applyMiddleware(schema, permissions);
+
+const server = new ApolloServer({
+  schema: schemaWithMiddleware,
+  context: ({ req }) => ({ req }),
 });
 
 server.listen().then(({ url }) => {

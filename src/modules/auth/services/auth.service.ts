@@ -52,9 +52,11 @@ export class AuthService implements IAuthService {
               token,
               process.env.JWT_SECRET as string
             ) as jwt.JwtPayload;
+
             context.userId = payload.id;
             return true;
           } catch (err) {
+            console.log(err);
             throw new Error(ErrorMessages.UNAUTHORIZED);
           }
         }

@@ -6,7 +6,7 @@ function authFactory() {
   const authService = new AuthService(userModule.userService);
   const { Mutation } = new AuthResolver(authService);
 
-  return { Mutation };
+  return { Mutation, authService };
 }
 
 export const authModule = authFactory();
