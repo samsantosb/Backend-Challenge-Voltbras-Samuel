@@ -6,6 +6,7 @@ export abstract class IReservationService {
     reservation: RequestReservationDTO
   ): Promise<Reservation>;
   abstract getAll(): Promise<Reservation[]>;
+  abstract getAllByStationName(stationName: string): Promise<Reservation[]>;
   abstract update(
     id: string,
     reservation: RequestReservationDTO

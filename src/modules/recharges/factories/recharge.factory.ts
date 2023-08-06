@@ -15,15 +15,15 @@ function rechargeFactory() {
     rechargeMongooseRepository
   );
 
-  const rechargeservice = new RechargeService(
+  const rechargeService = new RechargeService(
     rechargeMongooseRepository,
     userModule.userService,
     stationModule.stationService
   );
 
-  const { Query, Mutation } = new RechargeResolver(rechargeservice);
+  const { Query, Mutation } = new RechargeResolver(rechargeService);
 
-  return { Query, Mutation, rechargeAgendaService };
+  return { Query, Mutation, rechargeAgendaService, rechargeService };
 }
 
 export const rechargeModule = rechargeFactory();

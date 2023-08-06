@@ -20,7 +20,7 @@ export class RechargeResolver implements IRechargeResolver {
       _: any,
       { stationName }: { stationName: string }
     ) => {
-      const stationHistory = await this.rechargeService.getAllByStationsByName(
+      const stationHistory = await this.rechargeService.getAllByStationName(
         stationName
       );
 

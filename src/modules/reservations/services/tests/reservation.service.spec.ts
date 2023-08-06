@@ -1,9 +1,13 @@
 import { fakeMongoObjectId } from "../../../../__mocks__/fake.mongo.ids";
+import { fakeRechargeService } from "../../../recharges/__mocks__/fake.recharge.service";
 import { fakeReservation } from "../../__mocks__/fake.reservation";
 import { fakeReservationRepository } from "../../__mocks__/fake.reservation.repository";
 import { ReservationService } from "../reservation.service";
 
-const reservationService = new ReservationService(fakeReservationRepository);
+const reservationService = new ReservationService(
+  fakeReservationRepository,
+  fakeRechargeService
+);
 
 describe("ReservationService", () => {
   describe("getAll", () => {

@@ -37,4 +37,7 @@ export class ErrorMessages {
     "Current Station is already in recharge process, please wait";
 
   static USER_IS_BUSY = "Current User is doing a recharge, please wait";
+
+  static RESERVATION_ALREADY_EXISTS =
+    "There is already a reservation for this date";
 }

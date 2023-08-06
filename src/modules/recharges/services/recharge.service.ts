@@ -28,8 +28,8 @@ export class RechargeService implements IRechargeService {
     return recharges;
   }
 
-  async getAllByStationsByName(stationName: string) {
-    const recharges = await this.rechargeRepository.getAllByStationsByName(
+  async getAllByStationName(stationName: string) {
+    const recharges = await this.rechargeRepository.getAllByStationName(
       stationName
     );
 

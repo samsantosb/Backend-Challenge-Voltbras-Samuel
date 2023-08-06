@@ -4,9 +4,7 @@ import { Recharge } from "../model/recharge.model";
 
 export abstract class IRechargeRepository {
   abstract getAll(): Promise<Recharge[] | null>;
-  abstract getAllByStationsByName(
-    stationName: string
-  ): Promise<Recharge[] | null>;
+  abstract getAllByStationName(stationName: string): Promise<Recharge[] | null>;
   abstract getById(id: string): Promise<Recharge | null>;
   abstract create(recharge: RequestRechargeDTO): Promise<Recharge | null>;
   abstract update(

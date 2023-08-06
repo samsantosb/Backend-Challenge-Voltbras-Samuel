@@ -7,6 +7,10 @@ export const fakeRechargeService = {
     return Promise.resolve(Array.from({ length: 10 }, () => fakeRecharge));
   },
 
+  async getAllByStationName(_stationName: string) {
+    return Promise.resolve(Array.from({ length: 10 }, () => fakeRecharge));
+  },
+
   async getById(_id: string) {
     return Promise.resolve(fakeRecharge);
   },

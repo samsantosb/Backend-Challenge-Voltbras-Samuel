@@ -10,6 +10,10 @@ export const fakeRechargeRepository = {
     return Promise.resolve(Array.from({ length: 10 }, () => fakeRecharge));
   },
 
+  getAllByStationName() {
+    return Promise.resolve(Array.from({ length: 10 }, () => fakeRecharge));
+  },
+
   getById() {
     return Promise.resolve(fakeRecharge);
   },

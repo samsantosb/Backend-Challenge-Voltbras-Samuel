@@ -17,7 +17,7 @@ export class RechargeMongooseRepository implements IRechargeRepository {
     return recharges;
   }
 
-  async getAllByStationsByName(stationName: string): Promise<Recharge[]> {
+  async getAllByStationName(stationName: string): Promise<Recharge[]> {
     const recharges = (await this.rechargeModel.find({
       stationName: stationName,
     })) as Recharge[];
