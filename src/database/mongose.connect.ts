@@ -1,10 +1,8 @@
 import { connection, connections, connect } from "mongoose";
-import dotenv from "dotenv";
-dotenv.config();
 
 const mongo: string = process.env.DATABASE_URL || "";
 
-export function mongoConnect() {
+export function mongooseConnect() {
   connection
     .on("error", (error) => {
       console.log("ERROR: Connection to MongoDB failed", error);
@@ -26,6 +24,7 @@ export function mongoConnect() {
     });
 
   connect(mongo);
+  return connection.getClient().db();
 }
 
 export function mongoDisconnect() {

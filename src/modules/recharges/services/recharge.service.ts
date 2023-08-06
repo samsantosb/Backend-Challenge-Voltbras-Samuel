@@ -41,11 +41,11 @@ export class RechargeService implements IRechargeService {
     const recharges = (await this.rechargeRepository.getAll()) as Recharge[];
 
     if (this.isRecharing(recharges, recharge, "stationId")) {
-      throw new Error(ErrorMessages.STATION_IS_RECHARGING);
+      throw new Error(ErrorMessages.STATION_SERVICE_IS_BUSY);
     }
 
     if (this.isRecharing(recharges, recharge, "userId")) {
-      throw new Error(ErrorMessages.USER_IS_RECHARGING);
+      throw new Error(ErrorMessages.USER_IS_BUSY);
     }
     const newRecharge = await this.rechargeRepository.create(recharge);
 

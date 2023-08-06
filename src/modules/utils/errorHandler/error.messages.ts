@@ -33,8 +33,8 @@ export class ErrorMessages {
 
   static NO_PLANETS_FOUND = "No planets found";
 
-  static STATION_IS_RECHARGING =
-    "Current Station is already in recharge process";
+  static STATION_SERVICE_IS_BUSY =
+    "Current Station is already in recharge process, please wait";
 
-  static USER_IS_RECHARGING = "Current User is doing a recharge";
+  static USER_IS_BUSY = "Current User is doing a recharge, please wait";
 }

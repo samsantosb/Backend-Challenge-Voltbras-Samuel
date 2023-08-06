@@ -4,10 +4,15 @@ import { RechargeService } from "../services/recharge.service";
 import { RechargeResolver } from "../resolvers/recharge.resolver";
 import { userModule } from "../../users/factories/user.factory";
 import { stationModule } from "../../stations/factories/station.factory";
+import { RechargeAgendaService } from "../services/agenda/recharge.agenda.service";
 
 function rechargeFactory() {
   const rechargeMongooseRepository = new RechargeMongooseRepository(
     RechargeModel
+  );
+
+  const rechargeAgendaService = new RechargeAgendaService(
+    rechargeMongooseRepository
   );
 
   const rechargeservice = new RechargeService(
@@ -18,7 +23,7 @@ function rechargeFactory() {
 
   const { Query, Mutation } = new RechargeResolver(rechargeservice);
 
-  return { Query, Mutation };
+  return { Query, Mutation, rechargeAgendaService };
 }
 
 export const rechargeModule = rechargeFactory();

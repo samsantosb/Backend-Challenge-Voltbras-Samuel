@@ -1,9 +1,10 @@
 import { z } from "zod";
 import { utcDate } from "../../utils/parsers/utc.date.parser";
+import { Types } from "mongoose";
 
 export class RequestRechargeDTO {
-  stationId: string;
-  userId: string;
+  stationId: string | Types.ObjectId;
+  userId: string | Types.ObjectId;
   startDate: string | Date;
   endDate: string | Date;
   inProgress: boolean;
@@ -14,7 +15,7 @@ export class RequestRechargeDTO {
     endDate: z.date().or(z.string()),
   });
 
-  constructor(recharge: z.infer<typeof RequestRechargeDTO.schema>) {
+  constructor(recharge: any) {
     recharge.endDate = utcDate(String(recharge.endDate));
 
     const validatedRecharge = RequestRechargeDTO.schema.safeParse(recharge);

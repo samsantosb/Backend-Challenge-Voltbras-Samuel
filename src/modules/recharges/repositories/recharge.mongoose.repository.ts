@@ -26,6 +26,14 @@ export class RechargeMongooseRepository implements IRechargeRepository {
     return recharge;
   }
 
+  async getActiveRecharges() {
+    const recharges = (await this.rechargeModel.find({
+      inProgress: true,
+    })) as Recharge[];
+
+    return recharges;
+  }
+
   async create(recharge: RequestRechargeDTO): Promise<Recharge> {
     const newRecharge = await this.rechargeModel.create(recharge);
 

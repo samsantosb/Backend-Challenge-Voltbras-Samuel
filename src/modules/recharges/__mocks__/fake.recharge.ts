@@ -11,6 +11,7 @@ export const generateFakeRecharge = (deleted = false, progress = false) => {
     userId: fakeMongoObjectIds[0],
     startDate: String(faker.date.past()),
     endDate: String(faker.date.past()),
+    inProgress: true,
   };
 };
 
