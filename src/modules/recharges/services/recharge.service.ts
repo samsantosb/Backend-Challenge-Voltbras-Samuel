@@ -34,17 +34,16 @@ export class RechargeService implements IRechargeService {
   }
 
   async create(recharge: RequestRechargeDTO) {
-    //se falharem as chamadas quer dizer que nao existe
-    await this.userService.getById(recharge.userId);
-    await this.stationService.getById(recharge.stationId);
+    await this.userService.getByEmail(recharge.userEmail);
+    await this.stationService.getById(recharge.stationName);
 
     const recharges = (await this.rechargeRepository.getAll()) as Recharge[];
 
-    if (this.isRecharing(recharges, recharge, "stationId")) {
+    if (this.isRecharing(recharges, recharge, "stationName")) {
       throw new Error(ErrorMessages.STATION_SERVICE_IS_BUSY);
     }
 
-    if (this.isRecharing(recharges, recharge, "userId")) {
+    if (this.isRecharing(recharges, recharge, "userEmail")) {
       throw new Error(ErrorMessages.USER_IS_BUSY);
     }
     const newRecharge = await this.rechargeRepository.create(recharge);
@@ -56,7 +55,7 @@ export class RechargeService implements IRechargeService {
     return newRecharge;
   }
 
-  async update(id: string, recharge: RequestRechargeDTO) {
+  private async update(id: string, recharge: RequestRechargeDTO) {
     const updatedRecharge = await this.rechargeRepository.update(id, recharge);
 
     if (!updatedRecharge) {

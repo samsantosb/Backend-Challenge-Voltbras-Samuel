@@ -27,6 +27,14 @@ export class StationMongooseRepository implements IStationRepository {
     return station;
   }
 
+  async getByName(name: string): Promise<Station> {
+    const station = (await this.stationModel.findOne({
+      name: name,
+    })) as Station;
+
+    return station;
+  }
+
   async getByPlanetName(planetName: string): Promise<Station> {
     const station = (await this.stationModel.findOne({
       planetName: planetName,

@@ -29,15 +29,5 @@ export class RechargeResolver implements IRechargeResolver {
 
       return newRecharge;
     },
-    updateRecharge: async (
-      _: any,
-      { id, recharge }: { id: string; recharge: RequestRechargeDTO }
-    ) => {
-      const request = new RequestRechargeDTO(recharge);
-
-      const updatedRecharge = await this.rechargeService.update(id, request);
-
-      return updatedRecharge;
-    },
   };
 }

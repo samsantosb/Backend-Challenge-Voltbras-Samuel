@@ -35,6 +35,21 @@ describe("StationRepository", () => {
     });
   });
 
+  describe("getByName", () => {
+    it("should return a station", async () => {
+      const station = await stationRepository.getByName(
+        fakeStation.stationName
+      );
+
+      expect(station).toEqual(fakeStation);
+    });
+    it("should call the findOne method of the stationModel", async () => {
+      await stationRepository.getByName(fakeStation.stationName);
+
+      expect(fakeStationModel.findOne).toHaveBeenCalled();
+    });
+  });
+
   describe("create", () => {
     it("should return a station", async () => {
       const station = await stationRepository.create(fakeStation);

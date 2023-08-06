@@ -7,11 +7,11 @@ const fakeMongoObjectIds = [
 export const generateFakeRecharge = (deleted = false, progress = false) => {
   return {
     _id: fakeMongoObjectIds[0],
-    stationId: fakeMongoObjectIds[0],
-    userId: fakeMongoObjectIds[0],
+    stationName: "NebulaVolt15",
+    userEmail: "samsan@hotmail.com",
     startDate: String(faker.date.past()),
     endDate: String(faker.date.past()),
-    inProgress: true,
+    inProgress: false,
   };
 };
 

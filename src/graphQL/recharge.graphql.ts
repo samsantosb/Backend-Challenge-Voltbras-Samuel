@@ -22,6 +22,5 @@ export const RechargeType = gql`
 
   type Mutation {
     recharge(recharge: RechargeInput): Recharge
-    updateRecharge(id: String, recharge: RechargeInput): Recharge
   }
 `;

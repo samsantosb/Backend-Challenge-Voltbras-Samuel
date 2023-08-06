@@ -61,24 +61,4 @@ describe("RechargeService", () => {
       ).rejects.toThrow();
     });
   });
-
-  describe("update", () => {
-    it("should return a recharge", async () => {
-      const recharge = await rechargeService.update(
-        fakeMongoObjectId,
-        fakeRequestRecharge
-      );
-
-      expect(recharge).toEqual(fakeRecharge);
-    });
-    it("should throw an error if the recharge cannot be updated", async () => {
-      jest
-        .spyOn(fakeRechargeRepository, "update")
-        .mockImplementationOnce(() => Promise.resolve(null));
-
-      await expect(
-        rechargeService.update(fakeMongoObjectId, fakeRequestRecharge)
-      ).rejects.toThrow();
-    });
-  });
 });

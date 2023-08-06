@@ -1,7 +1,5 @@
 import { Schema, model, Model, InferSchemaType, Types } from "mongoose";
 
-const { ObjectId } = Schema.Types;
-
 const StationSchema = new Schema(
   {
     planetName: { type: String, required: true, uinique: true },

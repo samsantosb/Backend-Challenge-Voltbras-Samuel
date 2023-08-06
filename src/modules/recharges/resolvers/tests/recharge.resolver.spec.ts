@@ -35,15 +35,4 @@ describe("RechargeResolver", () => {
       expect(response).toEqual(fakeRecharge);
     });
   });
-
-  describe("Mutation.updateRecharge", () => {
-    it("should update an existing recharge", async () => {
-      const response = await rechargeResolver.Mutation.updateRecharge(null, {
-        id: fakeMongoObjectId,
-        recharge: new RequestRechargeDTO(fakeRequestRecharge),
-      });
-
-      expect(response).toEqual(fakeRecharge);
-    });
-  });
 });

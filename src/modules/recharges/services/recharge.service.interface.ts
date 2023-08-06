@@ -6,8 +6,4 @@ export abstract class IRechargeService {
   abstract getAll(): Promise<Recharge[]>;
   abstract getById(id: string | Types.ObjectId): Promise<Recharge>;
   abstract create(data: RequestRechargeDTO): Promise<Recharge>;
-  abstract update(
-    id: string | Types.ObjectId,
-    data: RequestRechargeDTO
-  ): Promise<Recharge>;
 }

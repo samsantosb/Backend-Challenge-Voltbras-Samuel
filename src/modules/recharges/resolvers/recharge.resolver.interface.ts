@@ -15,9 +15,5 @@ export abstract class IRechargeResolver {
       _: any,
       { recharge }: { recharge: RequestRechargeDTO }
     ) => Promise<Partial<Recharge>>;
-    updateRecharge: (
-      _: any,
-      { id, recharge }: { id: string; recharge: RequestRechargeDTO }
-    ) => Promise<Partial<Recharge>>;
   };
 }
