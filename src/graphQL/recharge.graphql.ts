@@ -21,7 +21,6 @@ export const RechargeType = gql`
 
   type Query {
     getAllRecharges: [Recharge]
-    getRechargeById(id: String): Recharge
     stationHistory(stationName: String): [Recharge]
   }
 

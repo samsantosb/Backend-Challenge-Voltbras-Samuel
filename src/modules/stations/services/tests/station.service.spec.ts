@@ -4,10 +4,7 @@ import { fakeStation } from "../../__mocks__/fake.station";
 import { fakeStationRepository } from "../../__mocks__/fake.station.repository";
 import { StationService } from "../station.service";
 
-const stationService = new StationService(
-  fakeStationRepository,
-  fakeUserService
-);
+const stationService = new StationService(fakeStationRepository);
 
 describe("StationService", () => {
   describe("getAll", () => {
@@ -22,21 +19,6 @@ describe("StationService", () => {
         .mockImplementationOnce(() => Promise.resolve(null));
 
       await expect(stationService.getAll()).rejects.toThrow();
-    });
-  });
-
-  describe("getById", () => {
-    it("should return a station", async () => {
-      const station = await stationService.getById(fakeMongoObjectId);
-
-      expect(station).toEqual(fakeStation);
-    });
-    it("should throw an error if no station is found", async () => {
-      jest
-        .spyOn(fakeStationRepository, "getById")
-        .mockImplementationOnce(() => Promise.resolve(null));
-
-      await expect(stationService.getById(fakeMongoObjectId)).rejects.toThrow();
     });
   });
 

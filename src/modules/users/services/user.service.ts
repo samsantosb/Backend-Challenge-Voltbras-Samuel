@@ -17,16 +17,6 @@ export class UserService implements IUserService {
     return users;
   }
 
-  async getById(id: string) {
-    const user = await this.userRepository.getById(id);
-
-    if (!user) {
-      throw new Error(ErrorMessages.NOT_FOUND(`User with id ${id}`));
-    }
-
-    return user;
-  }
-
   async getByEmail(email: string) {
     const user = await this.userRepository.getByEmail(email);
 

@@ -2,7 +2,7 @@ import { IReservationRepository } from "../repositories/reservation.repository.i
 import { fakeReservation } from "./fake.reservation";
 
 export const fakeReservationRepository = {
-  createReservation() {
+  create() {
     return Promise.resolve(fakeReservation);
   },
 

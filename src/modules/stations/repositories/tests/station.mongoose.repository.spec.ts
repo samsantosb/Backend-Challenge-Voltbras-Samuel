@@ -19,22 +19,6 @@ describe("StationRepository", () => {
     });
   });
 
-  describe("getById", () => {
-    it("should return a station", async () => {
-      const station = await stationRepository.getById(fakeMongoObjectId);
-
-      expect(station).toEqual(fakeStation);
-    });
-    it("should call the findById method of the stationModel", async () => {
-      await stationRepository.getById(fakeMongoObjectId);
-
-      expect(fakeStationModel.findById).toHaveBeenCalled();
-    });
-    it("should throw an error if the id is invalid", async () => {
-      await expect(stationRepository.getById("invalidId")).rejects.toThrow();
-    });
-  });
-
   describe("getByName", () => {
     it("should return a station", async () => {
       const station = await stationRepository.getByName(fakeStation.name);

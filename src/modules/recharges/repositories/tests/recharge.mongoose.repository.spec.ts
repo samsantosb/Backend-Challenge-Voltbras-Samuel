@@ -69,4 +69,32 @@ describe("RechargeRepository", () => {
       ).rejects.toThrow();
     });
   });
+
+  describe("getActiveRecharges", () => {
+    it("should return all active recharges", async () => {
+      const recharges = await rechargeRepository.getActiveRecharges();
+
+      expect(recharges).toEqual(Array.from({ length: 10 }, () => fakeRecharge));
+    });
+    it("should call the find method of the rechargeModel", async () => {
+      await rechargeRepository.getActiveRecharges();
+
+      expect(fakeRechargeModel.find).toHaveBeenCalled();
+    });
+  });
+
+  describe("getAllByStationName", () => {
+    it("should return all recharges of a station", async () => {
+      const recharges = await rechargeRepository.getAllByStationName(
+        fakeRecharge.stationName
+      );
+
+      expect(recharges).toEqual(Array.from({ length: 10 }, () => fakeRecharge));
+    });
+    it("should call the find method of the rechargeModel", async () => {
+      await rechargeRepository.getAllByStationName(fakeRecharge.stationName);
+
+      expect(fakeRechargeModel.find).toHaveBeenCalled();
+    });
+  });
 });

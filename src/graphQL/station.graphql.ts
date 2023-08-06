@@ -17,8 +17,6 @@ export const StationType = gql`
 
   type Query {
     stations: [Station]
-    getStationById(id: ID): Station!
-    getStationByPlanetName(name: String): Station
   }
 
   type Mutation {

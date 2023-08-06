@@ -4,10 +4,6 @@ import { Recharge } from "../model/recharge.model";
 export abstract class IRechargeResolver {
   abstract Query: {
     getAllRecharges: () => Promise<Partial<Recharge>[]>;
-    getRechargeById: (
-      _: any,
-      { id }: { id: string }
-    ) => Promise<Partial<Recharge>>;
     stationHistory: (
       _: any,
       { stationName }: { stationName: string }

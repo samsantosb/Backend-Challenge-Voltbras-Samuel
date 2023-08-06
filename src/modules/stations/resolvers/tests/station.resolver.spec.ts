@@ -16,29 +16,6 @@ describe("StationResolver", () => {
     });
   });
 
-  describe("Query.getStationById", () => {
-    it("should return a station by ID", async () => {
-      const response = await stationResolver.Query.getStationById(null, {
-        id: fakeMongoObjectId,
-      });
-
-      expect(response).toEqual(fakeStation);
-    });
-  });
-
-  describe("Query.getStationByPlanetName", () => {
-    it("should return a station by planet name", async () => {
-      const response = await stationResolver.Query.getStationByPlanetName(
-        null,
-        {
-          name: fakeStation.planetName,
-        }
-      );
-
-      expect(response).toEqual(fakeStation);
-    });
-  });
-
   describe("Mutation.createStation", () => {
     it("should create a new station", async () => {
       const response = await stationResolver.Mutation.installStation(null, {

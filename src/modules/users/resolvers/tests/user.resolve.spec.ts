@@ -19,16 +19,6 @@ describe("UserResolver", () => {
     });
   });
 
-  describe("Query.getUserById", () => {
-    it("should return a user by ID", async () => {
-      const response = await userResolver.Query.getUserById(null, {
-        id: fakeMongoObjectId,
-      });
-
-      expect(response).toEqual(new ResponseUserDTO(fakeUser));
-    });
-  });
-
   describe("Query.getUserByEmail", () => {
     it("should return a user by email", async () => {
       const response = await userResolver.Query.getUserByEmail(null, {

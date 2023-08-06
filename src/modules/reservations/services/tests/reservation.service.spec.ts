@@ -1,6 +1,10 @@
 import { fakeMongoObjectId } from "../../../../__mocks__/fake.mongo.ids";
+import { fakeRecharge } from "../../../recharges/__mocks__/fake.recharge";
 import { fakeRechargeService } from "../../../recharges/__mocks__/fake.recharge.service";
-import { fakeReservation } from "../../__mocks__/fake.reservation";
+import {
+  fakeReservation,
+  fakeReservationWithTimeThatmatches,
+} from "../../__mocks__/fake.reservation";
 import { fakeReservationRepository } from "../../__mocks__/fake.reservation.repository";
 import { ReservationService } from "../reservation.service";
 
@@ -29,14 +33,14 @@ describe("ReservationService", () => {
   describe("createReservation", () => {
     it("should return a reservation", async () => {
       const reservation = await reservationService.createReservation(
-        fakeReservation
+        fakeReservationWithTimeThatmatches
       );
 
       expect(reservation).toEqual(fakeReservation);
     });
     it("should throw an error if the reservation cannot be created", async () => {
       jest
-        .spyOn(fakeReservationRepository, "createReservation")
+        .spyOn(fakeReservationRepository, "create")
         .mockImplementationOnce(() => Promise.resolve(undefined) as any);
 
       await expect(
@@ -63,5 +67,13 @@ describe("ReservationService", () => {
       ).rejects.toThrow();
     });
   });
-  // You may include other tests for methods in your ReservationService here
+  describe("createRechargeByReservation", () => {
+    it("should return a Recharge", async () => {
+      const recharge = await reservationService.createRechargeByReservation(
+        fakeMongoObjectId
+      );
+
+      expect(recharge).toEqual(fakeRecharge);
+    });
+  });
 });

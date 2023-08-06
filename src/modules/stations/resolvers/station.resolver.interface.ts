@@ -4,14 +4,6 @@ import { Station } from "../model/station.type";
 export abstract class IStationResolver {
   abstract Query: {
     stations: () => Promise<Partial<Station>[]>;
-    getStationById: (
-      _: any,
-      { id }: { id: string }
-    ) => Promise<Partial<Station>>;
-    getStationByPlanetName: (
-      _: any,
-      { name }: { name: string }
-    ) => Promise<Partial<Station>>;
   };
 
   abstract Mutation: {

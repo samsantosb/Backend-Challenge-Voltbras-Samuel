@@ -8,7 +8,7 @@ import { isIdValid } from "../../utils/validators/mongo.id.validator";
 export class ReservationMongooseRepository implements IReservationRepository {
   constructor(private readonly reservationModel: mongooseReservationModel) {}
 
-  async createReservation(reservation: Reservation): Promise<Reservation> {
+  async create(reservation: Reservation): Promise<Reservation> {
     const reservationCreated = await this.reservationModel.create(reservation);
     return reservationCreated;
   }

@@ -11,17 +11,6 @@ export class StationResolver implements IStationResolver {
 
       return stations;
     },
-    getStationById: async (_: any, { id }: { id: string }) => {
-      const station = await this.stationService.getById(id);
-
-      return station;
-    },
-
-    getStationByPlanetName: async (_: any, { name }: { name: string }) => {
-      const station = await this.stationService.getByPlanetName(name);
-
-      return station;
-    },
   };
 
   public Mutation = {

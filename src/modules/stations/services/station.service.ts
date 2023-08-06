@@ -5,10 +5,7 @@ import { ErrorMessages } from "../../utils/errorHandler/error.messages";
 import { IUserService } from "../../users/services/user.service.interface";
 
 export class StationService implements IStationService {
-  constructor(
-    private readonly stationRepository: IStationRepository,
-    private readonly userService: IUserService
-  ) {}
+  constructor(private readonly stationRepository: IStationRepository) {}
 
   async getAll() {
     const stations = await this.stationRepository.getAll();
@@ -18,16 +15,6 @@ export class StationService implements IStationService {
     }
 
     return stations;
-  }
-
-  async getById(id: string) {
-    const station = await this.stationRepository.getById(id);
-
-    if (!station) {
-      throw new Error(ErrorMessages.NOT_FOUND(`Station with id ${id}`));
-    }
-
-    return station;
   }
 
   async getByName(name: string) {

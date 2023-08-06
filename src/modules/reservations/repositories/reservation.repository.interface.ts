@@ -1,7 +1,7 @@
 import { Reservation } from "../model/reservation.type";
 
 export abstract class IReservationRepository {
-  abstract createReservation(reservation: Reservation): Promise<Reservation>;
+  abstract create(reservation: Reservation): Promise<Reservation>;
   abstract getAll(): Promise<Reservation[]>;
   abstract getById(id: string): Promise<Reservation>;
   abstract getAllByStationName(stationName: string): Promise<Reservation[]>;

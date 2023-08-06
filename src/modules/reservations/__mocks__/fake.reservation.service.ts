@@ -7,7 +7,7 @@ export const fakeReservationService = {
     return Promise.resolve(Array.from({ length: 10 }, () => fakeReservation));
   },
 
-  createRechargeByRservation(_id: string) {
+  createRechargeByReservation(_id: string) {
     return Promise.resolve(fakeReservation);
   },
 

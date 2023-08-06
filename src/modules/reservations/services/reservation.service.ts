@@ -1,8 +1,6 @@
-import { ObjectId, Types } from "mongoose";
 import { Recharge } from "../../recharges/model/recharge.model";
 import { IRechargeService } from "../../recharges/services/recharge.service.interface";
 import { ErrorMessages } from "../../utils/errorHandler/error.messages";
-import { utcDate } from "../../utils/parsers/utc.date.parser";
 import { Reservation } from "../model/reservation.type";
 import { IReservationRepository } from "../repositories/reservation.repository.interface";
 import { IReservationService } from "./reservation.service.interface";
@@ -23,11 +21,12 @@ export class ReservationService implements IReservationService {
 
     const newReservation = new Date(reservation.startDate);
 
-    this.doestReservationConflict(savedReservations, newReservation);
-    this.doestReservationConflict(savedRecharges, newReservation);
+    this.timeDoesntConflict(savedReservations, newReservation);
+    this.timeDoesntConflict(savedRecharges, newReservation);
 
-    const reservationCreated =
-      await this.reservationRepository.createReservation(reservation);
+    const reservationCreated = await this.reservationRepository.create(
+      reservation
+    );
 
     if (!reservationCreated) {
       throw new Error(ErrorMessages.CANNOT_CREATE("Reservation"));
@@ -45,11 +44,13 @@ export class ReservationService implements IReservationService {
     const now = new Date();
 
     const actualTimeIsHigherThanStartDate = now >= reservation.startDate;
+
     const actualTimeIsLowerThanEndDate = now <= reservation.endDate;
-    const isInReservationTimeInterval =
+
+    const thereIsAReservationInTimeInterval =
       actualTimeIsHigherThanStartDate && actualTimeIsLowerThanEndDate;
 
-    if (!isInReservationTimeInterval) {
+    if (thereIsAReservationInTimeInterval) {
       throw new Error(ErrorMessages.INVALID_RESERVATION_DATE);
     }
 
@@ -101,7 +102,7 @@ export class ReservationService implements IReservationService {
     return reservationUpdated;
   }
 
-  private doestReservationConflict(
+  private timeDoesntConflict(
     ocupedDates: Reservation[] | Recharge[],
     reserve: Date
   ) {

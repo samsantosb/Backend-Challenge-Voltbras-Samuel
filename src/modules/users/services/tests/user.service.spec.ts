@@ -20,13 +20,7 @@ describe("UserService", () => {
       await expect(userService.getAll()).rejects.toThrow();
     });
   });
-  describe("getById", () => {
-    it("should return a user", async () => {
-      const user = await userService.getById(fakeMongoObjectId);
 
-      expect(user).toEqual(fakeUser);
-    });
-  });
   describe("getByEmail", () => {
     it("should return a user", async () => {
       const user = await userService.getByEmail(fakeUser.email);

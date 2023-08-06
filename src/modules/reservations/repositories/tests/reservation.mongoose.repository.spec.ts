@@ -24,14 +24,12 @@ describe("ReservationRepository", () => {
   });
   describe("createReservation", () => {
     it("should return a reservation", async () => {
-      const reservation = await reservationRepository.createReservation(
-        fakeReservation
-      );
+      const reservation = await reservationRepository.create(fakeReservation);
 
       expect(reservation).toEqual(fakeReservation);
     });
     it("should call the create method of the reservationModel", async () => {
-      await reservationRepository.createReservation(fakeReservation);
+      await reservationRepository.create(fakeReservation);
 
       expect(fakeReservationModel.create).toHaveBeenCalled();
     });

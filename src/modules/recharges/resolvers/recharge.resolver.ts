@@ -11,11 +11,6 @@ export class RechargeResolver implements IRechargeResolver {
 
       return recharges;
     },
-    getRechargeById: async (_: any, { id }: { id: string }) => {
-      const recharge = await this.rechargeService.getById(id);
-
-      return recharge;
-    },
     stationHistory: async (
       _: any,
       { stationName }: { stationName: string }

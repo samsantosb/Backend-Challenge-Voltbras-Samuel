@@ -14,13 +14,6 @@ export class UserResolver implements IUserResolver {
 
       return response;
     },
-    getUserById: async (_: any, { id }: { id: string }) => {
-      const user = await this.userService.getById(id);
-
-      const reponse = new ResponseUserDTO(user);
-
-      return reponse;
-    },
     getUserByEmail: async (_: any, { email }: { email: string }) => {
       const user = await this.userService.getByEmail(email);
 

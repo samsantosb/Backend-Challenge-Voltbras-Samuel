@@ -17,16 +17,6 @@ export class StationMongooseRepository implements IStationRepository {
     return stations;
   }
 
-  async getById(id: string): Promise<Station> {
-    if (!isIdValid(id)) {
-      throw new Error(ErrorMessages.INVALID_ID(id));
-    }
-
-    const station = (await this.stationModel.findById(id)) as Station;
-
-    return station;
-  }
-
   async getByName(name: string): Promise<Station> {
     const station = (await this.stationModel.findOne({
       name: name,

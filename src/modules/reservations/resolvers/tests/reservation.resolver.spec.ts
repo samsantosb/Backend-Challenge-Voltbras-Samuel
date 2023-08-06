@@ -40,4 +40,17 @@ describe("ReservationResolver", () => {
       expect(response).toEqual(fakeReservation);
     });
   });
+
+  describe("Mutation.triggerReservation", () => {
+    it("should return a recharge", async () => {
+      const response = await reservationResolver.Mutation.triggerReservation(
+        null,
+        {
+          id: fakeMongoObjectId,
+        }
+      );
+
+      expect(response).toEqual(fakeReservation);
+    });
+  });
 });

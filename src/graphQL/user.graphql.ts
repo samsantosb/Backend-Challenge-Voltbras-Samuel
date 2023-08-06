@@ -18,7 +18,6 @@ export const UserType = gql`
 
   type Query {
     getAllUsers: [User]!
-    getUserById(id: ID!): User!
     getUserByEmail(email: String!): User!
   }
 

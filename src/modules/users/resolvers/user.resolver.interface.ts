@@ -4,7 +4,6 @@ import { ResponseUserDTO } from "../dtos/response.user.dto";
 export abstract class IUserResolver {
   abstract Query: {
     getAllUsers: () => Promise<ResponseUserDTO[]>;
-    getUserById: (_: any, { id }: { id: string }) => Promise<ResponseUserDTO>;
     getUserByEmail: (
       _: any,
       { email }: { email: string }

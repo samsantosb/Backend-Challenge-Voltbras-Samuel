@@ -16,16 +16,6 @@ describe("RechargeResolver", () => {
     });
   });
 
-  describe("Query.getRechargeById", () => {
-    it("should return a recharge by ID", async () => {
-      const response = await rechargeResolver.Query.getRechargeById(null, {
-        id: fakeMongoObjectId,
-      });
-
-      expect(response).toEqual(fakeRecharge);
-    });
-  });
-
   describe("Mutation.createRecharge", () => {
     it("should create a new recharge", async () => {
       const response = await rechargeResolver.Mutation.recharge(null, {
@@ -33,6 +23,16 @@ describe("RechargeResolver", () => {
       });
 
       expect(response).toEqual(fakeRecharge);
+    });
+  });
+
+  describe("Query.stationHistory", () => {
+    it("should return all recharges of a station", async () => {
+      const response = await rechargeResolver.Query.stationHistory(null, {
+        stationName: fakeRecharge.stationName,
+      });
+
+      expect(response).toEqual(Array.from({ length: 10 }, () => fakeRecharge));
     });
   });
 });

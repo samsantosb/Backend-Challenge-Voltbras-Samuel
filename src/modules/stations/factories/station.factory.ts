@@ -7,10 +7,7 @@ import { userModule } from "../../users/factories/user.factory";
 function stationFactory() {
   const mongooseStationRepository = new StationMongooseRepository(StationModel);
 
-  const stationService = new StationService(
-    mongooseStationRepository,
-    userModule.userService
-  );
+  const stationService = new StationService(mongooseStationRepository);
 
   const { Query, Mutation } = new StationResolver(stationService);
 

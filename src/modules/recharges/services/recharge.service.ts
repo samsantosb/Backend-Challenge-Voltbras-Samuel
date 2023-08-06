@@ -63,8 +63,10 @@ export class RechargeService implements IRechargeService {
   }
 
   async create(recharge: RequestRechargeDTO) {
-    await this.userService.getByEmail(recharge.userEmail);
-    await this.stationService.getByName(recharge.stationName);
+    const userExist = await this.userService.getByEmail(recharge.userEmail);
+    const stationExist = await this.stationService.getByName(
+      recharge.stationName
+    );
 
     const recharges = (await this.rechargeRepository.getAll()) as Recharge[];
 

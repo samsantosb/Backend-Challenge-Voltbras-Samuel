@@ -17,16 +17,6 @@ export class UserMongooseRepository implements IUserRepository {
     return users;
   }
 
-  async getById(id: string): Promise<User> {
-    if (!isIdValid(id)) {
-      throw new Error(ErrorMessages.INVALID_ID(id));
-    }
-
-    const user = (await this.userModel.findById(id)) as User;
-
-    return user;
-  }
-
   async getByEmail(email: string): Promise<User> {
     const user = (await this.userModel.findOne({ email: email })) as User;
 

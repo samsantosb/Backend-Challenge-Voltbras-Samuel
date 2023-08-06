@@ -4,7 +4,6 @@ import { Station } from "../model/station.type";
 
 export abstract class IStationService {
   abstract getAll(): Promise<Station[]>;
-  abstract getById(id: string | Types.ObjectId): Promise<Station>;
   abstract getByName(name: string): Promise<Station>;
   abstract getByPlanetName(name: string): Promise<Station>;
   abstract create(data: RequestStationDTO): Promise<Station>;
