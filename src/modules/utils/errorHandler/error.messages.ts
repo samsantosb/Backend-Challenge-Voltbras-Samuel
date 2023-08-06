@@ -40,4 +40,9 @@ export class ErrorMessages {
 
   static INCORRECT_TIME_FOR_RECHARGE =
     "It is not the correct time for this reservated recharge";
+
+  static USER_HAS_NO_RESERVATION =
+    "The provided user doesnt have any reservation";
+
+  static USER_IS_LATE = "The user is late for the recharge";
 }

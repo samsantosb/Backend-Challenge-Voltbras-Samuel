@@ -13,7 +13,7 @@ export abstract class IRechargeRepository {
     recharge: RequestRechargeDTO
   ): Promise<Recharge | null>;
   abstract getActiveRecharges(): Promise<Recharge[] | null>;
-  abstract getReservationDatesByStationName(
+  abstract getReservationByStationName(
     stationName: string
   ): Promise<Reservation[]>;
 }

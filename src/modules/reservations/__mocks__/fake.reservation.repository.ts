@@ -1,5 +1,8 @@
 import { IReservationRepository } from "../repositories/reservation.repository.interface";
-import { fakeReservation } from "./fake.reservation";
+import {
+  fakeReservation,
+  fakeReservationWithTimeThatmatches,
+} from "./fake.reservation";
 
 export const fakeReservationRepository = {
   create() {
@@ -11,7 +14,7 @@ export const fakeReservationRepository = {
   },
 
   getById() {
-    return Promise.resolve(fakeReservation);
+    return Promise.resolve(fakeReservationWithTimeThatmatches);
   },
 
   getAllByStationName() {

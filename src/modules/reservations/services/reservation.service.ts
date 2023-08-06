@@ -119,29 +119,6 @@ export class ReservationService implements IReservationService {
     inputEndDate: Date
   ) {
     ocupedDates.forEach((ocupedDate) => {
-      // const startDateAfterOcupedDate = inputStarDate >= ocupedDate.startDate;
-
-      // const startDateBeforeEndDate = inputStarDate <= ocupedDate.endDate;
-
-      // const startDateConflict =
-      //   startDateAfterOcupedDate && startDateBeforeEndDate;
-
-      // const endDateAfterOcupedDate = inputEndDate >= ocupedDate.startDate;
-
-      // const endDateBeforeEndDate = inputEndDate <= ocupedDate.endDate;
-
-      // const endDateConflict = endDateAfterOcupedDate && endDateBeforeEndDate;
-
-      // const startsBeforeAndEndsAfter = inputStarDate <= ocupedDate.startDate;
-
-      // const endsAfterAndStartsBefore = inputEndDate >= ocupedDate.endDate;
-
-      // const startAndEndsConflict =
-      //   startsBeforeAndEndsAfter && endsAfterAndStartsBefore;
-
-      // const stationIsReservated =
-      //   startDateConflict || endDateConflict || startAndEndsConflict;
-
       const stationIsReservated =
         inputEndDate >= ocupedDate.startDate &&
         inputStarDate <= ocupedDate.endDate;

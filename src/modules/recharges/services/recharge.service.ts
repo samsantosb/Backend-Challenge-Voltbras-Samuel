@@ -79,14 +79,19 @@ export class RechargeService implements IRechargeService {
     }
 
     const reservations =
-      await this.rechargeRepository.getReservationDatesByStationName(
+      await this.rechargeRepository.getReservationByStationName(
         recharge.stationName
       );
 
     const rechargeStartDate = new Date(recharge.startDate);
     const rechargeEndDate = new Date(recharge.endDate);
 
-    this.isStationReserved(reservations, rechargeStartDate, rechargeEndDate);
+    this.isStationReservedByOtherUser(
+      recharge.userEmail,
+      reservations,
+      rechargeStartDate,
+      rechargeEndDate
+    );
 
     const newRecharge = await this.rechargeRepository.create(recharge);
 
@@ -95,16 +100,6 @@ export class RechargeService implements IRechargeService {
     }
 
     return newRecharge;
-  }
-
-  private async update(id: string, recharge: RequestRechargeDTO) {
-    const updatedRecharge = await this.rechargeRepository.update(id, recharge);
-
-    if (!updatedRecharge) {
-      throw new Error(ErrorMessages.CANNOT_UPDATE(`Recharge with id ${id}`));
-    }
-
-    return updatedRecharge;
   }
 
   private isStationRecharging(
@@ -119,19 +114,24 @@ export class RechargeService implements IRechargeService {
     );
   }
 
-  private isStationReserved(
-    ocupedDates: Reservation[],
-    inputStarDate: Date,
-    inputEndDate: Date
+  private isStationReservedByOtherUser(
+    rechargeUserEmail: string,
+    reservations: Reservation[],
+    rechargeInputStartDate: Date,
+    rechargeInputEndDate: Date
   ) {
-    ocupedDates.forEach((ocupedDate) => {
-      const startionIsBUsy =
-        inputEndDate >= ocupedDate.startDate &&
-        inputStarDate <= ocupedDate.endDate;
+    const hasConflictWithOtheruser = reservations.some((reservation) => {
+      const isOtherUser = reservation.userEmail !== rechargeUserEmail;
 
-      if (startionIsBUsy) {
-        throw new Error(ErrorMessages.STATION_SERVICE_IS_BUSY);
-      }
+      const dateConflict =
+        rechargeInputEndDate >= reservation.startDate &&
+        rechargeInputStartDate <= reservation.endDate;
+
+      return isOtherUser && dateConflict;
     });
+
+    if (hasConflictWithOtheruser) {
+      throw new Error(ErrorMessages.STATION_SERVICE_IS_BUSY);
+    }
   }
 }

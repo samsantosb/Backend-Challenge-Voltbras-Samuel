@@ -1,3 +1,4 @@
+import { fakeReservation } from "../../reservations/__mocks__/fake.reservation";
 import { IRechargeRepository } from "../repositories/recharge.repository.interface";
 import { fakeRecharge } from "./fake.recharge";
 
@@ -12,6 +13,10 @@ export const fakeRechargeRepository = {
 
   getAllByStationName() {
     return Promise.resolve(Array.from({ length: 10 }, () => fakeRecharge));
+  },
+
+  getReservationByStationName() {
+    return Promise.resolve(Array.from({ length: 10 }, () => fakeReservation));
   },
 
   getById() {

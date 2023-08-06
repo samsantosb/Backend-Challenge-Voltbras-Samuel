@@ -1,6 +1,5 @@
 import { Recharge } from "./../../model/recharge.model";
 import { IRechargeRepository } from "../../repositories/recharge.repository.interface";
-import { utcDate } from "../../../utils/parsers/utc.date.parser";
 import { isDebugMode } from "../../../utils/debugMode/debug.mode";
 import { IRechargeAgendaService } from "./recharge.agenda.service.interface";
 

@@ -72,17 +72,10 @@ export class RechargeMongooseRepository implements IRechargeRepository {
     return updatedRecharge;
   }
 
-  async getReservationDatesByStationName(stationName: string) {
-    const reservationDates = (await this.reservationModel.find(
-      {
-        stationName: stationName,
-      },
-      {
-        startDate: 1,
-        endDate: 1,
-        _id: 0,
-      }
-    )) as Reservation[];
+  async getReservationByStationName(stationName: string) {
+    const reservationDates = (await this.reservationModel.find({
+      stationName: stationName,
+    })) as Reservation[];
 
     return reservationDates;
   }

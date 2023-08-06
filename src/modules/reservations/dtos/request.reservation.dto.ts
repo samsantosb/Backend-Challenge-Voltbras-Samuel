@@ -1,6 +1,4 @@
 import { z } from "zod";
-import { utcDate } from "../../utils/parsers/utc.date.parser";
-import { Types } from "mongoose";
 
 export class RequestReservationDTO {
   stationName: string;
