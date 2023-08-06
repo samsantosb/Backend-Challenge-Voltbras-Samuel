@@ -16,8 +16,8 @@ export class RequestReservationDTO {
   });
 
   constructor(recharge: any) {
-    recharge.endDate = utcDate(String(recharge.endDate));
-    recharge.startDate = utcDate(String(recharge.startDate));
+    recharge.endDate = String(recharge.endDate);
+    recharge.startDate = String(recharge.startDate);
 
     const validatedRecharge = RequestReservationDTO.schema.safeParse(recharge);
 

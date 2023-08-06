@@ -16,7 +16,7 @@ export class RequestRechargeDTO {
   });
 
   constructor(recharge: any) {
-    recharge.endDate = utcDate(String(recharge.endDate));
+    recharge.endDate = String(recharge.endDate);
 
     const validatedRecharge = RequestRechargeDTO.schema.safeParse(recharge);
 
@@ -26,7 +26,7 @@ export class RequestRechargeDTO {
 
     this.stationName = validatedRecharge.data.stationName;
     this.userEmail = validatedRecharge.data.userEmail;
-    this.startDate = utcDate();
+    this.startDate = new Date();
     this.endDate = validatedRecharge.data.endDate;
     this.inProgress = true;
   }

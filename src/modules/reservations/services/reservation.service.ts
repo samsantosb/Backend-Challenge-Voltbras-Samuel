@@ -20,7 +20,7 @@ export class ReservationService implements IReservationService {
       reservation.stationName
     );
 
-    const newReservation = utcDate(reservation.startDate);
+    const newReservation = new Date(reservation.startDate);
 
     this.doestReservationConflict(savedReservations, newReservation);
     this.doestReservationConflict(savedRecharges, newReservation);
@@ -76,8 +76,9 @@ export class ReservationService implements IReservationService {
     reserve: Date
   ) {
     ocupedDates.forEach((ocupedDate) => {
-      const newReservationEndsAfter = reserve > ocupedDate.startDate;
-      const newReservationEndsBefore = reserve < ocupedDate.endDate;
+      const newReservationEndsAfter = reserve >= ocupedDate.startDate;
+
+      const newReservationEndsBefore = reserve <= ocupedDate.endDate;
 
       if (newReservationEndsAfter && newReservationEndsBefore) {
         throw new Error(ErrorMessages.RESERVATION_ALREADY_EXISTS);

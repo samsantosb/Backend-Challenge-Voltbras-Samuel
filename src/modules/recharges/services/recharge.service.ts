@@ -5,6 +5,7 @@ import { ErrorMessages } from "../../utils/errorHandler/error.messages";
 import { IUserService } from "../../users/services/user.service.interface";
 import { IStationService } from "../../stations/services/station.service.interface";
 import { Recharge } from "../model/recharge.model";
+import { Reservation } from "../../reservations/model/reservation.type";
 
 export class RechargeService implements IRechargeService {
   constructor(
@@ -103,5 +104,17 @@ export class RechargeService implements IRechargeService {
         JSON.stringify(dbRecharge[id]) === JSON.stringify(recharge[id]) &&
         dbRecharge.inProgress === true
     );
+  }
+
+  private isReservated(ocupedDates: Reservation[], reserve: Date) {
+    ocupedDates.forEach((ocupedDate) => {
+      const newReservationEndsAfter = reserve >= ocupedDate.startDate;
+
+      const newReservationEndsBefore = reserve <= ocupedDate.endDate;
+
+      if (newReservationEndsAfter && newReservationEndsBefore) {
+        throw new Error(ErrorMessages.RESERVATION_ALREADY_EXISTS);
+      }
+    });
   }
 }

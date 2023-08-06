@@ -34,7 +34,7 @@ export class RechargeAgendaService implements IRechargeAgendaService {
     const recharges =
       (await this.rechargeRepository.getActiveRecharges()) as Recharge[];
 
-    const now = utcDate();
+    const now = new Date();
 
     for (const recharge of recharges) {
       if (recharge.endDate < now) {

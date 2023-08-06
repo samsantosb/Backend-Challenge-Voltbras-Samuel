@@ -19,8 +19,10 @@ export class ReservationResolver implements IReservationResolver {
       _: any,
       { reservation }: { reservation: RequestReservationDTO }
     ) => {
+      const request = new RequestReservationDTO(reservation);
+
       const newReservation = await this.reservationService.createReservation(
-        reservation
+        request
       );
 
       return newReservation;
@@ -29,9 +31,11 @@ export class ReservationResolver implements IReservationResolver {
       _: any,
       { id, reservation }: { id: string; reservation: RequestReservationDTO }
     ) => {
+      const request = new RequestReservationDTO(reservation);
+
       const updatedReservation = await this.reservationService.update(
         id,
-        reservation
+        request
       );
 
       return updatedReservation;
