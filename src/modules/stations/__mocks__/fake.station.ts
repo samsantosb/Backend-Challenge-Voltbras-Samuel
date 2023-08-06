@@ -7,7 +7,7 @@ export const fakeMongoObjectIds = [
 export const generateFakeStation = (deleted = false) => {
   return {
     _id: fakeMongoObjectIds[0],
-    stationName: "Blendion",
+    name: "Blendion",
     planetName: "Earth",
     deletedAt: deleted ? String(faker.date.past()) : undefined,
     createdAt: String(faker.date.past()),

@@ -38,7 +38,9 @@ export class RechargeAgendaService implements IRechargeAgendaService {
 
     for (const recharge of recharges) {
       if (recharge.endDate < now) {
-        console.log(`Recharge ${recharge._id} complete!!!`);
+        console.log(
+          `Recharge ${recharge._id}, of station ${recharge.stationName}, and user ${recharge.userEmail} complete!!!`
+        );
 
         recharge.inProgress = false;
 

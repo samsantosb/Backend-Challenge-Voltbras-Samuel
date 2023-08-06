@@ -16,6 +16,16 @@ export class RechargeResolver implements IRechargeResolver {
 
       return recharge;
     },
+    stationHistory: async (
+      _: any,
+      { stationName }: { stationName: string }
+    ) => {
+      const stationHistory = await this.rechargeService.getAllByStationsByName(
+        stationName
+      );
+
+      return stationHistory;
+    },
   };
 
   public Mutation = {

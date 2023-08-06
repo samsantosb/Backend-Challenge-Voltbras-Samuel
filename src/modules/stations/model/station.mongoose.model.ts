@@ -3,7 +3,7 @@ import { Schema, model, Model, InferSchemaType, Types } from "mongoose";
 const StationSchema = new Schema(
   {
     planetName: { type: String, required: true, uinique: true },
-    stationName: { type: String, required: true, uinique: true },
+    name: { type: String, required: true, uinique: true },
     deletedAt: Date,
   },
   {

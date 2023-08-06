@@ -3,16 +3,16 @@ import { gql } from "apollo-server";
 export const StationType = gql`
   type Station {
     _id: ID
+    name: String
     planetName: String
-    stationName: String
     createdAt: String
     updatedAt: String
     deletedAt: String
   }
 
   input StationInput {
+    name: String
     planetName: String
-    stationName: String
   }
 
   type Query {

@@ -2,9 +2,13 @@ import { RequestStationDTO } from "../dtos/request.station.dto";
 import { IStationRepository } from "../repositories/station.repository.interface";
 import { IStationService } from "./station.service.interface";
 import { ErrorMessages } from "../../utils/errorHandler/error.messages";
+import { IUserService } from "../../users/services/user.service.interface";
 
 export class StationService implements IStationService {
-  constructor(private readonly stationRepository: IStationRepository) {}
+  constructor(
+    private readonly stationRepository: IStationRepository,
+    private readonly userService: IUserService
+  ) {}
 
   async getAll() {
     const stations = await this.stationRepository.getAll();
@@ -21,6 +25,16 @@ export class StationService implements IStationService {
 
     if (!station) {
       throw new Error(ErrorMessages.NOT_FOUND(`Station with id ${id}`));
+    }
+
+    return station;
+  }
+
+  async getByName(name: string) {
+    const station = await this.stationRepository.getByName(name);
+
+    if (!station) {
+      throw new Error(ErrorMessages.NOT_FOUND(`Station with name ${name}`));
     }
 
     return station;

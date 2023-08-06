@@ -20,6 +20,34 @@ export class RechargeService implements IRechargeService {
       throw new Error(ErrorMessages.NOT_FOUND("Recharges"));
     }
 
+    recharges.forEach((recharge) => {
+      recharge.endDate = String(recharge.endDate);
+      recharge.startDate = String(recharge.startDate);
+    });
+
+    return recharges;
+  }
+
+  async getAllByStationsByName(stationName: string) {
+    const recharges = await this.rechargeRepository.getAllByStationsByName(
+      stationName
+    );
+
+    if (!recharges) {
+      throw new Error(
+        ErrorMessages.NOT_FOUND(`Recharges with station name ${stationName}`)
+      );
+    }
+
+    for (const recharge of recharges) {
+      const totalTimeInMiliSeconds =
+        new Date(recharge.endDate).getTime() -
+        new Date(recharge.startDate).getTime();
+
+      const totalTimeInHours = totalTimeInMiliSeconds / 1000 / 60 / 60;
+      recharge.totalTime = `${totalTimeInHours.toFixed(2)} hours`;
+    }
+
     return recharges;
   }
 
@@ -35,7 +63,7 @@ export class RechargeService implements IRechargeService {
 
   async create(recharge: RequestRechargeDTO) {
     await this.userService.getByEmail(recharge.userEmail);
-    await this.stationService.getById(recharge.stationName);
+    await this.stationService.getByName(recharge.stationName);
 
     const recharges = (await this.rechargeRepository.getAll()) as Recharge[];
 

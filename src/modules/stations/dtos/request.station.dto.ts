@@ -1,12 +1,12 @@
 import { z } from "zod";
 
 export class RequestStationDTO {
+  name: string;
   planetName: string;
-  stationName: string;
 
   private static schema = z.object({
     planetName: z.string(),
-    stationName: z.string(),
+    name: z.string(),
   });
 
   constructor(station: z.infer<typeof RequestStationDTO.schema>) {
@@ -17,6 +17,6 @@ export class RequestStationDTO {
     }
 
     this.planetName = validatedStation.data.planetName;
-    this.stationName = validatedStation.data.stationName;
+    this.name = validatedStation.data.name;
   }
 }

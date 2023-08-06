@@ -16,6 +16,7 @@ export class StationResolver implements IStationResolver {
 
       return station;
     },
+
     getStationByPlanetName: async (_: any, { name }: { name: string }) => {
       const station = await this.stationService.getByPlanetName(name);
 

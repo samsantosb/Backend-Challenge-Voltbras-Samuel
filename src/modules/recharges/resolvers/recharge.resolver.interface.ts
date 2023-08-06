@@ -8,6 +8,10 @@ export abstract class IRechargeResolver {
       _: any,
       { id }: { id: string }
     ) => Promise<Partial<Recharge>>;
+    stationHistory: (
+      _: any,
+      { stationName }: { stationName: string }
+    ) => Promise<Partial<Recharge>[]>;
   };
 
   abstract Mutation: {

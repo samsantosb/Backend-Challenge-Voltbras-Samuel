@@ -2,7 +2,7 @@ import { Types } from "mongoose";
 
 export type Station = {
   _id: string | Types.ObjectId;
-  stationName: string;
+  name: string;
   planetName: string;
   createdAt?: Date | string;
   updatedAt?: Date | string;

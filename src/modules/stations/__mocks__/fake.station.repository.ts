@@ -14,6 +14,10 @@ export const fakeStationRepository = {
     return Promise.resolve(fakeStation);
   },
 
+  getByName() {
+    return Promise.resolve(fakeStation);
+  },
+
   getByPlanetName() {
     return Promise.resolve(fakeStation);
   },

@@ -1,11 +1,9 @@
 import { Types } from "mongoose";
 
-export type Recharge = {
+export type Reservation = {
   _id: string | Types.ObjectId;
   stationName: string;
   userEmail: string;
-  inProgress: boolean;
   startDate: Date | string;
   endDate: Date | string;
-  totalTime?: string;
 };

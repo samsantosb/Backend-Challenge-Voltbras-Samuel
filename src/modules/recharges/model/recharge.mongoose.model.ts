@@ -1,7 +1,5 @@
 import { InferSchemaType, Model, Schema, Types, model } from "mongoose";
 
-const { ObjectId } = Schema.Types;
-
 const RechargeSchema = new Schema({
   stationName: { type: String, ref: "Station", required: true },
   userEmail: { type: String, ref: "User", required: true },

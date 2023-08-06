@@ -15,25 +15,38 @@ import { mongooseConnect } from "./database/mongose.connect";
 import { allow, shield } from "graphql-shield";
 import { applyMiddleware } from "graphql-middleware";
 import { makeExecutableSchema } from "@graphql-tools/schema";
+import { DateScalar } from "./modules/utils/scalars/date.scalar";
+import { reservationModule } from "./modules/reservations/factories/reservation.factory";
+import { ReservationType } from "./graphQL/reservation.graphql";
 
 mongooseConnect();
 
 rechargeModule.rechargeAgendaService.startRechargeChecking();
 
-const typeDefs = [UserType, StationType, RechargeType, AuthType, PlanetType];
+const typeDefs = [
+  UserType,
+  StationType,
+  RechargeType,
+  AuthType,
+  PlanetType,
+  ReservationType,
+];
 
 const resolvers = {
+  Date: DateScalar,
   Query: {
     ...userModule.Query,
     ...stationModule.Query,
     ...rechargeModule.Query,
     ...planetModule.Query,
+    ...reservationModule.Query,
   },
   Mutation: {
     ...userModule.Mutation,
     ...stationModule.Mutation,
     ...rechargeModule.Mutation,
     ...authModule.Mutation,
+    ...reservationModule.Mutation,
   },
 };
 

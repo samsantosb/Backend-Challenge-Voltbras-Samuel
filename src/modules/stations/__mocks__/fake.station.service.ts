@@ -7,23 +7,27 @@ export const fakeStationService = {
     return Promise.resolve(Array.from({ length: 10 }, () => fakeStation));
   },
 
-  async getById(_id: string) {
+  async getById(id: string) {
     return Promise.resolve(fakeStation);
   },
 
-  async getByPlanetName(_name: string) {
+  async getByName(name: string) {
     return Promise.resolve(fakeStation);
   },
 
-  async create(_station: RequestStationDTO) {
+  async getByPlanetName(name: string) {
     return Promise.resolve(fakeStation);
   },
 
-  async update(_id: string, _station: RequestStationDTO) {
+  async create(station: RequestStationDTO) {
     return Promise.resolve(fakeStation);
   },
 
-  async softDelete(_id: string) {
+  async update(id: string, station: RequestStationDTO) {
+    return Promise.resolve(fakeStation);
+  },
+
+  async softDelete(id: string) {
     return Promise.resolve(fakeStation);
   },
 } as unknown as IStationService;
