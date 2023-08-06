@@ -18,6 +18,18 @@ export class ReservationMongooseRepository implements IReservationRepository {
     return reservations;
   }
 
+  async getById(id: string): Promise<Reservation> {
+    if (!isIdValid(id)) {
+      throw new Error(ErrorMessages.INVALID_ID(id));
+    }
+
+    const reservation = (await this.reservationModel.findById(
+      id
+    )) as Reservation;
+
+    return reservation;
+  }
+
   async getAllByStationName(stationName: string): Promise<Reservation[]> {
     const reservations = await this.reservationModel.find({
       stationName: stationName,

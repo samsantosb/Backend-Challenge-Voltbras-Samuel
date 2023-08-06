@@ -40,4 +40,7 @@ export class ErrorMessages {
 
   static RESERVATION_ALREADY_EXISTS =
     "There is already a reservation for this date";
+
+  static INVALID_RESERVATION_DATE =
+    "Invalid reservation date on reservation trigger";
 }

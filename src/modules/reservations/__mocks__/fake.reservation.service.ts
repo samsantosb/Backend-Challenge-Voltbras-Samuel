@@ -7,6 +7,10 @@ export const fakeReservationService = {
     return Promise.resolve(Array.from({ length: 10 }, () => fakeReservation));
   },
 
+  createRechargeByRservation(_id: string) {
+    return Promise.resolve(fakeReservation);
+  },
+
   async createReservation(_reservation: RequestReservationDTO) {
     return Promise.resolve(fakeReservation);
   },

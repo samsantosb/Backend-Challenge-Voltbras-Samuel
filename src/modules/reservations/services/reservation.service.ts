@@ -1,3 +1,4 @@
+import { ObjectId, Types } from "mongoose";
 import { Recharge } from "../../recharges/model/recharge.model";
 import { IRechargeService } from "../../recharges/services/recharge.service.interface";
 import { ErrorMessages } from "../../utils/errorHandler/error.messages";
@@ -32,6 +33,35 @@ export class ReservationService implements IReservationService {
       throw new Error(ErrorMessages.CANNOT_CREATE("Reservation"));
     }
     return reservationCreated;
+  }
+
+  async createRechargeByReservation(id: string): Promise<Recharge> {
+    const reservation = await this.reservationRepository.getById(id);
+
+    if (!reservation) {
+      throw new Error(ErrorMessages.NOT_FOUND("Reservation"));
+    }
+
+    const now = new Date();
+
+    const actualTimeIsHigherThanStartDate = now >= reservation.startDate;
+    const actualTimeIsLowerThanEndDate = now <= reservation.endDate;
+    const isInReservationTimeInterval =
+      actualTimeIsHigherThanStartDate && actualTimeIsLowerThanEndDate;
+
+    if (!isInReservationTimeInterval) {
+      throw new Error(ErrorMessages.INVALID_RESERVATION_DATE);
+    }
+
+    const recharge = await this.rechargeService.create({
+      stationName: reservation.stationName,
+      userEmail: reservation.userEmail,
+      startDate: new Date(),
+      endDate: reservation.endDate,
+      inProgress: true,
+    });
+
+    return recharge;
   }
 
   async getAll(): Promise<Reservation[]> {

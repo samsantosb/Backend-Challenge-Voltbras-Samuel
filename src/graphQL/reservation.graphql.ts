@@ -1,3 +1,4 @@
+import { isDebugMode } from "./../modules/utils/debugMode/debug.mode";
 import { gql } from "apollo-server";
 
 export const ReservationType = gql`
@@ -24,6 +25,7 @@ export const ReservationType = gql`
 
   type Mutation {
     reservation(reservation: ReservationInput!): Reservation!
+    triggerReservation(id: ID!): Recharge!
     updateReservation(id: ID!, reservation: ReservationInput!): Reservation!
   }
 `;

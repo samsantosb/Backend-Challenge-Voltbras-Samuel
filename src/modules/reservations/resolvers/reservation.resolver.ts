@@ -1,3 +1,4 @@
+import { Recharge } from "../../recharges/model/recharge.model";
 import { RequestReservationDTO } from "../dtos/request.reservation.dto";
 import { Reservation } from "../model/reservation.type";
 import { IReservationService } from "../services/reservation.service.interface";
@@ -27,6 +28,16 @@ export class ReservationResolver implements IReservationResolver {
 
       return newReservation;
     },
+    triggerReservation: async (
+      _: any,
+      { id }: { id: string }
+    ): Promise<Recharge> => {
+      const recharge =
+        await this.reservationService.createRechargeByReservation(id);
+
+      return recharge;
+    },
+
     updateReservation: async (
       _: any,
       { id, reservation }: { id: string; reservation: RequestReservationDTO }

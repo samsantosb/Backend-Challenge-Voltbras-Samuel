@@ -10,6 +10,10 @@ export const fakeReservationRepository = {
     return Promise.resolve(Array.from({ length: 10 }, () => fakeReservation));
   },
 
+  getById() {
+    return Promise.resolve(fakeReservation);
+  },
+
   getAllByStationName() {
     return Promise.resolve(Array.from({ length: 10 }, () => fakeReservation));
   },
