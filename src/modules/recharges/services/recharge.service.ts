@@ -70,13 +70,24 @@ export class RechargeService implements IRechargeService {
 
     const recharges = (await this.rechargeRepository.getAll()) as Recharge[];
 
-    if (this.isRecharing(recharges, recharge, "stationName")) {
+    if (this.isStationRecharging(recharges, recharge, "stationName")) {
       throw new Error(ErrorMessages.STATION_SERVICE_IS_BUSY);
     }
 
-    if (this.isRecharing(recharges, recharge, "userEmail")) {
+    if (this.isStationRecharging(recharges, recharge, "userEmail")) {
       throw new Error(ErrorMessages.USER_IS_BUSY);
     }
+
+    const reservations =
+      await this.rechargeRepository.getReservationDatesByStationName(
+        recharge.stationName
+      );
+
+    const rechargeStartDate = new Date(recharge.startDate);
+    const rechargeEndDate = new Date(recharge.endDate);
+
+    this.isStationReserved(reservations, rechargeStartDate, rechargeEndDate);
+
     const newRecharge = await this.rechargeRepository.create(recharge);
 
     if (!newRecharge) {
@@ -96,7 +107,7 @@ export class RechargeService implements IRechargeService {
     return updatedRecharge;
   }
 
-  private isRecharing(
+  private isStationRecharging(
     recharges: Recharge[],
     recharge: RequestRechargeDTO,
     id: keyof RequestRechargeDTO
@@ -108,14 +119,18 @@ export class RechargeService implements IRechargeService {
     );
   }
 
-  private isReservated(ocupedDates: Reservation[], reserve: Date) {
+  private isStationReserved(
+    ocupedDates: Reservation[],
+    inputStarDate: Date,
+    inputEndDate: Date
+  ) {
     ocupedDates.forEach((ocupedDate) => {
-      const newReservationEndsAfter = reserve >= ocupedDate.startDate;
+      const startionIsBUsy =
+        inputEndDate >= ocupedDate.startDate &&
+        inputStarDate <= ocupedDate.endDate;
 
-      const newReservationEndsBefore = reserve <= ocupedDate.endDate;
-
-      if (newReservationEndsAfter && newReservationEndsBefore) {
-        throw new Error(ErrorMessages.RESERVATION_ALREADY_EXISTS);
+      if (startionIsBUsy) {
+        throw new Error(ErrorMessages.STATION_SERVICE_IS_BUSY);
       }
     });
   }

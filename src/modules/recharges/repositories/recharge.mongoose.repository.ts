@@ -7,9 +7,14 @@ import { RequestRechargeDTO } from "../dtos/request.reacharge.dto";
 import { Recharge } from "../model/recharge.model";
 import { isIdValid } from "../../utils/validators/mongo.id.validator";
 import { ErrorMessages } from "../../utils/errorHandler/error.messages";
+import { mongooseReservationModel } from "../../reservations/model/reservation.mongoose.model";
+import { Reservation } from "../../reservations/model/reservation.type";
 
 export class RechargeMongooseRepository implements IRechargeRepository {
-  constructor(private readonly rechargeModel: mongooseRechargeModel) {}
+  constructor(
+    private readonly rechargeModel: mongooseRechargeModel,
+    private readonly reservationModel: mongooseReservationModel
+  ) {}
 
   async getAll(): Promise<Recharge[]> {
     const recharges = await this.rechargeModel.find();
@@ -65,5 +70,20 @@ export class RechargeMongooseRepository implements IRechargeRepository {
     );
 
     return updatedRecharge;
+  }
+
+  async getReservationDatesByStationName(stationName: string) {
+    const reservationDates = (await this.reservationModel.find(
+      {
+        stationName: stationName,
+      },
+      {
+        startDate: 1,
+        endDate: 1,
+        _id: 0,
+      }
+    )) as Reservation[];
+
+    return reservationDates;
   }
 }

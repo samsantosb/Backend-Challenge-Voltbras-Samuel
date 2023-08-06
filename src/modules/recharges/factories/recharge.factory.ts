@@ -5,10 +5,12 @@ import { RechargeResolver } from "../resolvers/recharge.resolver";
 import { userModule } from "../../users/factories/user.factory";
 import { stationModule } from "../../stations/factories/station.factory";
 import { RechargeAgendaService } from "../services/agenda/recharge.agenda.service";
+import { ReservationModel } from "../../reservations/model/reservation.mongoose.model";
 
 function rechargeFactory() {
   const rechargeMongooseRepository = new RechargeMongooseRepository(
-    RechargeModel
+    RechargeModel,
+    ReservationModel
   );
 
   const rechargeAgendaService = new RechargeAgendaService(

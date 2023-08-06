@@ -14,7 +14,7 @@ function reservationFactory() {
   );
   const { Query, Mutation } = new ReservationResolver(reservationService);
 
-  return { Query, Mutation, reservationService };
+  return { Query, Mutation, mongooseRepository, reservationService };
 }
 
 export const reservationModule = reservationFactory();

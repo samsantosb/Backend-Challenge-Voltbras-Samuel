@@ -3,8 +3,12 @@ import { fakeRequestRecharge } from "../../__mocks__/fake.request.recharge";
 import { fakeRecharge } from "../../__mocks__/fake.recharge";
 import { fakeRechargeModel } from "../../__mocks__/fake.recharge.model";
 import { RechargeMongooseRepository } from "../recharge.mongoose.repository";
+import { fakeReservationModel } from "../../../reservations/__mocks__/fake.reservation.model";
 
-const rechargeRepository = new RechargeMongooseRepository(fakeRechargeModel);
+const rechargeRepository = new RechargeMongooseRepository(
+  fakeRechargeModel,
+  fakeReservationModel
+);
 
 describe("RechargeRepository", () => {
   describe("getAll", () => {

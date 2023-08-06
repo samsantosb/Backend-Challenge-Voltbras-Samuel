@@ -34,13 +34,10 @@ export class ErrorMessages {
   static NO_PLANETS_FOUND = "No planets found";
 
   static STATION_SERVICE_IS_BUSY =
-    "Current Station is already in recharge process, please wait";
+    "Current Station is already in recharge process or reservated, please wait";
 
   static USER_IS_BUSY = "Current User is doing a recharge, please wait";
 
-  static RESERVATION_ALREADY_EXISTS =
-    "There is already a reservation for this date";
-
-  static INVALID_RESERVATION_DATE =
-    "Invalid reservation date on reservation trigger";
+  static INCORRECT_TIME_FOR_RECHARGE =
+    "It is not the correct time for this reservated recharge";
 }

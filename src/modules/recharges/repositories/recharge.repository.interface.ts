@@ -1,6 +1,7 @@
 import { Types } from "mongoose";
 import { RequestRechargeDTO } from "../dtos/request.reacharge.dto";
 import { Recharge } from "../model/recharge.model";
+import { Reservation } from "../../reservations/model/reservation.type";
 
 export abstract class IRechargeRepository {
   abstract getAll(): Promise<Recharge[] | null>;
@@ -12,4 +13,7 @@ export abstract class IRechargeRepository {
     recharge: RequestRechargeDTO
   ): Promise<Recharge | null>;
   abstract getActiveRecharges(): Promise<Recharge[] | null>;
+  abstract getReservationDatesByStationName(
+    stationName: string
+  ): Promise<Reservation[]>;
 }

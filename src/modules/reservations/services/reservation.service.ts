@@ -19,10 +19,19 @@ export class ReservationService implements IReservationService {
       reservation.stationName
     );
 
-    const newReservation = new Date(reservation.startDate);
+    const newReservationStartDate = new Date(reservation.startDate);
+    const newReservationEndDate = new Date(reservation.endDate);
 
-    this.timeDoesntConflict(savedReservations, newReservation);
-    this.timeDoesntConflict(savedRecharges, newReservation);
+    this.isStationBusy(
+      savedReservations,
+      newReservationStartDate,
+      newReservationEndDate
+    );
+    this.isStationBusy(
+      savedRecharges,
+      newReservationStartDate,
+      newReservationEndDate
+    );
 
     const reservationCreated = await this.reservationRepository.create(
       reservation
@@ -43,15 +52,17 @@ export class ReservationService implements IReservationService {
 
     const now = new Date();
 
-    const actualTimeIsHigherThanStartDate = now >= reservation.startDate;
+    const actualTimeIsHigherThanReservationStartDate =
+      now >= reservation.startDate;
 
-    const actualTimeIsLowerThanEndDate = now <= reservation.endDate;
+    const actualTimeIsLowerThanReservationEndDate = now <= reservation.endDate;
 
-    const thereIsAReservationInTimeInterval =
-      actualTimeIsHigherThanStartDate && actualTimeIsLowerThanEndDate;
+    const itIsUpToRecharge =
+      actualTimeIsHigherThanReservationStartDate &&
+      actualTimeIsLowerThanReservationEndDate;
 
-    if (thereIsAReservationInTimeInterval) {
-      throw new Error(ErrorMessages.INVALID_RESERVATION_DATE);
+    if (!itIsUpToRecharge) {
+      throw new Error(ErrorMessages.INCORRECT_TIME_FOR_RECHARGE);
     }
 
     const recharge = await this.rechargeService.create({
@@ -102,17 +113,41 @@ export class ReservationService implements IReservationService {
     return reservationUpdated;
   }
 
-  private timeDoesntConflict(
+  private isStationBusy(
     ocupedDates: Reservation[] | Recharge[],
-    reserve: Date
+    inputStarDate: Date,
+    inputEndDate: Date
   ) {
     ocupedDates.forEach((ocupedDate) => {
-      const newReservationEndsAfter = reserve >= ocupedDate.startDate;
+      // const startDateAfterOcupedDate = inputStarDate >= ocupedDate.startDate;
 
-      const newReservationEndsBefore = reserve <= ocupedDate.endDate;
+      // const startDateBeforeEndDate = inputStarDate <= ocupedDate.endDate;
 
-      if (newReservationEndsAfter && newReservationEndsBefore) {
-        throw new Error(ErrorMessages.RESERVATION_ALREADY_EXISTS);
+      // const startDateConflict =
+      //   startDateAfterOcupedDate && startDateBeforeEndDate;
+
+      // const endDateAfterOcupedDate = inputEndDate >= ocupedDate.startDate;
+
+      // const endDateBeforeEndDate = inputEndDate <= ocupedDate.endDate;
+
+      // const endDateConflict = endDateAfterOcupedDate && endDateBeforeEndDate;
+
+      // const startsBeforeAndEndsAfter = inputStarDate <= ocupedDate.startDate;
+
+      // const endsAfterAndStartsBefore = inputEndDate >= ocupedDate.endDate;
+
+      // const startAndEndsConflict =
+      //   startsBeforeAndEndsAfter && endsAfterAndStartsBefore;
+
+      // const stationIsReservated =
+      //   startDateConflict || endDateConflict || startAndEndsConflict;
+
+      const stationIsReservated =
+        inputEndDate >= ocupedDate.startDate &&
+        inputStarDate <= ocupedDate.endDate;
+
+      if (stationIsReservated) {
+        throw new Error(ErrorMessages.STATION_SERVICE_IS_BUSY);
       }
     });
   }
