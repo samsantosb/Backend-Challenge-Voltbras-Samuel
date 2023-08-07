@@ -85,3 +85,5 @@ Requisitos Extras
 
 - O Token gerado no Login deve ser adicionado como Authorization no Apollo Studio
   Bearer "valorDoTokenSemAspas"
+
+- Infelizmente não tive tempo pra fazer mais testes de integração, mas tem um exemplo com o módulo de Stations usando recursos nativos do Apollo
