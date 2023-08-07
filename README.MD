@@ -34,7 +34,7 @@ https://studio.apollographql.com/public/Voltbras-Challenge/variant/current
 
 7. **Vídeo**
 
-www.youtube.com
+https://www.youtube.com/watch?v=aEBv-Uu5AtQ&ab_channel=SamuelAlves
 
 ## Requisitos
 

@@ -45,4 +45,6 @@ export class ErrorMessages {
     "The provided user doesnt have any reservation";
 
   static USER_IS_LATE = "The user is late for the recharge";
+
+  static INVALID_DATE = "The provided date is invalid";
 }
