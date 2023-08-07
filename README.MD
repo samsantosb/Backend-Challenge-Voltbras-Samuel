@@ -64,3 +64,14 @@ Requisitos Extras
 [✅] Crie uma mutation reservation: que dado uma estação, um usuário e um intervalo de tempo, cria uma reserva da estação para o usuário naquele determinado intervalo de tempo.
 
 [✅] Crie uma query stationHistory: onde será possível visualizar o histórico de recargas de uma estação (mostrar o horário, o tempo de duração da recarga e o usuário que realizou-a).
+
+## Observações
+
+- Todos os campos exceto login e createUser estão com autenticação
+
+- Há um serviço dentro do módulo de recharges (Agenda) configurado
+  para a cada 15 segundos (para fins de demonstração) que verifica o
+  status das recharges e atualiza no banco
+
+- Há também alguns endpoints extras e testados, principalmente no módulo
+  de users e de stations
