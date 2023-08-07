@@ -15,6 +15,10 @@ export class RechargeService implements IRechargeService {
   ) {}
 
   async create(recharge: RequestRechargeDTO) {
+    if (new Date(recharge.endDate) < new Date()) {
+      throw new Error(ErrorMessages.INVALID_DATE);
+    }
+
     await this.validateRechargeInputs(recharge.userEmail, recharge.stationName);
 
     const recharges = (await this.rechargeRepository.getAll()) as Recharge[];

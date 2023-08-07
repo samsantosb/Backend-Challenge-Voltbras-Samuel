@@ -12,6 +12,10 @@ export class ReservationService implements IReservationService {
   ) {}
 
   async createReservation(reservation: Reservation): Promise<Reservation> {
+    if (new Date(reservation.endDate) < new Date()) {
+      throw new Error(ErrorMessages.INVALID_DATE);
+    }
+
     const savedReservations = await this.getAllByStationName(
       reservation.stationName
     );
