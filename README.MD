@@ -1,6 +1,3 @@
-markdown
-Copy code
-
 # Backend-Challenge Voltbras Recharging Stations
 
 ## Como rodar o projeto
