@@ -19,7 +19,9 @@ import { DateScalar } from "./modules/utils/scalars/date.scalar";
 import { reservationModule } from "./modules/reservations/factories/reservation.factory";
 import { ReservationType } from "./graphQL/reservation.graphql";
 
-mongooseConnect();
+const mongo: string = process.env.DATABASE_URL || "";
+
+mongooseConnect(mongo);
 
 rechargeModule.rechargeAgendaService.startRechargeChecking();
 

@@ -30,7 +30,7 @@ coverage: `npm run test:coverage`
 
 6. **Documentação dos Endpoints**
 
-www.linkdovideo.com
+https://studio.apollographql.com/public/Voltbras-Challenge/variant/current
 
 7. **Vídeo**
 

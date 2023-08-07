@@ -1,18 +1,11 @@
 import { connection, connections, connect } from "mongoose";
 
-const mongo: string = process.env.DATABASE_URL || "";
-
-export function mongooseConnect() {
+export function mongooseConnect(connectionString: string) {
   const a = "a";
   const x = 2;
   connection
     .on("error", (error) => {
       console.log("ERROR: Connection to MongoDB failed", error);
-    })
-
-    .on("close", () => {
-      console.log("Connection to MongoDB ended");
-      process.exit(1);
     })
 
     .once("open", () => {
@@ -25,7 +18,7 @@ export function mongooseConnect() {
       );
     });
 
-  connect(mongo);
+  connect(connectionString);
   return connection.getClient().db();
 }
 
