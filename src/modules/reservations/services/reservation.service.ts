@@ -22,13 +22,10 @@ export class ReservationService implements IReservationService {
     const newReservationStartDate = new Date(reservation.startDate);
     const newReservationEndDate = new Date(reservation.endDate);
 
+    const occupiedDates = [...savedReservations, ...savedRecharges];
+
     this.isStationBusy(
-      savedReservations,
-      newReservationStartDate,
-      newReservationEndDate
-    );
-    this.isStationBusy(
-      savedRecharges,
+      occupiedDates,
       newReservationStartDate,
       newReservationEndDate
     );
@@ -50,16 +47,8 @@ export class ReservationService implements IReservationService {
       throw new Error(ErrorMessages.NOT_FOUND("Reservation"));
     }
 
-    const now = new Date();
-
-    const actualTimeIsHigherThanReservationStartDate =
-      now >= reservation.startDate;
-
-    const actualTimeIsLowerThanReservationEndDate = now <= reservation.endDate;
-
     const itIsUpToRecharge =
-      actualTimeIsHigherThanReservationStartDate &&
-      actualTimeIsLowerThanReservationEndDate;
+      new Date() >= reservation.startDate && new Date() <= reservation.endDate;
 
     if (!itIsUpToRecharge) {
       throw new Error(ErrorMessages.INCORRECT_TIME_FOR_RECHARGE);

@@ -2,7 +2,7 @@ import { gql } from "apollo-server";
 
 export const AuthType = gql`
   type LoginResponse {
-    token: String
+    token: String!
   }
 
   type Mutation {

@@ -11,8 +11,8 @@ export const StationType = gql`
   }
 
   input StationInput {
-    name: String
-    planetName: String
+    name: String!
+    planetName: String!
   }
 
   type Query {

@@ -15,8 +15,8 @@ export const RechargeType = gql`
 
   input RechargeInput {
     stationName: String!
-    userEmail: String
-    endDate: Date
+    userEmail: String!
+    endDate: Date!
   }
 
   type Query {

@@ -14,59 +14,8 @@ export class RechargeService implements IRechargeService {
     private readonly stationService: IStationService
   ) {}
 
-  async getAll() {
-    const recharges = await this.rechargeRepository.getAll();
-
-    if (!recharges) {
-      throw new Error(ErrorMessages.NOT_FOUND("Recharges"));
-    }
-
-    recharges.forEach((recharge) => {
-      recharge.endDate = String(recharge.endDate);
-      recharge.startDate = String(recharge.startDate);
-    });
-
-    return recharges;
-  }
-
-  async getAllByStationName(stationName: string) {
-    const recharges = await this.rechargeRepository.getAllByStationName(
-      stationName
-    );
-
-    if (!recharges) {
-      throw new Error(
-        ErrorMessages.NOT_FOUND(`Recharges with station name ${stationName}`)
-      );
-    }
-
-    for (const recharge of recharges) {
-      const totalTimeInMiliSeconds =
-        new Date(recharge.endDate).getTime() -
-        new Date(recharge.startDate).getTime();
-
-      const totalTimeInHours = totalTimeInMiliSeconds / 1000 / 60 / 60;
-      recharge.totalTime = `${totalTimeInHours.toFixed(2)} hours`;
-    }
-
-    return recharges;
-  }
-
-  async getById(id: string) {
-    const recharge = await this.rechargeRepository.getById(id);
-
-    if (!recharge) {
-      throw new Error(ErrorMessages.NOT_FOUND(`Recharge with id ${id}`));
-    }
-
-    return recharge;
-  }
-
   async create(recharge: RequestRechargeDTO) {
-    const userExist = await this.userService.getByEmail(recharge.userEmail);
-    const stationExist = await this.stationService.getByName(
-      recharge.stationName
-    );
+    await this.validateRechargeInputs(recharge.userEmail, recharge.stationName);
 
     const recharges = (await this.rechargeRepository.getAll()) as Recharge[];
 
@@ -83,14 +32,11 @@ export class RechargeService implements IRechargeService {
         recharge.stationName
       );
 
-    const rechargeStartDate = new Date(recharge.startDate);
-    const rechargeEndDate = new Date(recharge.endDate);
-
     this.isStationReservedByOtherUser(
       recharge.userEmail,
       reservations,
-      rechargeStartDate,
-      rechargeEndDate
+      new Date(recharge.startDate),
+      new Date(recharge.endDate)
     );
 
     const newRecharge = await this.rechargeRepository.create(recharge);
@@ -100,6 +46,42 @@ export class RechargeService implements IRechargeService {
     }
 
     return newRecharge;
+  }
+
+  async getAll() {
+    const recharges = await this.rechargeRepository.getAll();
+
+    if (!recharges) {
+      throw new Error(ErrorMessages.NOT_FOUND("Recharges"));
+    }
+
+    return recharges;
+  }
+
+  async getAllByStationName(stationName: string) {
+    const recharges = await this.rechargeRepository.getAllByStationName(
+      stationName
+    );
+
+    if (!recharges) {
+      throw new Error(
+        ErrorMessages.NOT_FOUND(`Recharges with station name ${stationName}`)
+      );
+    }
+
+    const rechargesWithTotalHours = this.insertTotalHours(recharges);
+
+    return rechargesWithTotalHours;
+  }
+
+  async getById(id: string) {
+    const recharge = await this.rechargeRepository.getById(id);
+
+    if (!recharge) {
+      throw new Error(ErrorMessages.NOT_FOUND(`Recharge with id ${id}`));
+    }
+
+    return recharge;
   }
 
   private isStationRecharging(
@@ -133,5 +115,24 @@ export class RechargeService implements IRechargeService {
     if (hasConflictWithOtheruser) {
       throw new Error(ErrorMessages.STATION_SERVICE_IS_BUSY);
     }
+  }
+
+  private async validateRechargeInputs(userEmail: string, stationName: string) {
+    await this.userService.getByEmail(userEmail);
+    await this.stationService.getByName(stationName);
+  }
+
+  private insertTotalHours(recharges: Recharge[]): Recharge[] {
+    recharges.forEach((recharge) => {
+      const totalTimeInMiliSeconds =
+        new Date(recharge.endDate).getTime() -
+        new Date(recharge.startDate).getTime();
+
+      const totalTimeInHours = totalTimeInMiliSeconds / 1000 / 60 / 60;
+
+      recharge.totalTime = `${totalTimeInHours.toFixed(2)} hours`;
+    });
+
+    return recharges;
   }
 }
