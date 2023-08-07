@@ -17,13 +17,9 @@ export class PlanetService implements IPlanetService {
       throw new Error(ErrorMessages.NO_PLANETS_FOUND);
     }
 
-    const suitablePlanets = planets.filter(
-      (planet) => planet.mass && planet.mass > 10
-    );
-
     const response: Planet[] = [];
 
-    for (const planet of suitablePlanets) {
+    for (const planet of planets) {
       const verifyExists = await this.stationRepository.getByPlanetName(
         planet.name
       );

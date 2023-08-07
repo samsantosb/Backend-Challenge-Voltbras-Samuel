@@ -6,7 +6,7 @@ export class NasaPlanetsService implements INasaPlanetsService {
 
   constructor() {
     this.baseURL =
-      "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name,%20pl_bmassj+from+ps&format=json";
+      "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name,%20pl_bmassj+from+ps+where+pl_bmassj+>20&format=json";
   }
 
   public async getPlanets(): Promise<SuitablePlanets[]> {
