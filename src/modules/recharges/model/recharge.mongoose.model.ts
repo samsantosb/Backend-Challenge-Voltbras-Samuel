@@ -1,8 +1,8 @@
 import { InferSchemaType, Model, Schema, Types, model } from "mongoose";
 
 const RechargeSchema = new Schema({
-  stationName: { type: String, ref: "Station", required: true },
-  userEmail: { type: String, ref: "User", required: true },
+  stationName: { type: String, required: true },
+  userEmail: { type: String, required: true },
   inProgress: { type: Boolean, default: true },
   startDate: { type: Date, required: true },
   endDate: { type: Date, required: true },

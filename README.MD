@@ -32,6 +32,10 @@ coverage: `npm run test:coverage`
 
 www.linkdovideo.com
 
+7. **Vídeo**
+
+www.youtube.com
+
 ## Requisitos
 
 [✅] Crie o schema GraphQL com uma query suitablePlanets: que retorna os dados dos planetas com gravidade alta.
@@ -75,3 +79,9 @@ Requisitos Extras
 
 - Há também alguns endpoints extras e testados, principalmente no módulo
   de users e de stations
+
+- `TriggerReservation` é o nome do endpoint que aciona uma reserva pelo ID,
+  e caso seja possível ativa uma recarga com o endDate alinhado com o da reserva
+
+- O Token gerado no Login deve ser adicionado como Authorization no Apollo Studio
+  Bearer "valorDoTokenSemAspas"
