@@ -90,5 +90,4 @@ Requisitos Extras
 
 - Os arquivos de abstração "interfaces" e os contratos foram feitos com Classe Abstrata no caso da inversão de controle principalmente. O motivo é que interfaces não transpilam para JS (fazem apenas type check estático) e Classes Abstratas, além do typecheck da class, transpilam(pois existe class em JS). Permitindo que o contrato seja validado em run-time. fonte: https://betterprogramming.pub/how-to-follow-the-dependency-inversion-principle-in-nestjs-and-angular-8d344303dc3b
 
-- Coisas que eu queria ter feito eu não deu tempo: Logging mais robusto, Error Handler, padronização de alguns nomes,
-  um serviço de trigger de recharge por reservas, paginação, caching (no caso dos planetas) etc.
+- Coisas que eu queria ter feito eu não deu tempo: Logging mais robusto, Error Handler customizado, padronização de alguns nomes, um serviço de trigger de recharge por reservas, paginação, caching (no caso dos planetas) etc.
