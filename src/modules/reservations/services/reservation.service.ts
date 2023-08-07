@@ -12,9 +12,7 @@ export class ReservationService implements IReservationService {
   ) {}
 
   async createReservation(reservation: Reservation): Promise<Reservation> {
-    if (new Date(reservation.endDate) < new Date()) {
-      throw new Error(ErrorMessages.INVALID_DATE);
-    }
+    this.isValidDate(reservation.startDate, reservation.endDate);
 
     const savedReservations = await this.getAllByStationName(
       reservation.stationName
@@ -120,5 +118,15 @@ export class ReservationService implements IReservationService {
         throw new Error(ErrorMessages.STATION_SERVICE_IS_BUSY);
       }
     });
+  }
+
+  private isValidDate(startDate: Date | string, endDate: Date | string) {
+    const isValid =
+      new Date(startDate) < new Date(endDate) ||
+      new Date(startDate) < new Date();
+
+    if (!isValid) {
+      throw new Error(ErrorMessages.INVALID_DATE);
+    }
   }
 }
