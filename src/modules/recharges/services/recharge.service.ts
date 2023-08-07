@@ -15,9 +15,7 @@ export class RechargeService implements IRechargeService {
   ) {}
 
   async create(recharge: RequestRechargeDTO) {
-    if (new Date(recharge.endDate) < new Date()) {
-      throw new Error(ErrorMessages.INVALID_DATE);
-    }
+    this.isValidDate(recharge.endDate);
 
     await this.validateRechargeInputs(recharge.userEmail, recharge.stationName);
 
@@ -138,5 +136,13 @@ export class RechargeService implements IRechargeService {
     });
 
     return recharges;
+  }
+
+  private isValidDate(endDate: string | Date) {
+    const isValidDate = new Date(endDate) > new Date();
+
+    if (!isValidDate) {
+      throw new Error(ErrorMessages.INVALID_DATE);
+    }
   }
 }
