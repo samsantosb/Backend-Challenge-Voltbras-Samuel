@@ -1,5 +1,5 @@
 import { UserModel } from "../model/user.mongoose.model";
-import { UserMongooseRepository } from "../repository/user.mongoose.repository";
+import { UserMongooseRepository } from "../repositories/user.mongoose.repository";
 import { UserService } from "../services/user.service";
 import { UserResolver } from "../resolvers/user.resolver";
 
