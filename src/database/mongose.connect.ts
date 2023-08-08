@@ -1,8 +1,6 @@
 import { connection, connections, connect } from "mongoose";
 
 export function mongooseConnect(connectionString: string) {
-  const a = "a";
-  const x = 2;
   connection
     .on("error", (error) => {
       console.log("ERROR: Connection to MongoDB failed", error);
