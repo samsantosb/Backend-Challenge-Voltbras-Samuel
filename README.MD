@@ -12,7 +12,7 @@
 
 3. **rodar a aplicação no container Docker**
 
-`docker-composer up`
+`docker-compose up`
 
 4. **MongoDB URL**
 
